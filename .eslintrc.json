@@ -4,5 +4,9 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended"
-  ]
+  ],
+  "rules": {
+    // Does not apply when using NextJS
+    "react/react-in-jsx-scope": "off"
+  }
 }
