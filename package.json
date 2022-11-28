@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "SKIP_ENV_VALIDATION=true next dev",
     "postinstall": "prisma generate",
+    "release-dev": "next dev",
     "release-lint": "next lint",
     "lint": "SKIP_ENV_VALIDATION=true next lint",
     "start": "next start"
@@ -18,8 +19,10 @@
     "@trpc/next": "^10.0.0",
     "@trpc/react-query": "^10.0.0",
     "@trpc/server": "^10.0.0",
+    "classnames": "^2.3.2",
     "next": "13.0.2",
     "next-auth": "^4.15.1",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.9.1",
