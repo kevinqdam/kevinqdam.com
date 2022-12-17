@@ -54,7 +54,11 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
       href={path}
       className={classNames(
         isActive ? "font-semibold" : "font-normal",
-        "text-lg"
+        "flex content-center",
+        "rounded-lg px-2 py-1",
+        "text-lg",
+        "transition",
+        "hover:bg-gray-200 dark:hover:bg-gray-600"
       )}
     >
       {children}
@@ -65,7 +69,7 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
 const NavBar: React.FC = () => {
   const { resolvedTheme, setTheme } = useTheme();
   return (
-    <nav className="flex w-full flex-row justify-between pt-8 pb-12">
+    <nav className="flex w-full flex-row items-center justify-between pt-8 pb-12">
       <div className="flex space-x-4">
         <NavItem path="/">Home</NavItem>
         <NavItem path="/experience">Experience</NavItem>
