@@ -64,7 +64,7 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
 
 const NavBar: React.FC = () => {
   const { theme, setTheme } = useTheme();
-
+  console.log(theme);
   return (
     <nav className="flex w-full flex-row justify-between pt-8 pb-12">
       <div className="flex space-x-4">
@@ -75,7 +75,7 @@ const NavBar: React.FC = () => {
       <button
         type="button"
         onClick={() => {
-          const nextTheme = theme === "light" ? "dark" : "theme";
+          const nextTheme = theme === "light" ? "dark" : "light";
           setTheme(nextTheme);
         }}
         className="rounded-lg p-2.5 text-sm text-gray-500 transition hover:bg-gray-100 focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
