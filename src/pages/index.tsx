@@ -8,7 +8,7 @@ const LOREM_IPSUM =
 const Home: NextPage = () => {
   return (
     <Container>
-      <div className="flex flex-row space-x-6 pb-4">
+      <div className="flex flex-row space-x-6 pb-8">
         <Image
           alt="Kevin Dam profile picture"
           height={125}
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           <div>Grug at FaceTube</div>
         </div>
       </div>
-      <h2 className="pb-1 font-bold">About</h2>
+      <h2 className="pb-4 font-bold">About</h2>
       <p>
         I like type on keyboard see stuff on screen ok here is lorem ipsum text:
       </p>

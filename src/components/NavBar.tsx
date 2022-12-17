@@ -63,7 +63,7 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
 };
 
 const NavBar: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   return (
     <nav className="flex w-full flex-row justify-between pt-8 pb-12">
       <div className="flex space-x-4">
@@ -74,12 +74,12 @@ const NavBar: React.FC = () => {
       <button
         type="button"
         onClick={() => {
-          const nextTheme = theme === "light" ? "dark" : "light";
+          const nextTheme = resolvedTheme === "light" ? "dark" : "light";
           setTheme(nextTheme);
         }}
-        className="rounded-lg p-2.5 text-sm text-gray-500 transition hover:bg-gray-100 focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+        className="rounded-lg p-2.5 text-sm text-gray-500 focus:outline-none transition bg-gray-200 hover:ring-2 ring-gray-600 focus:ring-gray-600 dark:text-gray-400 dark:bg-gray-700 dark:hover:ring-gray-400"
       >
-        {theme === "dark" ? SunIcon : MoonIcon}
+        {resolvedTheme === "dark" ? SunIcon : MoonIcon}
       </button>
     </nav>
   );
