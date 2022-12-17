@@ -64,7 +64,6 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
 
 const NavBar: React.FC = () => {
   const { theme, setTheme } = useTheme();
-  console.log(theme);
   return (
     <nav className="flex w-full flex-row justify-between pt-8 pb-12">
       <div className="flex space-x-4">
