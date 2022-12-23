@@ -2,9 +2,6 @@ import { type NextPage } from "next";
 import Image from "next/image";
 import Container from "../components/Container";
 
-const LOREM_IPSUM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
 const Home: NextPage = () => (
   <Container>
     <div className="flex flex-row space-x-6 pb-8">
@@ -17,17 +14,23 @@ const Home: NextPage = () => (
         priority
         className="rounded-full filter"
       />
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center space-y-1">
         <h1 className="text-4xl font-bold">Kevin Dam</h1>
-        <div>Grug at FaceTube</div>
+        <div>Software Engineer</div>
       </div>
     </div>
-    <h2 className="pb-4 font-bold">About</h2>
-    <p>
-      I like type on keyboard see stuff on screen ok here is lorem ipsum text:
-    </p>
-    <br />
-    <p className="italic">{LOREM_IPSUM}</p>
+    <div className="flex flex-col space-y-2">
+      <h2 className="text-2xl font-bold">Bio</h2>
+      <p>Hello, welcome to my website!</p>
+      <p>
+        I&#39;m Kevin, a passionate software engineer who loves to solve
+        problems by writing code.
+      </p>
+      <p>
+        My interests that aren&#39;t programming are always shifting, but the
+        ones I always come back to are reading and playing video games.
+      </p>
+    </div>
   </Container>
 );
 
