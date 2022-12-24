@@ -30,7 +30,7 @@ const GithubIcon = (
 
 const Footer: React.FC = () => {
   return (
-    <footer className="flex justify-center space-x-6 pb-8">
+    <footer className="flex justify-center space-x-4 pb-8">
       <Link aria-label="LinkedIn logo" href="https://www.linkedin.com/in/kevinqdam">
         {LinkedInLogo}
       </Link>

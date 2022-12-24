@@ -2,23 +2,10 @@ import Container from "../components/Container";
 
 const Experience: React.FC = () => (
   <Container>
-    <div className="flex flex-col space-y-8">
+    <div className="flex flex-col space-y-6">
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Current Job Title</h1>
         <p>Software Development Engineer at AWS</p>
-      </div>
-      <div className="flex flex-col space-y-2">
-        <h1 className="text-2xl font-bold">Summary</h1>
-        <p>
-          I am a software engineer who is passionate about solving problems
-          using technology such as TypeScript, Java, etc. My experience ranges
-          through the full stack. I have developed enjoyable frontend
-          experiences for web applications, implemented flexible backend
-          solutions that adapt to customers&#39; changing business needs, and
-          maintained healthy operational practices for software that is live in
-          production.
-        </p>
-        <p>Currently, I am building the web at Amazon Web Services ☁️</p>
       </div>
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Experience</h1>
@@ -74,7 +61,7 @@ const Experience: React.FC = () => (
         <div className="grid grid-cols-3 gap-2 pb-6">
           <p className="col-span-1 text-sm">Aug 2016 - Dec 2017</p>
           <div className="col-span-2 flex flex-col">
-            <p className="text-sm">SI Leader (Peer Tutor)</p>
+            <p className="text-sm">SI Leader (Peer Tutor for Math)</p>
             <p className="pb-1 text-sm">
               @ UC San Diego Teaching + Learning Commons
             </p>

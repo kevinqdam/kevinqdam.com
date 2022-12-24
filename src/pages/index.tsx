@@ -19,17 +19,12 @@ const Home: NextPage = () => (
         <div>Software Engineer</div>
       </div>
     </div>
-    <div className="flex flex-col space-y-2">
-      <h2 className="text-2xl font-bold">Bio</h2>
-      <p>Hello, welcome to my website!</p>
-      <p>
-        I&#39;m Kevin, a passionate software engineer who loves to solve
-        problems by writing code.
+    <div className="flex flex-col space-y-6">
+      <p className="text-2xl">
+        A passionate software engineer who loves to solve problems by writing
+        code.
       </p>
-      <p>
-        My interests that aren&#39;t programming are always shifting, but the
-        ones I always come back to are reading and playing video games.
-      </p>
+      <p>Currently, I am building the web at Amazon Web Services ☁️</p>
     </div>
   </Container>
 );
