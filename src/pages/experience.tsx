@@ -1,17 +1,8 @@
 import Container from "../components/Container";
 
-type ExperienceItemProps = {
-  title: string;
-  company: string;
-  started: string;
-  end: string;
-  description: string;
-  technologies: string[];
-};
-
 const Experience: React.FC = () => (
   <Container>
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-8">
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Current Job Title</h1>
         <p>Software Development Engineer at AWS</p>
