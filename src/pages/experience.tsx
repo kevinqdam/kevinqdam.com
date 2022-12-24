@@ -43,7 +43,7 @@ const Experience: React.FC = () => (
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Software Engineer</p>
             <p className="pb-1 text-sm">@ ServiceNow</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               ServiceNow, I did a lot of stuff here
             </p>
           </div>
@@ -53,7 +53,7 @@ const Experience: React.FC = () => (
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Consultant</p>
             <p className="pb-1 text-sm">@ Fast Enterprises</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Fast, I did a lot of stuff here
             </p>
           </div>
@@ -63,7 +63,7 @@ const Experience: React.FC = () => (
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Specialist</p>
             <p className="pb-1 text-sm">@ PSC Biotech</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               PSC, I did a lot of stuff here
             </p>
           </div>
@@ -75,7 +75,7 @@ const Experience: React.FC = () => (
             <p className="pb-1 text-sm">
               @ Santa Clara County Registrar of Voters
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               ROV, I did a lot of stuff here
             </p>
           </div>
@@ -87,7 +87,7 @@ const Experience: React.FC = () => (
             <p className="pb-1 text-sm">
               @ UC San Diego Teaching + Learning Commons
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               SI, I did a lot of stuff here
             </p>
           </div>
@@ -102,7 +102,7 @@ const Experience: React.FC = () => (
               B.S. Bioengineering, Minor in Organic Chemistry
             </p>
             <p className="pb-1 text-sm">@ UC San Diego</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               UCSD, I did a lot of stuff here
             </p>
           </div>
