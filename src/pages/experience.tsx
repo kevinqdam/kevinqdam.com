@@ -10,11 +10,11 @@ const TechnologyPills: React.FC<TechnologyListProps> = ({
   company,
   technologies,
 }) => (
-  <ul className="flex flex-row">
+  <ul className="flex flex-row items-center space-x-1">
     {technologies.map((tech) => (
       <li
         key={`${company}-${tech}`}
-        className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-teal-200 dark:text-teal-800"
+        className="rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-teal-200 dark:text-teal-800"
       >
         {tech}
       </li>
