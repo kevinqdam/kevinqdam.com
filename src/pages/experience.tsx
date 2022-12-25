@@ -1,12 +1,12 @@
 import Anchor from "../components/Anchor";
 import Container from "../components/Container";
 
-type TechnologyListProps = {
+type TechnologyPillsProps = {
   company: string;
   technologies: readonly string[];
 };
 
-const TechnologyPills: React.FC<TechnologyListProps> = ({
+const TechnologyPills: React.FC<TechnologyPillsProps> = ({
   company,
   technologies,
 }) => (
