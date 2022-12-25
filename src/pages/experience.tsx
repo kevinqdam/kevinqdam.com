@@ -13,7 +13,7 @@ const TechnologyPills: React.FC<TechnologyPillsProps> = ({
   <ul className="flex flex-row items-top space-x-1">
     {technologies.map((tech) => (
       <div key={`${company}-${tech}`}>
-        <li className="rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-teal-200 dark:text-teal-800">
+        <li className="rounded bg-pink-100 px-2.5 py-0.5 text-xs font-semibold text-pink-800 dark:bg-teal-200 dark:text-teal-800">
           {tech}
         </li>
       </div>

@@ -29,7 +29,7 @@ const Anchor: React.FC<AnchorProps & PropsWithChildren> = ({
   <a
     target="_blank"
     rel="noreferrer"
-    className="hover:cursor-pointer font-medium text-blue-600 hover:underline dark:text-teal-500"
+    className="hover:cursor-pointer font-medium text-pink-700 hover:underline dark:text-teal-500"
     href={href}
   >
     <span>{children}{ArrowOutOfBoxIcon}</span>
