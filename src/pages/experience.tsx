@@ -37,7 +37,7 @@ const Experience: React.FC = () => (
             <p className="pb-1 text-sm">@ Amazon Web Services</p>
             <TechnologyPills
               company="AWS"
-              technologies={["TypeScript", "AWS"]}
+              technologies={["TypeScript", "Node.js", "React", "AWS"]}
             />
           </div>
         </div>
