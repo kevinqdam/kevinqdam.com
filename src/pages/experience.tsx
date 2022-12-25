@@ -34,7 +34,7 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">June 2022 - Present</p>
           <div className="col-span-2">
             <p className="text-sm">Software Development Engineer</p>
-            <p className="pb-1 text-sm">@ Amazon Web Services</p>
+            <p className="pb-1 text-sm italic">@ Amazon Web Services</p>
             <TechnologyPills
               company="AWS"
               technologies={["TypeScript", "Node.js", "React", "AWS"]}
@@ -45,7 +45,7 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">Mar 2021 - May 2022</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Software Engineer</p>
-            <p className="pb-1 text-sm">@ ServiceNow</p>
+            <p className="pb-1 text-sm italic">@ ServiceNow</p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
               Developed features for{" "}
               <Anchor href="https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html">
@@ -68,7 +68,7 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">Aug 2019 - Feb 2021</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Consultant</p>
-            <p className="pb-1 text-sm">@ Fast Enterprises</p>
+            <p className="pb-1 text-sm italic">@ Fast Enterprises</p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
               Developed vehicle titling and registration interfaces as part of
               the{" "}
@@ -91,10 +91,13 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">Oct 2018 - Jun 2019</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Specialist</p>
-            <p className="pb-1 text-sm">@ PSC Biotech</p>
+            <p className="pb-1 text-sm italic">@ PSC Biotech</p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
-              Implemented FDA-compliant enterprise software solutions for
-              pharmaceutical companies. Collaborated with project managers,
+              Implemented{" "}
+              <Anchor href="https://pscsoftware.com/software/ace/">
+                FDA-compliant enterprise software solutions
+              </Anchor>{" "}
+              for pharmaceutical companies. Collaborated with project managers,
               product managers, engineering, and operations to ensure the
               solution was flexible and met all stakeholder needs.
             </p>
@@ -105,13 +108,16 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">Oct 2018 - Jun 2019</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Student Intern III</p>
-            <p className="pb-1 text-sm">
+            <p className="pb-1 text-sm italic">
               @ Santa Clara County Registrar of Voters
             </p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
-              Maintained precinct boundaries to ensure all Santa Clara county
-              voters could vote safely and efficiently in transparent, honest
-              elections.
+              Maintained{" "}
+              <Anchor href="https://sccvote.sccgov.org/register-vote/precinct-maps">
+                precinct boundaries
+              </Anchor>
+              to ensure all Santa Clara county voters could vote safely and
+              efficiently in transparent, honest elections.
             </p>
             <TechnologyPills
               company="Santa Clara County ROV"
@@ -123,7 +129,7 @@ const Experience: React.FC = () => (
           <p className="col-span-1 text-sm">Aug 2016 - Dec 2017</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">SI Leader (Peer Tutor for Math)</p>
-            <p className="pb-1 text-sm">
+            <p className="pb-1 text-sm italic">
               @ UC San Diego Teaching + Learning Commons
             </p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
@@ -150,7 +156,7 @@ const Experience: React.FC = () => (
             <p className="text-sm">
               B.S. Bioengineering, Minor in Organic Chemistry
             </p>
-            <p className="pb-1 text-sm">@ UC San Diego</p>
+            <p className="pb-1 text-sm italic">@ UC San Diego</p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
               Attended as a{" "}
               <Anchor href="https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html">
