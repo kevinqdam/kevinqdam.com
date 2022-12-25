@@ -10,7 +10,7 @@ const TechnologyPills: React.FC<TechnologyPillsProps> = ({
   company,
   technologies,
 }) => (
-  <ul className="flex flex-row items-top space-x-1">
+  <ul className="items-top flex flex-row space-x-1">
     {technologies.map((tech) => (
       <div key={`${company}-${tech}`}>
         <li className="rounded bg-pink-100 px-2.5 py-0.5 text-xs font-semibold text-pink-800 dark:bg-teal-200 dark:text-teal-800">
@@ -70,7 +70,16 @@ const Experience: React.FC = () => (
             <p className="text-sm">Implementation Consultant</p>
             <p className="pb-1 text-sm">@ Fast Enterprises</p>
             <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
-              Fast, I did a lot of stuff here
+              Developed vehicle titling and registration interfaces as part of
+              the{" "}
+              <Anchor href="https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/">
+                successful release
+              </Anchor>{" "}
+              of{" "}
+              <Anchor href="https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx">
+                MNDRIVE
+              </Anchor>{" "}
+              which serve all Minnesota motorists.
             </p>
             <TechnologyPills
               company="Fast Enterprises"
@@ -83,9 +92,13 @@ const Experience: React.FC = () => (
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Specialist</p>
             <p className="pb-1 text-sm">@ PSC Biotech</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              PSC, I did a lot of stuff here
+            <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
+              Implemented FDA-compliant enterprise software solutions for
+              pharmaceutical companies. Collaborated with project managers,
+              product managers, engineering, and operations to ensure the
+              solution was flexible and met all stakeholder needs.
             </p>
+            <TechnologyPills company="PSC" technologies={["PSC Software"]} />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
@@ -95,9 +108,15 @@ const Experience: React.FC = () => (
             <p className="pb-1 text-sm">
               @ Santa Clara County Registrar of Voters
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              ROV, I did a lot of stuff here
+            <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
+              Maintained precinct boundaries to ensure all Santa Clara county
+              voters could vote safely and efficiently in transparent, honest
+              elections.
             </p>
+            <TechnologyPills
+              company="Santa Clara County ROV"
+              technologies={["ArcGIS", "SQL"]}
+            />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
@@ -107,9 +126,19 @@ const Experience: React.FC = () => (
             <p className="pb-1 text-sm">
               @ UC San Diego Teaching + Learning Commons
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              SI, I did a lot of stuff here
+            <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
+              Served as a{" "}
+              <Anchor href="https://aah.ucsd.edu/supplemental-instruction/index.html">
+                Supplemental Instruction
+              </Anchor>{" "}
+              (SI) leader for calculus and linear algebra, empowering student
+              peers to earn a half letter grade higher than those who did not
+              participate in the program.
             </p>
+            <TechnologyPills
+              company="UCSD Teaching + Learning Commons"
+              technologies={["MATLAB", "LaTeX"]}
+            />
           </div>
         </div>
       </div>
@@ -122,9 +151,27 @@ const Experience: React.FC = () => (
               B.S. Bioengineering, Minor in Organic Chemistry
             </p>
             <p className="pb-1 text-sm">@ UC San Diego</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              UCSD, I did a lot of stuff here
+            <p className="pb-1 text-sm text-gray-600 dark:text-gray-400">
+              Attended as a{" "}
+              <Anchor href="https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html">
+                Boyer Chancellor&#39;s scholarship
+              </Anchor>{" "}
+              recipient, Graduated with{" "}
+              <span className="italic">magna cum laude</span> honors and awarded
+              provost honors every academic quarter. Two-year team member and
+              one-year co-captain of the{" "}
+              <Anchor href="https://recreation.ucsd.edu/competitive-sports/dragon-boat/">
+                UCSD Dragon Boat team
+              </Anchor>
+              .
             </p>
+            <TechnologyPills
+              company="UCSD"
+              technologies={[
+                "Tau Beta Pi Engineering Honor Society",
+                "Phi Beta Kappa Honor Society",
+              ]}
+            />
           </div>
         </div>
       </div>
