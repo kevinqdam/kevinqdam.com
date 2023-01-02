@@ -76,7 +76,7 @@ const NavBar: React.FC = () => {
 
   return (
     <nav className="flex w-full flex-row items-center justify-between pt-8 pb-12">
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 ml-[-0.45rem]">
         <NavItem path="/">Home</NavItem>
         <NavItem path="/experience">Experience</NavItem>
         <NavItem path="/blog">Blog</NavItem>
