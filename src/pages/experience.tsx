@@ -31,7 +31,7 @@ const Experience: React.FC = () => (
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Experience</h1>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">June 2022 - Present</p>
+          <p className="col-span-1 text-sm">Jun 2022 - Present</p>
           <div className="col-span-2">
             <p className="text-sm">Software Development Engineer</p>
             <p className="pb-1 text-sm italic">@ Amazon Web Services</p>
