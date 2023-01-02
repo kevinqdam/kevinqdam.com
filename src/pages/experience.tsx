@@ -83,7 +83,7 @@ const Experience: React.FC = () => (
             </p>
             <TechnologyPills
               company="Fast Enterprises"
-              technologies={["Microsoft SQL Server", "VB .NET"]}
+              technologies={["Microsoft SQL Server", "Visual Basic", ".NET"]}
             />
           </div>
         </div>
