@@ -81,16 +81,18 @@ const NavBar: React.FC = () => {
         <NavItem path="/experience">Experience</NavItem>
         <NavItem path="/blog">Blog</NavItem>
       </div>
-      {isMounted && <button
-        type="button"
-        onClick={() => {
-          const nextTheme = resolvedTheme === "light" ? "dark" : "light";
-          setTheme(nextTheme);
-        }}
-        className="rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400"
-      >
-        {resolvedTheme === "light" ? MoonIcon : SunIcon}
-      </button>}
+      {isMounted && (
+        <button
+          type="button"
+          onClick={() => {
+            const nextTheme = resolvedTheme === "light" ? "dark" : "light";
+            setTheme(nextTheme);
+          }}
+          className="rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400"
+        >
+          {resolvedTheme === "light" ? MoonIcon : SunIcon}
+        </button>
+      )}
     </nav>
   );
 };
