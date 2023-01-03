@@ -1,5 +1,6 @@
 import Anchor from "../components/Anchor";
 import Container from "../components/Container";
+import Pills from "../components/Pills";
 
 type TechnologyPillsProps = {
   company: string;
@@ -35,9 +36,13 @@ const Experience: React.FC = () => (
           <div className="col-span-2">
             <p className="text-sm">Software Development Engineer</p>
             <p className="pb-1 text-sm italic">@ Amazon Web Services</p>
-            <TechnologyPills
-              company="AWS"
-              technologies={["TypeScript", "Node.js", "React", "AWS"]}
+            <Pills
+              pills={[
+                { pillText: "TypeScript", pillKey: "aws-typescript" },
+                { pillText: "Node.js", pillKey: "aws-nodejs" },
+                { pillText: "React", pillKey: "aws-react" },
+                { pillText: "AWS", pillKey: "aws-aws" },
+              ]}
             />
           </div>
         </div>
@@ -58,10 +63,6 @@ const Experience: React.FC = () => (
               </Anchor>{" "}
               in the Tokyo release of ServiceNow.
             </p>
-            <TechnologyPills
-              company="ServiceNow"
-              technologies={["Java", "JavaScript", "Now Experience Framework"]}
-            />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
@@ -101,7 +102,11 @@ const Experience: React.FC = () => (
               product managers, engineering, and operations to ensure the
               solution was flexible and met all stakeholder needs.
             </p>
-            <TechnologyPills company="PSC" technologies={["PSC Software"]} />
+            <Pills
+              pills={[
+                { pillText: "PSC Software", pillKey: "psc-psc-software" },
+              ]}
+            />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
@@ -119,9 +124,11 @@ const Experience: React.FC = () => (
               to ensure all Santa Clara county voters could vote safely and
               efficiently in transparent, honest elections.
             </p>
-            <TechnologyPills
-              company="Santa Clara County ROV"
-              technologies={["ArcGIS", "SQL"]}
+            <Pills
+              pills={[
+                { pillText: "ArcGIS", pillKey: "scc-rov-arcgis" },
+                { pillText: "SQL", pillKey: "scc-rov-sql" },
+              ]}
             />
           </div>
         </div>
@@ -141,9 +148,11 @@ const Experience: React.FC = () => (
               peers to earn a half letter grade higher than those who did not
               participate in the program.
             </p>
-            <TechnologyPills
-              company="UCSD Teaching + Learning Commons"
-              technologies={["MATLAB", "LaTeX"]}
+            <Pills
+              pills={[
+                { pillText: "MATLAB", pillKey: "ucsd-tlc-matlab" },
+                { pillText: "LaTeX", pillKey: "ucsd-tlc-latex" },
+              ]}
             />
           </div>
         </div>
@@ -162,7 +171,7 @@ const Experience: React.FC = () => (
               <Anchor href="https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html">
                 Boyer Chancellor&#39;s scholarship
               </Anchor>{" "}
-              recipient, Graduated with{" "}
+              recipient. Graduated with{" "}
               <span className="italic">magna cum laude</span> honors and awarded
               provost honors every academic quarter. Two-year team member and
               one-year co-captain of the{" "}
@@ -171,11 +180,10 @@ const Experience: React.FC = () => (
               </Anchor>
               .
             </p>
-            <TechnologyPills
-              company="UCSD"
-              technologies={[
-                "Tau Beta Pi Engineering Honor Society",
-                "Phi Beta Kappa Honor Society",
+            <Pills
+              pills={[
+                { pillText: "Tau Beta Pi", pillKey: "ucsd-tbp" },
+                { pillText: "Phi Beta Kappa", pillKey: "ucsd-pbk" },
               ]}
             />
           </div>
