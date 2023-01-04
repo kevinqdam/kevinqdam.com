@@ -2,26 +2,6 @@ import Anchor from "../components/Anchor";
 import Container from "../components/Container";
 import Pills from "../components/Pills";
 
-type TechnologyPillsProps = {
-  company: string;
-  technologies: readonly string[];
-};
-
-const TechnologyPills: React.FC<TechnologyPillsProps> = ({
-  company,
-  technologies,
-}) => (
-  <ul className="items-top flex flex-row space-x-1">
-    {technologies.map((tech) => (
-      <div key={`${company}-${tech}`}>
-        <li className="rounded bg-pink-100 px-2.5 py-0.5 text-xs font-semibold text-pink-800 dark:bg-teal-200 dark:text-teal-800">
-          {tech}
-        </li>
-      </div>
-    ))}
-  </ul>
-);
-
 const Experience: React.FC = () => (
   <Container>
     <div className="flex flex-col space-y-6">
