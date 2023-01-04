@@ -7,7 +7,7 @@ type PillsProps = {
   pills: readonly Pill[];
 };
 
-const Pills: React.FC<PillsProps> = ({ pillKey, pills }) => (
+const Pills: React.FC<PillsProps> = ({ pills }) => (
   <ul className="items-top flex flex-row space-x-1">
     {pills.map(({ pillKey, pillText }) => (
       <div key={pillKey}>
