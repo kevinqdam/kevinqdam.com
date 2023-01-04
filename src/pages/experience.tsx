@@ -63,6 +63,13 @@ const Experience: React.FC = () => (
               </Anchor>{" "}
               in the Tokyo release of ServiceNow.
             </p>
+            <Pills
+              pills={[
+                { pillText: "Java", pillKey: "servicenow-java" },
+                { pillText: "JavaScript", pillKey: "servicenow-javascript" },
+                { pillText: "Now Experience Framework", pillKey: "servicenow-now-experience-framework" },
+              ]}
+            />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
@@ -82,9 +89,12 @@ const Experience: React.FC = () => (
               </Anchor>{" "}
               which serve all Minnesota motorists.
             </p>
-            <TechnologyPills
-              company="Fast Enterprises"
-              technologies={["Microsoft SQL Server", "Visual Basic", ".NET"]}
+            <Pills
+              pills={[
+                { pillText: "Microsoft SQL Server", pillKey: "fast-microsoft-sql-server" },
+                { pillText: "Visual Basic", pillKey: "fast-visual-basic" },
+                { pillText: ".NET", pillKey: "fast-dot-net" },
+              ]}
             />
           </div>
         </div>
