@@ -14,7 +14,7 @@ const BlogListItem: React.FC = () => {
           priority
           className="rounded-full filter"
         />
-        <span className="text-sm text-gray-500 dark:text-gray-200">
+        <span className="text-sm text-gray-600 dark:text-gray-200">
           Bagel Cat • January 7, 2023
         </span>
       </div>
@@ -52,8 +52,8 @@ const BlogListItem: React.FC = () => {
             pills={[{ pillText: "Costco", pillKey: "blog-costco-text-blog" }, { pillText: "Food", pillKey: "blog-food-text-blog" }]}
           />
         </div>
-        <div className="text-sm text-gray-500 dark:text-gray-200">•</div>
-        <span className="text-sm text-gray-500 dark:text-gray-200">360 min read</span>
+        <div className="text-sm text-gray-600 dark:text-gray-200">•</div>
+        <span className="text-sm text-gray-600 dark:text-gray-200">360 min read</span>
       </div>
     </div>
   );
