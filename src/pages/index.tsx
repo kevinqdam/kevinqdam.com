@@ -12,7 +12,7 @@ const Home: NextPage = () => (
         src="/bagel.jpg"
         sizes="30vw"
         priority
-        className="rounded-full filter"
+        className="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-700 dark:from-slate-500 dark:to-rose-500 p-1"
       />
       <div className="flex flex-col justify-center space-y-1">
         <h1 className="text-4xl font-bold">Kevin Dam</h1>

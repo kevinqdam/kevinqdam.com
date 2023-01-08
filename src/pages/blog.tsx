@@ -12,7 +12,7 @@ const BlogListItem: React.FC = () => {
           width={30}
           src="/bagel.jpg"
           priority
-          className="rounded-full filter"
+          className="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-700 dark:from-slate-500 dark:to-rose-500 p-0.5"
         />
         <span className="text-sm text-gray-600 dark:text-gray-200">
           Bagel Cat • January 7, 2023
@@ -53,7 +53,7 @@ const BlogListItem: React.FC = () => {
           />
         </div>
         <div className="text-sm text-gray-600 dark:text-gray-200">•</div>
-        <span className="text-sm text-gray-600 dark:text-gray-200">360 min read</span>
+        <span className="text-sm text-gray-600 dark:text-gray-200">6 hr read</span>
       </div>
     </div>
   );
