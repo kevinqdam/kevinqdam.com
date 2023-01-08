@@ -67,7 +67,7 @@ const Experience: React.FC = () => (
               <Anchor href="https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx">
                 MNDRIVE
               </Anchor>{" "}
-              which serve all Minnesota motorists.
+              which serves all Minnesota motorists.
             </p>
             <Pills
               pills={[
