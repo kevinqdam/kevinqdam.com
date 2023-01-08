@@ -1,8 +1,11 @@
-import Image from "next/image";
 import Container from "../components/Container";
 import Pills from "../components/Pills";
 import { DateTime } from "luxon";
 import { ReactElement } from "react";
+import BlogListItem, {
+  AuthorProfileImage,
+  ThumbnailImage,
+} from "../components/BlogListItem";
 
 type BlogListItemProps = {
   author: string;
@@ -23,27 +26,16 @@ const BLOG_LIST_ITEMS: BlogListItemProps[] = [
   {
     author: "Bagel Cat",
     authorProfileImage: (
-      <Image
-        alt="Bagel Cat profile picture"
-        height={30}
-        width={30}
-        src="/bagel.jpg"
-        priority
-        className="rounded-full bg-gradient-to-r from-slate-500 to-teal-500 p-0.5 filter dark:from-slate-500 dark:to-rose-500"
-      />
+      <AuthorProfileImage alt="Bagel Cat profile picture" src="/bagel.jpg" />
     ),
     posted: DateTime.fromISO("2023-01-07"),
     title:
       "Food Review: Kirkland Signature 3-Flavor Variety Pack Pâté Wet Cat Food for Adult Cats",
     body: LOREM_IPSUM,
     thumbnail: (
-      <Image
+      <ThumbnailImage
         alt="Kirkland Signature cat food"
-        height={144}
-        width={144}
         src="/kirkland.jpg"
-        priority
-        className="rounded-lg object-cover filter"
       />
     ),
     tagPills: (
@@ -55,32 +47,20 @@ const BLOG_LIST_ITEMS: BlogListItemProps[] = [
       />
     ),
     readTime: "6 hr",
-    slug: "bagel-kirkland-cat-food-review"
+    slug: "bagel-kirkland-cat-food-review",
   },
   {
     author: "Ponzu Dog",
     authorProfileImage: (
-      <Image
-        alt="Ponzu Dog profile picture"
-        height={30}
-        width={30}
-        src="/ponzu.jpg"
-        priority
-        className="rounded-full bg-gradient-to-r from-slate-500 to-teal-500 p-0.5 filter dark:from-slate-500 dark:to-rose-500"
-      />
+      <AuthorProfileImage alt="Ponzu Dog profile picture" src="/ponzu.jpg" />
     ),
     posted: DateTime.fromISO("2023-01-07"),
-    title:
-      "First Walk at Ruben S. Ayala Park",
+    title: "First Walk at Ruben S. Ayala Park",
     body: LOREM_IPSUM,
     thumbnail: (
-      <Image
+      <ThumbnailImage
         alt="Ruben S. Ayala park"
-        height={144}
-        width={144}
         src="/ruben-s-ayala-park.jpeg"
-        priority
-        className="rounded-lg object-cover filter"
       />
     ),
     tagPills: (
@@ -92,58 +72,9 @@ const BLOG_LIST_ITEMS: BlogListItemProps[] = [
       />
     ),
     readTime: "15 min",
-    slug: "ponzu-park-review"
+    slug: "ponzu-park-review",
   },
 ];
-
-const BlogListItem: React.FC<BlogListItemProps> = ({
-  author,
-  authorProfileImage,
-  posted,
-  title,
-  body,
-  thumbnail,
-  tagPills,
-  readTime,
-}) => {
-  return (
-    <div className="flex flex-col space-y-2 rounded-lg bg-slate-200 p-4 dark:bg-slate-900">
-      <div className="flex flex-row items-center space-x-2 pb-2">
-        <>{authorProfileImage}</>
-        <span className="text-sm text-gray-600 dark:text-gray-200">
-          {author} • {`${posted.monthLong} ${posted.day}, ${posted.year}`}
-        </span>
-      </div>
-      <div className="flex flex-row space-x-4 pb-2">
-        <div className="flex flex-col space-y-2">
-          <h3 className="text-xl font-bold">{title}</h3>
-          <div className="overflow-hidden">
-            <p className="italic text-gray-500 line-clamp-4 dark:text-gray-400">
-              {body}
-            </p>
-          </div>
-        </div>
-        {thumbnail && <>{thumbnail}</>}
-      </div>
-      <div className="flex flex-row items-center space-x-2">
-        {tagPills && (
-          <div className="flex flex-row space-x-1">
-            <span className="text-sm text-gray-600 dark:text-gray-200">
-              Tags:{" "}
-            </span>
-            <>{tagPills}</>
-            <div className="text-sm text-gray-600 dark:text-gray-200">•</div>
-          </div>
-        )}
-        {readTime && (
-          <span className="text-sm text-gray-600 dark:text-gray-200">
-            {readTime} read
-          </span>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const Blog: React.FC = () => {
   return (
@@ -160,7 +91,10 @@ const Blog: React.FC = () => {
         />
         <h2 className="text-2xl font-bold">All Posts</h2>
         {BLOG_LIST_ITEMS.map((props) => (
-          <BlogListItem {...props} key={`${props.slug}-list-item`}></BlogListItem>
+          <BlogListItem
+            {...props}
+            key={`${props.slug}-list-item`}
+          ></BlogListItem>
         ))}
       </div>
     </Container>
