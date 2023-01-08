@@ -4,7 +4,7 @@ import Pills from "../components/Pills";
 
 const BlogListItem: React.FC = () => {
   return (
-    <div className="flex flex-col space-y-2 rounded-lg bg-slate-200 p-4">
+    <div className="flex flex-col space-y-2 rounded-lg bg-slate-200 dark:bg-slate-900 p-4">
       <div className="flex flex-row items-center space-x-2 pb-2">
         <Image
           alt="Kevin Dam profile picture"
@@ -14,7 +14,7 @@ const BlogListItem: React.FC = () => {
           priority
           className="rounded-full filter"
         />
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 dark:text-gray-200">
           Bagel Cat • January 7, 2023
         </span>
       </div>
@@ -47,13 +47,13 @@ const BlogListItem: React.FC = () => {
       </div>
       <div className="flex flex-row items-center space-x-2">
         <div className="flex flex-row space-x-1">
-          <span className="text-sm text-gray-400">Tags: </span>
+          <span className="text-sm text-gray-500 dark:text-gray-200">Tags: </span>
           <Pills
             pills={[{ pillText: "Costco", pillKey: "blog-costco-text-blog" }, { pillText: "Food", pillKey: "blog-food-text-blog" }]}
           />
         </div>
-        <div className="text-sm text-gray-400">•</div>
-        <span className="text-sm text-gray-400">360 min read</span>
+        <div className="text-sm text-gray-500 dark:text-gray-200">•</div>
+        <span className="text-sm text-gray-500 dark:text-gray-200">360 min read</span>
       </div>
     </div>
   );
