@@ -33,10 +33,7 @@ const BLOG_LIST_ITEMS: BlogListItemProps[] = [
       "Food Review: Kirkland Signature 3-Flavor Variety Pack Pâté Wet Cat Food for Adult Cats",
     body: LOREM_IPSUM,
     thumbnail: (
-      <ThumbnailImage
-        alt="Kirkland Signature cat food"
-        src="/kirkland.jpg"
-      />
+      <ThumbnailImage alt="Kirkland Signature cat food" src="/kirkland.jpg" />
     ),
     tagPills: (
       <Pills
@@ -91,10 +88,7 @@ const Blog: React.FC = () => {
         />
         <h2 className="text-2xl font-bold">All Posts</h2>
         {BLOG_LIST_ITEMS.map((props) => (
-          <BlogListItem
-            {...props}
-            key={`${props.slug}-list-item`}
-          ></BlogListItem>
+          <BlogListItem {...props} key={`${props.slug}-list-item`} />
         ))}
       </div>
     </Container>
