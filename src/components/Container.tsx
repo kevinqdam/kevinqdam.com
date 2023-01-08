@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import Footer from './Footer';
+import Footer from "./Footer";
 import NavBar from "./NavBar";
 
 const Container: React.FC<PropsWithChildren> = ({ children }) => {
