@@ -9,7 +9,7 @@ const Home: NextPage = () => (
         alt="Kevin Dam profile picture"
         height={125}
         width={125}
-        src="/bagel.jpg"
+        src="/images/bagel.jpg"
         sizes="30vw"
         priority
         className="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1"

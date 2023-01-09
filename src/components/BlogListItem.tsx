@@ -1,71 +1,79 @@
 import { DateTime } from "luxon";
 import Image from "next/image";
-import { ReactElement } from "react";
+import Link from "next/link";
+import { Frontmatter } from "../lib/mdx";
+import Pills from "./Pills";
 
 type AuthorProfileImageProps = {
-  alt: string;
   src: string;
+  alt: string;
 };
 
 type ThumbnailImageProps = {
-  alt: string;
   src: string;
+  alt: string;
 };
 
-type BlogListItemProps = {
-  author: string;
-  authorProfileImage: ReactElement;
-  posted: DateTime;
-  title: string;
-  body: string;
-  thumbnail: ReactElement;
-  tagPills: ReactElement;
-  readTime: string;
-  slug: string;
-};
-
-const BlogListItem: React.FC<BlogListItemProps> = ({
+const BlogListItem: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
   author,
-  authorProfileImage,
-  posted,
+  authorProfileImageSrc,
+  authorProfileImageAlt,
+  postedIsoDate,
   title,
-  body,
-  thumbnail,
-  tagPills,
-  readTime,
+  preview,
+  thumbnailImageSrc,
+  thumbnailImageAlt,
+  tags,
+  estReadTimeMinutes,
+  slug,
 }) => {
+  const posted = DateTime.fromISO(postedIsoDate);
+
   return (
     <div className="flex flex-col space-y-2 rounded-lg bg-slate-200 p-4 dark:bg-slate-900">
       <div className="flex flex-row items-center space-x-2 pb-2">
-        <>{authorProfileImage}</>
+        <AuthorProfileImage
+          src={authorProfileImageSrc}
+          alt={authorProfileImageAlt}
+        />
         <span className="text-sm text-gray-600 dark:text-gray-200">
           {author} • {`${posted.monthLong} ${posted.day}, ${posted.year}`}
         </span>
       </div>
       <div className="flex flex-row space-x-4 pb-2">
         <div className="flex flex-col space-y-2">
-          <h3 className="text-xl font-bold">{title}</h3>
+          <Link href={`/blog/${slug}`}>
+            <h3 className="text-xl font-bold hover:underline">{title}</h3>
+          </Link>
           <div className="overflow-hidden">
             <p className="italic text-gray-500 line-clamp-4 dark:text-gray-400">
-              {body}
+              {preview}
             </p>
           </div>
         </div>
-        {thumbnail && <>{thumbnail}</>}
+        {thumbnailImageSrc && (
+          <Link href={`/blog/${slug}`} className="flex min-w-fit">
+            <ThumbnailImage src={thumbnailImageSrc} alt={thumbnailImageAlt} />
+          </Link>
+        )}
       </div>
       <div className="flex flex-row items-center space-x-2">
-        {tagPills && (
+        {tags && tags.length && (
           <div className="flex flex-row space-x-1">
             <span className="text-sm text-gray-600 dark:text-gray-200">
               Tags:{" "}
             </span>
-            <>{tagPills}</>
-            <div className="text-sm text-gray-600 dark:text-gray-200">•</div>
+            <Pills
+              pills={tags.map((tag) => ({
+                pillKey: `${slug}-${tag}`,
+                pillText: tag,
+              }))}
+            />
           </div>
         )}
-        {readTime && (
+        {estReadTimeMinutes && (
           <span className="text-sm text-gray-600 dark:text-gray-200">
-            {readTime} read
+            {estReadTimeMinutes} min read
           </span>
         )}
       </div>
@@ -73,7 +81,7 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
   );
 };
 
-export const AuthorProfileImage: React.FC<AuthorProfileImageProps> = ({
+const AuthorProfileImage: React.FC<AuthorProfileImageProps> = ({
   alt,
   src,
 }) => {
@@ -89,7 +97,7 @@ export const AuthorProfileImage: React.FC<AuthorProfileImageProps> = ({
   );
 };
 
-export const ThumbnailImage: React.FC<ThumbnailImageProps> = ({ alt, src }) => {
+const ThumbnailImage: React.FC<ThumbnailImageProps> = ({ alt, src }) => {
   return (
     <Image
       alt={alt}
@@ -97,7 +105,7 @@ export const ThumbnailImage: React.FC<ThumbnailImageProps> = ({ alt, src }) => {
       width={144}
       src={src}
       priority
-      className="rounded-lg object-cover filter"
+      className="rounded-lg object-cover filter w-36"
     />
   );
 };
