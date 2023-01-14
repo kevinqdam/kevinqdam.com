@@ -2,6 +2,8 @@ import fs from "fs";
 import { bundleMDX } from "mdx-bundler";
 import path from "path";
 import readingTime from "reading-time";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 export type Frontmatter = {
   author: string;
@@ -50,7 +52,25 @@ export const getBlogPostBySlug = async (slug: string) => {
   const mdxSource = fs
     .readFileSync(path.join(root, "src", "data", "blog", `${slug}.mdx`))
     .toString();
-  const bundledMDX = await bundleMDX({ source: mdxSource });
+  const bundledMDX = await bundleMDX({
+    source: mdxSource,
+    mdxOptions: (options) => {
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ['anchor'],
+              behavior: 'append',
+            }
+          }
+        ]
+      ];
+      return options;
+    },
+  });
 
   return {
     ...bundledMDX,

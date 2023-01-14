@@ -29,6 +29,24 @@ Human bought me some cat food at Costco, saying it's healthier. I don't like it.
 2. Lots more packaging
 3. Costs far more than Friskies
 
+## Random Code Block
+
+```ts
+type StatusCode = '100' | '200' | '300';
+
+const INTERMEDIATE_STATUS_CODES = {
+  Apple: '100',
+  Banana: '200',
+  Cherry: '300',
+} as const;
+
+export const STATUS_CODES: Readonly<
+  Record<typeof keyof INTERMEDIATE_STATUS_CODES, StatusCode>
+> =
+  INTERMEDIATE_STATUS_CODES;
+
+```
+
 # Conclusion
 
 It's aight, try it and see if you like it.
