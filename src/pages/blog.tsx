@@ -1,6 +1,6 @@
 import Container from "../components/Container";
 import Pills from "../components/Pills";
-import BlogListItem from "../components/BlogListItem";
+import BlogPostCard from "../components/BlogPostCard";
 import {
   FrontmatterWithEstReadTime,
   getBlogPostFrontmatters,
@@ -34,7 +34,7 @@ const Blog: React.FC<{ frontmatters: FrontmatterWithEstReadTime[] }> = ({
         />
         <h2 className="text-2xl font-bold">All Posts</h2>
         {frontmatters.map((frontmatter) => (
-          <BlogListItem
+          <BlogPostCard
             {...frontmatter}
             key={`${frontmatter.slug}-list-item`}
           />

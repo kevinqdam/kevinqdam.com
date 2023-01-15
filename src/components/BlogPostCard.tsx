@@ -14,7 +14,7 @@ type ThumbnailImageProps = {
   alt: string;
 };
 
-const BlogListItem: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
+const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
   author,
   authorProfileImageSrc,
   authorProfileImageAlt,
@@ -30,7 +30,7 @@ const BlogListItem: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
   const posted = DateTime.fromISO(postedIsoDate);
 
   return (
-    <div className="flex flex-col space-y-2 rounded-lg bg-slate-200 p-4 dark:bg-slate-900">
+    <div className="flex flex-col space-y-2 rounded-lg bg-white shadow-lg p-4 dark:bg-slate-900 dark:shadow-2xl">
       <div className="flex flex-row items-center space-x-2 pb-2">
         <AuthorProfileImage
           src={authorProfileImageSrc}
@@ -110,4 +110,4 @@ const ThumbnailImage: React.FC<ThumbnailImageProps> = ({ alt, src }) => {
   );
 };
 
-export default BlogListItem;
+export default BlogPostCard;
