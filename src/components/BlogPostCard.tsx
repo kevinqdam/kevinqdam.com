@@ -30,7 +30,7 @@ const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
   const posted = DateTime.fromISO(postedIsoDate);
 
   return (
-    <div className="flex flex-col space-y-2 rounded-lg bg-white shadow-lg p-4 dark:bg-slate-900 dark:shadow-2xl">
+    <div className="flex flex-col space-y-2 rounded-lg bg-white shadow p-4 dark:bg-slate-900 dark:shadow-lg">
       <div className="flex flex-row items-center space-x-2 pb-2">
         <AuthorProfileImage
           src={authorProfileImageSrc}

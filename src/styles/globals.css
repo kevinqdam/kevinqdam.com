@@ -14,9 +14,9 @@
 
   /* Style code blocks for light and dark mode */
   pre[data-theme="light"] {
-    @apply dark:hidden block bg-white shadow-lg
+    @apply dark:hidden block bg-white shadow
   }
   pre[data-theme="dark"] {
-    @apply dark:block hidden shadow-xl
+    @apply dark:block hidden shadow-lg
   }
 }
