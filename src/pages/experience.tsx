@@ -12,7 +12,7 @@ const Experience: React.FC = () => (
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Experience</h1>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Jun 2022 - Present</p>
+          <p className="col-span-1 text-sm font-medium">Jun 2022 - Present</p>
           <div className="col-span-2">
             <p className="text-sm">Software Development Engineer</p>
             <p className="pb-1 text-sm italic">@ Amazon Web Services</p>
@@ -27,7 +27,7 @@ const Experience: React.FC = () => (
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Mar 2021 - May 2022</p>
+          <p className="col-span-1 text-sm font-medium">Mar 2021 - May 2022</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Software Engineer</p>
             <p className="pb-1 text-sm italic">@ ServiceNow</p>
@@ -53,7 +53,7 @@ const Experience: React.FC = () => (
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Aug 2019 - Feb 2021</p>
+          <p className="col-span-1 text-sm font-medium">Aug 2019 - Feb 2021</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Consultant</p>
             <p className="pb-1 text-sm italic">@ Fast Enterprises</p>
@@ -79,7 +79,7 @@ const Experience: React.FC = () => (
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Oct 2018 - Jun 2019</p>
+          <p className="col-span-1 text-sm font-medium">Oct 2018 - Jun 2019</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Implementation Specialist</p>
             <p className="pb-1 text-sm italic">@ PSC Biotech</p>
@@ -100,7 +100,7 @@ const Experience: React.FC = () => (
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Oct 2018 - Jun 2019</p>
+          <p className="col-span-1 text-sm font-medium">Oct 2018 - Jun 2019</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">Student Intern III</p>
             <p className="pb-1 text-sm italic">
@@ -123,7 +123,7 @@ const Experience: React.FC = () => (
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">Aug 2016 - Dec 2017</p>
+          <p className="col-span-1 text-sm font-medium">Aug 2016 - Dec 2017</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">SI Leader (Peer Tutor for Math)</p>
             <p className="pb-1 text-sm italic">
@@ -150,7 +150,7 @@ const Experience: React.FC = () => (
       <div className="flex flex-col space-y-2">
         <h1 className="text-2xl font-bold">Education</h1>
         <div className="grid grid-cols-3 gap-2 pb-6">
-          <p className="col-span-1 text-sm">2014 - 2018</p>
+          <p className="col-span-1 text-sm font-medium">2014 - 2018</p>
           <div className="col-span-2 flex flex-col">
             <p className="text-sm">
               B.S. Bioengineering, Minor in Organic Chemistry
