@@ -55,7 +55,7 @@ const BlogPost: React.FC<BlogPostProps> = ({
           </span>
         </div>
       </div>
-      <article className="prose dark:prose-invert">
+      <article className="prose dark:prose-invert prose-h1:text-3xl prose-h1:font-bold prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold">
         <BundledBlogPost />
       </article>
     </Container>

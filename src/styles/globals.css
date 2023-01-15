@@ -6,9 +6,17 @@
   min-height: 100vh;
 }
 
-/* Style heading anchors in MDX components */
 @layer components {
+  /* Style heading anchors in MDX components */
   *:is(h1, h2, h3, h4, h5, h6) {
     @apply flex items-center gap-2;
+  }
+
+  /* Style code blocks for light and dark mode */
+  pre[data-theme="light"] {
+    @apply dark:hidden block bg-white shadow-lg
+  }
+  pre[data-theme="dark"] {
+    @apply dark:block hidden shadow-xl
   }
 }
