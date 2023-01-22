@@ -1,0 +1,79 @@
+---
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
+
+export interface Props {
+  title: string;
+}
+
+export type Path = '/' | '/experience' | '/blog';
+
+const { title } = Astro.props;
+const activePath = Astro.url.pathname as Path;
+---
+
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <style is:global>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer components {
+      /* Style heading anchors in MDX components */
+      *:is(h1, h2, h3, h4, h5, h6) {
+        @apply flex items-center gap-2;
+      }
+
+      /* Style code blocks for light and dark mode */
+      pre[data-theme='light'] {
+        @apply dark:hidden block bg-white shadow;
+      }
+      pre[data-theme='dark'] {
+        @apply dark:block hidden shadow-lg;
+      }
+    }
+  </style>
+  <body
+    class='min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white'
+  >
+    <div class='min-h-screen w-full bg-gray-100 dark:bg-gray-800'>
+      <div class='flex w-full items-center justify-center'>
+        <div class='flex w-6/12 flex-col justify-center px-8'>
+          <NavBar client:load activePath={activePath} />
+          <main>
+            <slot />
+          </main>
+          <hr class='my-8 h-px border-0 bg-gray-400 dark:bg-gray-700' />
+          <Footer />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined') {
+        const theme = localStorage.getItem('theme') ?? 'light';
+        return theme;
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    })();
+
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    window.localStorage.setItem('theme', theme);
+  </script>
+</html>

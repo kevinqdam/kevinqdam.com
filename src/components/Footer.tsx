@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const LinkedInLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -27,12 +25,12 @@ const GithubIcon = (
 const Footer: React.FC = () => {
   return (
     <footer className="flex justify-center space-x-4 pb-8">
-      <Link aria-label="LinkedIn logo" href="https://www.linkedin.com/in/kevinqdam">
+      <a aria-label="LinkedIn logo" href="https://www.linkedin.com/in/kevinqdam">
         {LinkedInLogo}
-      </Link>
-      <Link aria-label="GitHub logo" href="https://github.com/kevinqdam">
+      </a>
+      <a aria-label="GitHub logo" href="https://github.com/kevinqdam">
         {GithubIcon}
-      </Link>
+      </a>
     </footer>
   );
 };

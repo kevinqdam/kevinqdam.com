@@ -1,0 +1,42 @@
+---
+import * as fs from 'fs';
+import BlogPostCard from '../components/BlogPostCard';
+import Pills from '../components/Pills';
+import Layout from '../layouts/Layout.astro';
+import type { Frontmatter, FrontmatterWithEstReadTime } from '../types';
+import readingTime from 'reading-time';
+
+type Props = {
+  frontmatters: FrontmatterWithEstReadTime[];
+};
+
+const toSetReducer = (
+  acc: Set<string>,
+  frontmatter: FrontmatterWithEstReadTime
+) => {
+  frontmatter.tags.forEach((tag: string) => acc.add(tag));
+  return acc;
+};
+
+const posts = await Astro.glob<Frontmatter>('../pages/blog/*.mdx');
+const frontmatters = posts.map((post) => {
+  const mdxSource = fs.readFileSync(post.file).toString();
+  return {
+    ...post.frontmatter,
+    estReadTimeMinutes: Math.ceil(readingTime(mdxSource).minutes),
+    // estReadTimeMinutes: post.minutesRead,
+  } as FrontmatterWithEstReadTime;
+});
+const tags = Array.from(frontmatters.reduce(toSetReducer, new Set()));
+tags.sort((a, b) => (a >= b ? 1 : -1));
+---
+
+<Layout title='Blog'>
+  <h1 class='pb-6 text-3xl font-bold'>Blog</h1>
+  <div class='flex flex-col space-y-4'>
+    <h2 class='text-2xl font-bold'>Browse by tags</h2>
+    <Pills pills={tags} />
+    <h2 class='text-2xl font-bold'>All Posts</h2>
+    {frontmatters.map((frontmatter) => <BlogPostCard {...frontmatter} />)}
+  </div>
+</Layout>

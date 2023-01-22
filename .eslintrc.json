@@ -1,18 +1,23 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:react/recommended"
-  ],
-  "rules": {
-    // Does not apply when using NextJS
-    "react/react-in-jsx-scope": "off",
-    /**
-     * Opt out of property type-checking at runtime since this project
-     * is not a library for others to consume. Instead, lean on
-     * TypeScript for type-checking at build time.
-     */
-    "react/prop-types": "off"
-  }
+  "extends": ["plugin:astro/recommended"],
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".astro"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["*.mjs"],
+      "parser": "babel-eslint",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "modules": true
+        }
+      }
+    }
+  ]
 }

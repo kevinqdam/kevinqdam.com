@@ -1,0 +1,163 @@
+---
+import Pills from '../components/Pills';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title='Experience'>
+  <div class='flex flex-col space-y-6'>
+    <div class='flex flex-col space-y-2'>
+      <h1 class='text-2xl font-bold'>Current Job Title</h1>
+      <p>Software Development Engineer at AWS</p>
+    </div>
+    <div class='flex flex-col space-y-2'>
+      <h1 class='text-2xl font-bold'>Experience</h1>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Jun 2022 - Present</p>
+        <div class='col-span-2'>
+          <p class='text-md'>Software Development Engineer</p>
+          <p class='pb-2 text-md italic'>@ Amazon Web Services</p>
+          <Pills
+            pills={[
+              'TypeScript',
+              'Node.js',
+              'React',
+              'AWS',
+            ]}
+          />
+        </div>
+      </div>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Mar 2021 - May 2022</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>Software Engineer</p>
+          <p class='pb-2 text-md italic'>@ ServiceNow</p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Developed features for{' '}
+            <a
+              href='https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html'
+            >
+              Next Experience UI (Polaris)
+            </a>{' '}
+            in the San Diego release of ServiceNow, finally delivering it after its
+            delay for two releases. Part of the team that delivered{' '}
+            <a
+              href='https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html'
+            >
+              ECMAScript 2021
+            </a>{' '}
+            in the Tokyo release of ServiceNow.
+          </p>
+          <Pills pills={['Java', 'JavaScript', 'Now Experience Framework']} />
+        </div>
+      </div>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Aug 2019 - Feb 2021</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>Implementation Consultant</p>
+          <p class='pb-2 text-md italic'>@ Fast Enterprises</p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Developed vehicle titling and registration interfaces as part of the{
+              ' '
+            }
+            <a
+              href='https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/'
+            >
+              successful release
+            </a>{' '}
+            of{' '}
+            <a
+              href='https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx'
+            >
+              MNDRIVE
+            </a>{' '}
+            which serves all Minnesota motorists.
+          </p>
+          <Pills pills={['Microsoft SQL Server', 'Visual Basic', '.NET']} />
+        </div>
+      </div>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Oct 2018 - Jun 2019</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>Implementation Specialist</p>
+          <p class='pb-2 text-md italic'>@ PSC Biotech</p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Implemented{' '}
+            <a href='https://pscsoftware.com/software/ace/'>
+              FDA-compliant enterprise software solutions
+            </a>{' '}
+            for pharmaceutical companies. Collaborated with project managers, product
+            managers, engineering, and operations to ensure the solution was flexible
+            and met all stakeholder needs.
+          </p>
+          <Pills pills={['PSC Software']} />
+        </div>
+      </div>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Oct 2018 - Jun 2019</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>Student Intern III</p>
+          <p class='pb-2 text-md italic'>
+            @ Santa Clara County Registrar of Voters
+          </p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Maintained{' '}
+            <a href='https://sccvote.sccgov.org/register-vote/precinct-maps'>
+              precinct boundaries
+            </a>
+            to ensure all Santa Clara county voters could vote safely and efficiently
+            in transparent, honest elections.
+          </p>
+          <Pills pills={['ArcGIS']} />
+        </div>
+      </div>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>Aug 2016 - Dec 2017</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>SI Leader (Peer Tutor for Math)</p>
+          <p class='pb-2 text-md italic'>
+            @ UC San Diego Teaching + Learning Commons
+          </p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Served as a{' '}
+            <a href='https://aah.ucsd.edu/supplemental-instruction/index.html'>
+              Supplemental Instruction
+            </a>{' '}
+            (SI) leader for calculus and linear algebra, empowering student peers
+            to earn a half letter grade higher than those who did not participate
+            in the program.
+          </p>
+          <Pills pills={['MATLAB', 'LaTeX']} />
+        </div>
+      </div>
+    </div>
+    <div class='flex flex-col space-y-2'>
+      <h1 class='text-2xl font-bold'>Education</h1>
+      <div class='grid grid-cols-3 gap-2 pb-6'>
+        <p class='col-span-1 text-md font-medium'>2014 - 2018</p>
+        <div class='col-span-2 flex flex-col'>
+          <p class='text-md'>B.S. Bioengineering, Minor in Organic Chemistry</p>
+          <p class='pb-2 text-md italic'>@ UC San Diego</p>
+          <p class='pb-2 text-md text-gray-600 dark:text-gray-400'>
+            Attended as a{' '}
+            <a
+              href='https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html'
+            >
+              Boyer Chancellor&#39;s scholarship
+            </a>{' '}
+            recipient. Graduated with{' '}
+            <span class='italic'>magna cum laude</span> honors and awarded provost
+            honors every academic quarter. Two-year team member and one-year co-captain
+            of the{' '}
+            <a
+              href='https://recreation.ucsd.edu/competitive-sports/dragon-boat/'
+            >
+              UCSD Dragon Boat team
+            </a>
+            .
+          </p>
+          <Pills pills={['Tau Beta Pi', 'Phi Beta Kappa']} />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

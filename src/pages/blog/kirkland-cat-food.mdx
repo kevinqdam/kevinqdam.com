@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/BlogLayout.astro"
 author: "Bagel Cat"
 authorProfileImageSrc: "/images/bagel.jpg"
 authorProfileImageAlt: "Bagel profile picture"
@@ -12,18 +13,21 @@ tags:
   - Review
 slug: kirkland-cat-food
 ---
+import { Image } from "@astrojs/image/components";
 
-# Introduction
+<Image src={import("../../../public/images/kirkland.jpg")} />
+
+## Introduction
 
 Human bought me some cat food at Costco, saying it's healthier. I don't like it.
 
-# Review
+## Review
 
-## Pros
+### Pros
 
 1. It's grain-free
 
-## Cons
+### Cons
 
 1. I don't like the taste
 2. Lots more packaging
@@ -45,6 +49,6 @@ export const STATUS_CODES: Readonly<
 > = INTERMEDIATE_STATUS_CODES;
 ```
 
-# Conclusion
+## Conclusion
 
 It's aight, try it and see if you like it.

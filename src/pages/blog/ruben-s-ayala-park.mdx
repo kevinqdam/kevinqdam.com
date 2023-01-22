@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/BlogLayout.astro"
 author: "Ponzu Dog"
 authorProfileImageSrc: "/images/ponzu.jpg"
 authorProfileImageAlt: "Ponzu profile picture"
@@ -14,21 +15,25 @@ tags:
 slug: ruben-s-ayala-park
 ---
 
-# Introduction
+import { Image } from "@astrojs/image/components";
+
+<Image src={import("../../../public/images/ruben-s-ayala-park.jpeg")} />
+
+## Introduction
 
 Mommy and Kevin take me to walk in big new park the other day.
 
-# Review
+## Review
 
-## Pros
+### Pros
 
 1. Big
 2. Grass
 
-## Cons
+###Cons
 
 1. It was dark
 
-# Conclusion
+## Conclusion
 
 Woof woof
