@@ -35,7 +35,7 @@ const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
           src={authorProfileImageSrc}
           alt={authorProfileImageAlt}
         />
-        <span className='text-md text-gray-600 dark:text-gray-200'>
+        <span className='text-gray-600 dark:text-gray-200'>
           {author} • {`${posted.monthLong} ${posted.day}, ${posted.year}`}
         </span>
       </div>
@@ -59,7 +59,7 @@ const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
       <div className='flex flex-row items-center align-middle space-x-2'>
         {tags && tags.length && (
           <div className='flex flex-row space-x-1'>
-            <span className='text-md text-gray-600 dark:text-gray-200'>
+            <span className='text-gray-600 dark:text-gray-200'>
               Tags:{' '}
             </span>
             <Pills
@@ -68,7 +68,7 @@ const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
           </div>
         )}
         {estReadTimeMinutes && (
-          <span className='text-md text-gray-600 dark:text-gray-200'>
+          <span className='text-gray-600 dark:text-gray-200'>
             {estReadTimeMinutes} min read
           </span>
         )}
