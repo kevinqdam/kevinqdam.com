@@ -11,9 +11,10 @@
       "rules": {}
     },
     {
-      "files": ["*.mjs"],
+      "files": ["*.mjs", "*.cjs"],
       "parser": "babel-eslint",
       "parserOptions": {
+        "ecmaVersion": "latest",
         "ecmaFeatures": {
           "modules": true
         }
