@@ -1,18 +1,16 @@
 ---
-import * as fs from 'fs';
 import BlogPostCard from '../components/BlogPostCard';
 import Pills from '../components/Pills';
 import Layout from '../layouts/Layout.astro';
-import type { Frontmatter, FrontmatterWithEstReadTime } from '../types';
-import readingTime from 'reading-time';
+import type { Frontmatter } from '../types';
 
 type Props = {
-  frontmatters: FrontmatterWithEstReadTime[];
+  frontmatters: Frontmatter[];
 };
 
 const toSetReducer = (
   acc: Set<string>,
-  frontmatter: FrontmatterWithEstReadTime
+  frontmatter: Frontmatter
 ) => {
   frontmatter.tags.forEach((tag: string) => acc.add(tag));
   return acc;
@@ -20,12 +18,10 @@ const toSetReducer = (
 
 const posts = await Astro.glob<Frontmatter>('../pages/blog/*.mdx');
 const frontmatters = posts.map((post) => {
-  const mdxSource = fs.readFileSync(post.file).toString();
   return {
     ...post.frontmatter,
-    estReadTimeMinutes: Math.ceil(readingTime(mdxSource).minutes),
-    // estReadTimeMinutes: post.minutesRead,
-  } as FrontmatterWithEstReadTime;
+    estReadTimeMinutes: post.frontmatter.estReadTimeMinutes
+  };
 });
 const tags = Array.from(frontmatters.reduce(toSetReducer, new Set()));
 tags.sort((a, b) => (a >= b ? 1 : -1));

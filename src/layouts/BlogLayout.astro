@@ -2,6 +2,11 @@
 import Layout from './Layout.astro';
 import Pills from '../components/Pills';
 import { DateTime } from 'luxon';
+import type { Frontmatter } from '../types';
+
+type Props = {
+  frontmatter: Frontmatter
+};
 
 const {
   frontmatter: {
@@ -11,10 +16,7 @@ const {
     postedIsoDate,
     title,
     tags,
-    /**
-     * Provided from remark Markdown plugin
-     */
-    estReadTimeMinutes,
+    estReadTimeMinutes
   },
 } = Astro.props;
 const posted = DateTime.fromISO(postedIsoDate);

@@ -16,8 +16,6 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { h } from 'hastscript';
 import rehypePrettyCode from 'rehype-pretty-code';
-import rosePineDawn from 'shiki/themes/rose-pine-dawn.json';
-import poimandres from 'shiki/themes/poimandres.json';
 
 const AnchorLinkIcon = h(
   'svg',

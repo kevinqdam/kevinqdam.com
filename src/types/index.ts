@@ -9,8 +9,8 @@ export type Frontmatter = {
   thumbnailImageAlt: string;
   tags: string[];
   slug: string;
-};
-
-export type FrontmatterWithEstReadTime = Frontmatter & {
+  /**
+   * Provided from remark Markdown plugin
+   */
   estReadTimeMinutes: number;
 };
