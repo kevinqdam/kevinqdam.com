@@ -34,6 +34,11 @@ const activePath = Astro.url.pathname as Path;
           @apply flex items-center gap-2;
         }
 
+        /* Style articles to take the whole available width */
+        article {
+          @apply min-w-full
+        }
+
         /* Style code blocks for light and dark mode */
         pre[data-theme="light"] {
           @apply dark:hidden block bg-white shadow;
