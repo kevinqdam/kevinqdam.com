@@ -1,3 +1,5 @@
+export type Path = '/' | '/experience' | '/blog';
+
 export type Frontmatter = {
   author: string;
   authorProfileImageSrc: string;

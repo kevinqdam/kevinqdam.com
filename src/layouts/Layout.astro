@@ -1,12 +1,11 @@
 ---
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import type { Path } from '../types';
 
-export interface Props {
+interface Props {
   title: string;
 }
-
-export type Path = "/" | "/experience" | "/blog";
 
 const { title } = Astro.props;
 const activePath = Astro.url.pathname as Path;

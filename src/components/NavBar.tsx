@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { PropsWithChildren, useEffect, useState } from 'react';
-import type { Path } from '../layouts/Layout.astro';
+import type { Path } from '../types';
 
 type NavBarProps = {
   activePath: Path;
@@ -53,25 +53,51 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
   const isActive = activePath === path;
 
   return (
-    <a
-      href={path}
-      className={classNames(
-        isActive ? 'font-semibold' : 'font-normal',
-        'flex content-center',
-        'rounded-lg px-2 py-1',
-        'text-lg dark:text-white',
-        'transition',
-        'hover:bg-gray-200 dark:hover:bg-gray-600'
-      )}
-    >
-      {children}
-    </a>
+    <li>
+      <a
+        href={path}
+        className={classNames(
+          isActive ? 'font-semibold' : 'font-normal',
+          'min-w-full text-center',
+          'rounded-lg px-2 py-1',
+          'text-lg dark:text-white',
+          'transition',
+          'hover:bg-gray-200 dark:hover:bg-gray-600'
+        )}
+      >
+        {children}
+      </a>
+    </li>
+  );
+};
+
+const MobileNavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
+  activePath,
+  path,
+  children,
+}) => {
+  const isActive = activePath === path;
+
+  return (
+    <li className='flex flex-row justify-center'>
+      <a
+        href={path}
+        className={classNames(
+          isActive ? 'font-semibold' : 'font-normal',
+          'flex content-center text-center',
+          'text-xl dark:text-white'
+        )}
+      >
+        {children}
+      </a>
+    </li>
   );
 };
 
 const NavBar: React.FC<NavBarProps> = ({ activePath }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') ?? 'light');
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   useEffect(() => setIsMounted(true), []);
 
@@ -87,29 +113,96 @@ const NavBar: React.FC<NavBarProps> = ({ activePath }) => {
   const handleThemeBtnClick = () =>
     setTheme(theme === 'light' ? 'dark' : 'light');
 
+  const handleMenuBtnClick = () => {
+    setIsMenuExpanded(!isMenuExpanded);
+  };
+
   return (
-    <nav className='flex w-full flex-row items-center justify-between pt-8 pb-12'>
-      <div className='flex space-x-4 ml-[-0.45rem]'>
-        <NavItem activePath={activePath} path='/'>
-          Home
-        </NavItem>
-        <NavItem activePath={activePath} path='/experience'>
-          Experience
-        </NavItem>
-        <NavItem activePath={activePath} path='/blog'>
-          Blog
-        </NavItem>
-      </div>
-      {isMounted && (
-        <button
-          type='button'
-          onClick={handleThemeBtnClick}
-          className='rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400'
-        >
-          {theme === 'light' ? MoonIcon : SunIcon}
+    <>
+      {/* Desktop */}
+      <nav className='w-full hidden lg:flex flex-row items-center justify-between pt-8 pb-12'>
+        <ul className='flex space-x-4 ml-[-0.45rem]'>
+          <NavItem activePath={activePath} path='/'>
+            Home
+          </NavItem>
+          <NavItem activePath={activePath} path='/experience'>
+            Experience
+          </NavItem>
+          <NavItem activePath={activePath} path='/blog'>
+            Blog
+          </NavItem>
+        </ul>
+        {isMounted && (
+          <button
+            type='button'
+            onClick={handleThemeBtnClick}
+            className='rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400'
+          >
+            {theme === 'light' ? MoonIcon : SunIcon}
+          </button>
+        )}
+      </nav>
+      {/* Mobile and tablet */}
+      <nav className='relative lg:hidden pt-8 pb-12 flex items-center justify-between z-10'>
+        <button onClick={handleMenuBtnClick} className='hover:cursor'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='currentColor'
+            className='w-6 h-6'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+            />
+          </svg>
         </button>
-      )}
-    </nav>
+        {isMounted && (
+          <button
+            type='button'
+            onClick={handleThemeBtnClick}
+            className='rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400'
+          >
+            {theme === 'light' ? MoonIcon : SunIcon}
+          </button>
+        )}
+        {isMenuExpanded && (
+          <ul className='fixed left-0 top-0 z-1000 flex flex-col justify-center content-center space-y-4 rounded-md px-2 py-2 outline-none bg-gray-100 dark:bg-gray-800 w-full h-screen transition-all'>
+            <MobileNavItem activePath={activePath} path='/'>
+              Home
+            </MobileNavItem>
+            <MobileNavItem activePath={activePath} path='/experience'>
+              Experience
+            </MobileNavItem>
+            <MobileNavItem activePath={activePath} path='/blog'>
+              Blog
+            </MobileNavItem>
+            <button
+              onClick={handleMenuBtnClick}
+              className='flex flex-row justify-center pt-20'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth='1.5'
+                stroke='currentColor'
+                className='w-6 h-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M6 18L18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
+          </ul>
+        )}
+      </nav>
+    </>
   );
 };
 
