@@ -2,29 +2,57 @@
 import BlogPostCard from '../components/BlogPostCard';
 import Pills from '../components/Pills';
 import Layout from '../layouts/Layout.astro';
-import type { Frontmatter } from '../types';
+import { getCollection } from 'astro:content';
+import removeMd from 'remove-markdown';
+import readingTime from 'reading-time';
 
-type Props = {
-  frontmatters: Frontmatter[];
-};
+// type Props = {
+//   frontmatters: Frontmatter[];
+// };
 
-const toSetReducer = (
-  acc: Set<string>,
-  frontmatter: Frontmatter
-) => {
-  frontmatter.tags.forEach((tag: string) => acc.add(tag));
+const toSetReducer = (acc: Set<string>, str: string) => {
+  acc.add(str);
   return acc;
 };
 
-const posts = await Astro.glob<Frontmatter>('../pages/blog/*.mdx');
-const frontmatters = posts.map((post) => {
+// const posts = await Astro.glob<Frontmatter>('../pages/blog/*.mdx');
+// const frontmatters = posts.map((post) => {
+//   return {
+//     ...post.frontmatter,
+//     estReadTimeMinutes: post.frontmatter.estReadTimeMinutes
+//   };
+// });
+// const tags = Array.from(frontmatters.reduce(toSetReducer, new Set()));
+// tags.sort((a, b) => (a >= b ? 1 : -1));
+const posts = await getCollection('blog');
+const tags = Array.from(
+  posts
+    .map((post) => post.data.tags)
+    .flat()
+    .reduce(toSetReducer, new Set())
+).sort((a, b) => (a > b ? 1 : -1));
+const blogPostCardsProps = posts.map((post) => {
+  const {
+    author,
+    authorProfileImage,
+    posted,
+    title,
+    preview,
+    thumbnailImage,
+    tags,
+  } = post.data;
   return {
-    ...post.frontmatter,
-    estReadTimeMinutes: post.frontmatter.estReadTimeMinutes
+    author,
+    authorProfileImage,
+    posted,
+    title,
+    preview,
+    thumbnailImage,
+    tags,
+    slug: post.slug,
+    estReadTimeMinutes: readingTime(removeMd(post.body)).text,
   };
 });
-const tags = Array.from(frontmatters.reduce(toSetReducer, new Set()));
-tags.sort((a, b) => (a >= b ? 1 : -1));
 ---
 
 <Layout title='Blog'>
@@ -33,6 +61,6 @@ tags.sort((a, b) => (a >= b ? 1 : -1));
     <h2 class='text-2xl font-bold'>Browse by tags</h2>
     <Pills pills={tags} />
     <h2 class='text-2xl font-bold'>All Posts</h2>
-    {frontmatters.map((frontmatter) => <BlogPostCard {...frontmatter} />)}
+    {blogPostCardsProps.map((props) => <BlogPostCard {...props} />)}
   </div>
 </Layout>

@@ -1,7 +1,18 @@
 import { DateTime } from 'luxon';
 import type React from 'react';
-import type { Frontmatter } from '../types/index';
 import Pills from './Pills';
+
+type BlogPostCardProps = {
+  author: string;
+  authorProfileImage: { alt: string; src: string } | undefined;
+  posted: string;
+  title: string;
+  preview: string;
+  thumbnailImage: { alt: string; src: string } | undefined;
+  tags: string[];
+  slug: string;
+  estReadTimeMinutes: string;
+};
 
 type AuthorProfileImageProps = {
   src: string;
@@ -13,31 +24,35 @@ type ThumbnailImageProps = {
   alt: string;
 };
 
-const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
+const BlogPostCard: React.FC<BlogPostCardProps> = ({
   author,
-  authorProfileImageSrc,
-  authorProfileImageAlt,
-  postedIsoDate,
+  authorProfileImage,
+  posted,
   title,
   preview,
-  thumbnailImageSrc,
-  thumbnailImageAlt,
+  thumbnailImage,
   tags,
   estReadTimeMinutes,
   slug,
 }) => {
-  const posted = DateTime.fromISO(postedIsoDate);
+  const postedDateTime = DateTime.fromISO(posted);
 
   return (
     <div className='flex flex-col space-y-2 rounded-lg bg-white shadow p-4 dark:bg-slate-900 dark:shadow-lg'>
       <div className='flex flex-row items-center space-x-2 pb-2'>
-        <AuthorProfileImage
-          src={authorProfileImageSrc}
-          alt={authorProfileImageAlt}
-        />
-        <span className='text-gray-600 dark:text-gray-200'>
-          {author} • {`${posted.monthLong} ${posted.day}, ${posted.year}`}
-        </span>
+        {authorProfileImage && (
+          <AuthorProfileImage
+            src={authorProfileImage.src}
+            alt={authorProfileImage.alt}
+          />
+        )}
+        <div className='flex flex-row gap-2 text-gray-600 dark:text-gray-200'>
+          <span>{author}</span>
+          <span>•</span>
+          <span>
+            {`${postedDateTime.monthLong} ${postedDateTime.day}, ${postedDateTime.year}`}
+          </span>
+        </div>
       </div>
       <div className='flex flex-row space-x-4 pb-2'>
         <div className='flex flex-col space-y-2'>
@@ -50,9 +65,9 @@ const BlogPostCard: React.FC<Frontmatter & { estReadTimeMinutes: number }> = ({
             </p>
           </div>
         </div>
-        {thumbnailImageSrc && (
+        {thumbnailImage && (
           <a href={`/blog/${slug}`} className='flex min-w-fit'>
-            <ThumbnailImage src={thumbnailImageSrc} alt={thumbnailImageAlt} />
+            <ThumbnailImage src={thumbnailImage.src} alt={thumbnailImage.alt} />
           </a>
         )}
       </div>

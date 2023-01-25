@@ -1,0 +1,68 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import { DateTime } from 'luxon';
+import readingTime from 'reading-time';
+import Pills from '../../components/Pills';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from '@astrojs/image/components';
+import removeMd from 'remove-markdown';
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+};
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { author, authorProfileImage, title, tags, posted } = post.data;
+const postedDateTime = DateTime.fromISO(posted);
+const estReadTimeMinutes = readingTime(removeMd(post.body)).text;
+const { Content } = await post.render();
+---
+
+<Layout title={title}>
+  {
+    tags && tags.length && (
+      <div class='pb-6'>
+        <Pills pills={tags} />
+      </div>
+    )
+  }
+  <h1 class='text-4xl font-bold pb-8'>{title}</h1>
+  <div class='flex flex-row items-center space-x-2 pb-6'>
+    {
+      authorProfileImage && (
+        <Image
+          alt={authorProfileImage.alt}
+          height={80}
+          width={80}
+          src={authorProfileImage.src}
+          class='rounded-full bg-gradient-to-r from-slate-500 to-teal-500 p-0.5 filter dark:from-slate-500 dark:to-rose-500'
+        />
+      )
+    }
+    <div class='flex flex-col space-y-1'>
+      <span class='text-gray-600 dark:text-gray-200'>
+        {author}
+      </span>
+      <div class='flex flex-row gap-2 text-gray-600 dark:text-gray-200'>
+        <span>
+          {
+            `${postedDateTime.monthLong} ${postedDateTime.day}, ${postedDateTime.year}`
+          }
+        </span>
+        <span>•</span>
+        <span>
+          {`${estReadTimeMinutes}`}
+        </span>
+      </div>
+    </div>
+  </div>
+  <article
+    class='prose dark:prose-invert prose-h1:text-3xl prose-h1:font-bold prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold'
+  >
+    <Content />
+  </article>
+</Layout>
