@@ -2,6 +2,9 @@
 import Anchor from '../components/Anchor.astro';
 import Pills from '../components/Pills';
 import Layout from '../layouts/Layout.astro';
+import cn from 'classnames';
+
+const experienceClassName = cn('lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6');
 ---
 
 <Layout title='Experience'>
@@ -10,25 +13,19 @@ import Layout from '../layouts/Layout.astro';
       <h1 class='text-2xl font-bold'>Current Job Title</h1>
       <p>Software Development Engineer at AWS</p>
     </div>
-    <div class='flex flex-col space-y-2'>
+    <div class='flex flex-col lg:space-y-2 md:space-y-6'>
       <h1 class='text-2xl font-bold'>Experience</h1>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Jun 2022 - Present</p>
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Jun 2022 - Present</p>
         <div class='col-span-2'>
           <p class='text-md'>Software Development Engineer</p>
           <p class='pb-2 italic'>@ Amazon Web Services</p>
-          <Pills
-            pills={[
-              'TypeScript',
-              'Node.js',
-              'React',
-              'AWS',
-            ]}
-          />
+          <Pills pills={['TypeScript', 'Node.js', 'React', 'AWS']} />
         </div>
       </div>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Mar 2021 - May 2022</p>
+      <hr class='lg:hidden h-px border-0 bg-gray-400 dark:bg-gray-500' />
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Mar 2021 - May 2022</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Software Engineer</p>
           <p class='pb-2 italic'>@ ServiceNow</p>
@@ -38,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
               href='https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html'
             >
               Next Experience UI (Polaris)
-          </Anchor>{' '}
+            </Anchor>{' '}
             in the San Diego release of ServiceNow, finally delivering it after its
             delay for two releases. Part of the team that delivered{' '}
             <Anchor
@@ -51,8 +48,9 @@ import Layout from '../layouts/Layout.astro';
           <Pills pills={['Java', 'JavaScript', 'Now Experience Framework']} />
         </div>
       </div>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Aug 2019 - Feb 2021</p>
+      <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Aug 2019 - Feb 2021</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Implementation Consultant</p>
           <p class='pb-2 italic'>@ Fast Enterprises</p>
@@ -76,8 +74,9 @@ import Layout from '../layouts/Layout.astro';
           <Pills pills={['Microsoft SQL Server', 'Visual Basic', '.NET']} />
         </div>
       </div>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Oct 2018 - Jun 2019</p>
+      <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Oct 2018 - Jun 2019</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Implementation Specialist</p>
           <p class='pb-2 italic'>@ PSC Biotech</p>
@@ -93,16 +92,17 @@ import Layout from '../layouts/Layout.astro';
           <Pills pills={['PSC Software']} />
         </div>
       </div>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Oct 2018 - Jun 2019</p>
+      <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Oct 2018 - Jun 2019</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Student Intern III</p>
-          <p class='pb-2 italic'>
-            @ Santa Clara County Registrar of Voters
-          </p>
+          <p class='pb-2 italic'>@ Santa Clara County Registrar of Voters</p>
           <p class='pb-2 text-gray-600 dark:text-gray-400'>
             Maintained{' '}
-            <Anchor href='https://sccvote.sccgov.org/register-vote/precinct-maps'>
+            <Anchor
+              href='https://sccvote.sccgov.org/register-vote/precinct-maps'
+            >
               precinct boundaries
             </Anchor>
             to ensure all Santa Clara county voters could vote safely and efficiently
@@ -111,16 +111,17 @@ import Layout from '../layouts/Layout.astro';
           <Pills pills={['ArcGIS']} />
         </div>
       </div>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>Aug 2016 - Dec 2017</p>
+      <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>Aug 2016 - Dec 2017</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>SI Leader (Peer Tutor for Math)</p>
-          <p class='pb-2 italic'>
-            @ UC San Diego Teaching + Learning Commons
-          </p>
+          <p class='pb-2 italic'>@ UC San Diego Teaching + Learning Commons</p>
           <p class='pb-2 text-gray-600 dark:text-gray-400'>
             Served as a{' '}
-            <Anchor href='https://aah.ucsd.edu/supplemental-instruction/index.html'>
+            <Anchor
+              href='https://aah.ucsd.edu/supplemental-instruction/index.html'
+            >
               Supplemental Instruction
             </Anchor>{' '}
             (SI) leader for calculus and linear algebra, empowering student peers
@@ -131,10 +132,11 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </div>
-    <div class='flex flex-col space-y-2'>
+    <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
+    <div class='flex flex-col lg:space-y-2 md:space-y-6'>
       <h1 class='text-2xl font-bold'>Education</h1>
-      <div class='grid grid-cols-3 gap-2 pb-6'>
-        <p class='col-span-1 font-medium'>2014 - 2018</p>
+      <div class={experienceClassName}>
+        <p class='col-span-1 font-bold'>4 years</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>B.S. Bioengineering, Minor in Organic Chemistry</p>
           <p class='pb-2 italic'>@ UC San Diego</p>
