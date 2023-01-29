@@ -18,7 +18,12 @@ const blogCollection = defineCollection({
       posted: z.string().regex(isoDatePattern),
       preview: z.string(),
       title: z.string(),
-      tags: z.array(z.string()),
+      tags: z.array(
+        z.object({
+          pillText: z.string(),
+          pillHref: z.string().optional(),
+        })
+      ),
       thumbnailImage: z
         .object({
           alt: z.string(),

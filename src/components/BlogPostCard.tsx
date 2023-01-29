@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import type React from 'react';
-import Pills from './Pills';
+import Pills, { Pill } from './Pills';
 
 type BlogPostCardProps = {
   author: string;
@@ -9,7 +9,7 @@ type BlogPostCardProps = {
   title: string;
   preview: string;
   thumbnailImage: { alt: string; src: string } | undefined;
-  tags: string[];
+  tags: Pill[];
   slug: string;
   estReadTimeMinutes: string;
 };

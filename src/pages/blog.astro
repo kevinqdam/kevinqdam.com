@@ -1,36 +1,29 @@
 ---
 import BlogPostCard from '../components/BlogPostCard';
-import Pills from '../components/Pills';
+import Pills, { Pill } from '../components/Pills';
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { CollectionEntry, getCollection } from 'astro:content';
 import removeMd from 'remove-markdown';
 import readingTime from 'reading-time';
 
-// type Props = {
-//   frontmatters: Frontmatter[];
-// };
-
-const toSetReducer = (acc: Set<string>, str: string) => {
-  acc.add(str);
-  return acc;
+const getUniqueTags = (
+  tags: CollectionEntry<'blog'>['data']['tags']
+): Pill[] => {
+  const result: Pill[] = [];
+  const seen = new Set();
+  for (const tag of tags) {
+    if (seen.has(tag.pillText)) {
+      continue;
+    }
+    seen.add(tag.pillText);
+    result.push(tag);
+  }
+  return result;
 };
 
-// const posts = await Astro.glob<Frontmatter>('../pages/blog/*.mdx');
-// const frontmatters = posts.map((post) => {
-//   return {
-//     ...post.frontmatter,
-//     estReadTimeMinutes: post.frontmatter.estReadTimeMinutes
-//   };
-// });
-// const tags = Array.from(frontmatters.reduce(toSetReducer, new Set()));
-// tags.sort((a, b) => (a >= b ? 1 : -1));
 const posts = await getCollection('blog');
-const tags = Array.from(
-  posts
-    .map((post) => post.data.tags)
-    .flat()
-    .reduce(toSetReducer, new Set())
-).sort((a, b) => (a > b ? 1 : -1));
+const postTags = posts.map((post) => post.data.tags).flat();
+const tags = getUniqueTags(postTags).sort((a, b) => a.pillText > b.pillText ? 1 : -1);
 const blogPostCardsProps = posts.map((post) => {
   const {
     author,

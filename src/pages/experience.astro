@@ -12,16 +12,23 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class='flex flex-col lg:space-y-2 md:space-y-6'>
       <h1 class='text-2xl font-bold'>Experience</h1>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Jun 2022 - Present</p>
         <div class='col-span-2'>
           <p class='text-md'>Software Development Engineer</p>
           <p class='pb-2 italic'>@ Amazon Web Services</p>
-          <Pills pills={['TypeScript', 'Node.js', 'React', 'AWS']} />
+          <Pills
+            pills={[
+              { pillText: 'TypeScript' },
+              { pillText: 'Node.js' },
+              { pillText: 'React' },
+              { pillText: 'AWS' },
+            ]}
+          />
         </div>
       </div>
       <hr class='lg:hidden h-px border-0 bg-gray-400 dark:bg-gray-500' />
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Mar 2021 - May 2022</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Software Engineer</p>
@@ -42,11 +49,17 @@ import Layout from '../layouts/Layout.astro';
             </Anchor>{' '}
             in the Tokyo release of ServiceNow.
           </p>
-          <Pills pills={['Java', 'JavaScript', 'Now Experience Framework']} />
+          <Pills
+            pills={[
+              { pillText: 'Java' },
+              { pillText: 'JavaScript' },
+              { pillText: 'Now Experience Framework' },
+            ]}
+          />
         </div>
       </div>
       <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Aug 2019 - Feb 2021</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Implementation Consultant</p>
@@ -68,11 +81,17 @@ import Layout from '../layouts/Layout.astro';
             </Anchor>{' '}
             which serves all Minnesota motorists.
           </p>
-          <Pills pills={['Microsoft SQL Server', 'Visual Basic', '.NET']} />
+          <Pills
+            pills={[
+              { pillText: 'Microsoft SQL Server' },
+              { pillText: 'Visual Basic' },
+              { pillText: '.NET' },
+            ]}
+          />
         </div>
       </div>
       <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Oct 2018 - Jun 2019</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Implementation Specialist</p>
@@ -86,11 +105,11 @@ import Layout from '../layouts/Layout.astro';
             managers, engineering, and operations to ensure the solution was flexible
             and met all stakeholder needs.
           </p>
-          <Pills pills={['PSC Software']} />
+          <Pills pills={[{ pillText: 'PSC Software' }]} />
         </div>
       </div>
       <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Oct 2018 - Jun 2019</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>Student Intern III</p>
@@ -105,11 +124,11 @@ import Layout from '../layouts/Layout.astro';
             to ensure all Santa Clara county voters could vote safely and efficiently
             in transparent, honest elections.
           </p>
-          <Pills pills={['ArcGIS']} />
+          <Pills pills={[{ pillText: 'ArcGIS' }]} />
         </div>
       </div>
       <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>Aug 2016 - Dec 2017</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>SI Leader (Peer Tutor for Math)</p>
@@ -125,14 +144,14 @@ import Layout from '../layouts/Layout.astro';
             to earn a half letter grade higher than those who did not participate
             in the program.
           </p>
-          <Pills pills={['MATLAB', 'LaTeX']} />
+          <Pills pills={[{ pillText: 'MATLAB' }, { pillText: 'LaTeX' }]} />
         </div>
       </div>
     </div>
     <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
     <div class='flex flex-col lg:space-y-2 md:space-y-6'>
       <h1 class='text-2xl font-bold'>Education</h1>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
         <p class='col-span-1 font-bold'>4 years</p>
         <div class='col-span-2 flex flex-col'>
           <p class='text-md'>B.S. Bioengineering, Minor in Organic Chemistry</p>
@@ -155,7 +174,12 @@ import Layout from '../layouts/Layout.astro';
             </Anchor>
             .
           </p>
-          <Pills pills={['Tau Beta Pi', 'Phi Beta Kappa']} />
+          <Pills
+            pills={[
+              { pillText: 'Tau Beta Pi' },
+              { pillText: 'Phi Beta Kappa' },
+            ]}
+          />
         </div>
       </div>
     </div>
