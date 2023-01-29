@@ -54,7 +54,7 @@ const activePath = Astro.url.pathname as Path;
   >
     <div class="min-h-screen w-full bg-gray-100 dark:bg-gray-800">
       <div class="flex w-full items-center justify-center">
-        <div class="flex w-8/12 min-w-min flex-col justify-center px-8 md:w-8/12">
+        <div class="flex w-8/12 min-w-min flex-col justify-center px-8 md:w-8/12 lg:w-6/12">
           <NavBar client:load activePath={activePath} />
           <main>
             <slot />
