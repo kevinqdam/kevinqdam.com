@@ -38,7 +38,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
   const postedDateTime = DateTime.fromISO(posted);
 
   return (
-    <div className='flex flex-col space-y-2 rounded-lg bg-white shadow p-4 dark:bg-slate-900 dark:shadow-lg'>
+    <div className='flex flex-col space-y-4 lg:space-y-2 rounded-lg bg-white shadow p-4 dark:bg-slate-900 dark:shadow-lg'>
       <div className='flex flex-row items-center space-x-2 pb-2'>
         {authorProfileImage && (
           <AuthorProfileImage
@@ -46,14 +46,30 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
             alt={authorProfileImage.alt}
           />
         )}
-        <div className='flex flex-row gap-2 text-gray-600 dark:text-gray-200'>
+        <div className='flex flex-wrap flex-row gap-2 text-gray-600 dark:text-gray-200'>
           <span>{author}</span>
           <span>•</span>
           <span>
             {`${postedDateTime.monthLong} ${postedDateTime.day}, ${postedDateTime.year}`}
           </span>
+          {estReadTimeMinutes && (
+            <>
+              <span>•</span>
+              <span className='text-gray-600 dark:text-gray-200'>
+                {estReadTimeMinutes}
+              </span>
+            </>
+          )}
         </div>
       </div>
+      {thumbnailImage && (
+        <a
+          href={`/blog/${slug}`}
+          className='lg:hidden flex min-w-fit min-h-fit'
+        >
+          <ThumbnailImage src={thumbnailImage.src} alt={thumbnailImage.alt} />
+        </a>
+      )}
       <div className='flex flex-row space-x-4 pb-2'>
         <div className='flex flex-col space-y-2'>
           <a href={`/blog/${slug}`}>
@@ -66,22 +82,17 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
           </div>
         </div>
         {thumbnailImage && (
-          <a href={`/blog/${slug}`} className='flex min-w-fit'>
+          <a href={`/blog/${slug}`} className='hidden lg:flex min-w-fit'>
             <ThumbnailImage src={thumbnailImage.src} alt={thumbnailImage.alt} />
           </a>
         )}
       </div>
-      <div className='flex flex-row items-center align-middle space-x-2'>
+      <div className='flex flex-col space-y-6 lg:flex-row lg:items-center lg:align-middle lg:space-x-2'>
         {tags && tags.length && (
           <div className='flex flex-row space-x-1'>
             <span className='text-gray-600 dark:text-gray-200'>Tags: </span>
             <Pills pills={tags} />
           </div>
-        )}
-        {estReadTimeMinutes && (
-          <span className='text-gray-600 dark:text-gray-200'>
-            {estReadTimeMinutes}
-          </span>
         )}
       </div>
     </div>
@@ -107,10 +118,8 @@ const ThumbnailImage: React.FC<ThumbnailImageProps> = ({ alt, src }) => {
   return (
     <img
       alt={alt}
-      height={144}
-      width={144}
       src={src}
-      className='rounded-lg object-cover filter w-36 h-36'
+      className='rounded-lg object-cover filter lg:w-36 lg:h-36'
     />
   );
 };
