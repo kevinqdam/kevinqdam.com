@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
           aria-label='Mail icon'
           href='mailto:me@kevinqdam.com'
           target='_blank'
-          rel='noreferrer'
+          rel='noreferrer noopener'
         >
           {MailIcon}
         </a>
