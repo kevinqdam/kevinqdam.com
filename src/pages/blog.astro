@@ -12,10 +12,10 @@ const getUniqueTags = (
   const result: Pill[] = [];
   const seen = new Set();
   for (const tag of tags) {
-    if (seen.has(tag.pillText)) {
+    if (seen.has(tag.text)) {
       continue;
     }
-    seen.add(tag.pillText);
+    seen.add(tag.text);
     result.push(tag);
   }
   return result;
@@ -23,7 +23,7 @@ const getUniqueTags = (
 
 const posts = await getCollection('blog');
 const postTags = posts.map((post) => post.data.tags).flat();
-const tags = getUniqueTags(postTags).sort((a, b) => a.pillText > b.pillText ? 1 : -1);
+const tags = getUniqueTags(postTags).sort((a, b) => a.text > b.text ? 1 : -1);
 const blogPostCardsProps = posts.map((post) => {
   const {
     author,

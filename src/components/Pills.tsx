@@ -1,6 +1,6 @@
 export type Pill = {
-  pillText: string;
-  pillHref?: string | undefined;
+  text: string;
+  href?: string | undefined;
 };
 
 type PillsProps = {
@@ -9,10 +9,10 @@ type PillsProps = {
 
 const Pills: React.FC<PillsProps> = ({ pills }) => (
   <ul className='items-top flex flex-row gap-2 flex-wrap'>
-    {pills.map(({ pillText, pillHref }, index) => (
-      <div key={`${pillText}-${index}`}>
+    {pills.map(({ text, href }, index) => (
+      <div key={`${text}-${index}`}>
         <li className='rounded bg-pink-100 px-2.5 py-0.5 font-semibold text-pink-800 dark:bg-teal-200 dark:text-teal-800'>
-          {pillText}
+          {text}
         </li>
       </div>
     ))}
