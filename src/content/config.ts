@@ -29,16 +29,18 @@ const KNOWN_TAGS = [
   'pets',
 ] as const;
 
+const imageSchema = z
+  .object({
+    alt: z.string(),
+    src: z.string(),
+  })
+  .strict();
+
 const blogCollection = defineCollection({
   schema: z
     .object({
       author: z.enum(['Kevin Dam', 'Bagel Cat', 'Ponzu Dog']),
-      authorProfileImage: z
-        .object({
-          alt: z.string(),
-          src: z.string(),
-        })
-        .optional(),
+      authorProfileImage: imageSchema.optional(),
       posted: z.string().regex(isoDatePattern),
       preview: z.string(),
       title: z.string(),
@@ -53,12 +55,7 @@ const blogCollection = defineCollection({
           })
           .strict()
       ),
-      thumbnailImage: z
-        .object({
-          alt: z.string(),
-          src: z.string(),
-        })
-        .optional(),
+      thumbnailImage: imageSchema.optional(),
     })
     .strict(),
 });
