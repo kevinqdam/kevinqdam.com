@@ -10,6 +10,7 @@ import Layout from '../layouts/Layout.astro';
       <h1 class='text-2xl font-bold'>Current Job Title</h1>
       <p>Software Development Engineer at AWS</p>
     </div>
+    <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
     <div class='flex flex-col space-y-6 lg:space-y-2'>
       <h1 class='text-2xl font-bold'>Experience</h1>
       <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
@@ -170,10 +171,7 @@ import Layout from '../layouts/Layout.astro';
             .
           </p>
           <Pills
-            pills={[
-              { text: 'Tau Beta Pi' },
-              { text: 'Phi Beta Kappa' },
-            ]}
+            pills={[{ text: 'Tau Beta Pi' }, { text: 'Phi Beta Kappa' }]}
           />
         </div>
       </div>
