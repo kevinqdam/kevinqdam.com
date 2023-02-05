@@ -16,7 +16,7 @@ const getUniqueTags = (
       continue;
     }
     seen.add(tag.text);
-    result.push(tag);
+    result.push({ ...tag });
   }
   return result;
 };

@@ -1,9 +1,26 @@
 import { z, defineCollection } from 'astro:content';
 
 /**
+ * Enumeration of known tags
+ */
+const KNOWN_TAGS = [
+  'typescript',
+  'personal',
+  'life',
+  'productivity',
+  'travel',
+  'pets',
+] as const;
+
+const KNOWN_TAG_PATHS = KNOWN_TAGS.map((tag) => `/blog/tag/${tag}`);
+
+/**
  * Test href is a valid URL
  */
 const isURL = (href: string) => {
+  if (KNOWN_TAG_PATHS.find((path) => path === href)) {
+    return true;
+  }
   try {
     new URL(href);
   } catch {
@@ -16,18 +33,6 @@ const isURL = (href: string) => {
  * Pattern that matches yyyy-mm-dd
  */
 const isoDatePattern = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-
-/**
- * Enumeration of known tags
- */
-const KNOWN_TAGS = [
-  'typescript',
-  'personal',
-  'life',
-  'productivity',
-  'travel',
-  'pets',
-] as const;
 
 const imageSchema = z
   .object({
