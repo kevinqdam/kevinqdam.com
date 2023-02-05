@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import type React from 'react';
 import Pills, { Pill } from './Pills';
 
-type BlogPostCardProps = {
+export type BlogPostCardProps = {
   author: string;
   authorProfileImage: { alt: string; src: string } | undefined;
   posted: string;
