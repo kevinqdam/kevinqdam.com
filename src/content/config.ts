@@ -48,7 +48,7 @@ const blogCollection = defineCollection({
         z
           .object({
             text: z.enum(KNOWN_TAGS),
-            pillHref: z
+            href: z
               .string()
               .refine(isURL, { message: "Tag's href must be a valid URL" })
               .optional(),
