@@ -1,6 +1,6 @@
 ---
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
 import type { Path } from '../types';
 
 interface Props {
@@ -12,14 +12,14 @@ const activePath = Astro.url.pathname as Path;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
     <link
-      rel="icon"
+      rel='icon'
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>"
     />
     <style is:global>
@@ -35,14 +35,14 @@ const activePath = Astro.url.pathname as Path;
 
         /* Style articles to take the whole available width */
         article {
-          @apply min-w-full
+          @apply min-w-full;
         }
 
         /* Style code blocks for light and dark mode */
-        pre[data-theme="light"] {
+        pre[data-theme='light'] {
           @apply dark:hidden block bg-white shadow;
         }
-        pre[data-theme="dark"] {
+        pre[data-theme='dark'] {
           @apply dark:block hidden shadow-lg;
         }
       }
@@ -50,16 +50,18 @@ const activePath = Astro.url.pathname as Path;
   >
 
   <body
-    class="min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white"
+    class='min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white'
   >
-    <div class="min-h-screen w-full bg-gray-100 dark:bg-gray-800">
-      <div class="flex w-full items-center justify-center">
-        <div class="flex w-8/12 min-w-min flex-col justify-center px-8 md:w-8/12 lg:w-6/12">
+    <div class='min-h-screen w-full bg-gray-100 dark:bg-gray-800'>
+      <div class='flex w-full items-center justify-center'>
+        <div
+          class='flex w-8/12 min-w-min flex-col justify-center px-8 md:w-8/12 lg:w-6/12'
+        >
           <NavBar client:load activePath={activePath} />
           <main>
             <slot />
           </main>
-          <hr class="my-8 h-px border-0 bg-gray-400 dark:bg-gray-500" />
+          <hr class='my-8 h-px border-0 bg-gray-400 dark:bg-gray-500' />
           <Footer />
         </div>
       </div>
@@ -67,21 +69,21 @@ const activePath = Astro.url.pathname as Path;
   </body>
   <script>
     const theme = (() => {
-      if (typeof localStorage !== "undefined") {
-        const theme = localStorage.getItem("theme") ?? "light";
+      if (typeof localStorage !== 'undefined') {
+        const theme = localStorage.getItem('theme') ?? 'light';
         return theme;
       }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
       }
-      return "light";
+      return 'light';
     })();
 
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
     } else {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark');
     }
-    window.localStorage.setItem("theme", theme);
+    window.localStorage.setItem('theme', theme);
   </script>
 </html>

@@ -4,8 +4,7 @@ import { Image } from '@astrojs/image/components';
 ---
 
 <Layout title='Kevin Dam'>
-  <!-- Desktop -->
-  <div class='hidden lg:flex flex-row space-x-6 pb-8'>
+  <div class='flex flex-row space-x-6 pb-8'>
     <Image
       alt='Kevin Dam profile picture'
       height={125}
@@ -17,18 +16,6 @@ import { Image } from '@astrojs/image/components';
       <h1 class='text-4xl font-bold'>Kevin Dam</h1>
       <div>Software Engineer</div>
     </div>
-  </div>
-  <!-- Mobile and tablet -->
-  <div class='lg:hidden flex flex-col items-center space-y-2 pb-4'>
-    <Image
-      alt='Kevin Dam profile picture'
-      height={125}
-      width={125}
-      src='/images/bagel.jpg'
-      class='rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1'
-    />
-    <h1 class='text-4xl font-bold'>Kevin Dam</h1>
-    <div>Software Engineer</div>
   </div>
   <div class='flex flex-col space-y-6'>
     <p class='text-2xl'>
