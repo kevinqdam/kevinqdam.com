@@ -20,10 +20,10 @@ import Layout from '../layouts/Layout.astro';
           <p class='pb-2 italic'>@ Amazon Web Services</p>
           <Pills
             pills={[
-              { text: 'TypeScript' },
-              { text: 'Node.js' },
-              { text: 'React' },
-              { text: 'AWS' },
+              { text: 'TypeScript', href: 'https://www.typescriptlang.org/' },
+              { text: 'Node.js', href: 'https://nodejs.org/en/' },
+              { text: 'React', href: 'https://reactjs.org/' },
+              { text: 'AWS', href: 'https://aws.amazon.com/' },
             ]}
           />
         </div>
@@ -51,9 +51,15 @@ import Layout from '../layouts/Layout.astro';
           </p>
           <Pills
             pills={[
-              { text: 'Java' },
-              { text: 'JavaScript' },
-              { text: 'Now Experience Framework' },
+              { text: 'Java', href: 'https://www.java.com/en/' },
+              {
+                text: 'JavaScript',
+                href: 'https://en.wikipedia.org/wiki/JavaScript',
+              },
+              {
+                text: 'Now Experience Framework',
+                href: 'https://developer.servicenow.com/dev.do#!/learn/courses/tokyo/app_store_learnv2_scripting_tokyo_scripting_in_servicenow/app_store_learnv2_scripting_tokyo_introduction_to_scripting_in_servicenow/app_store_learnv2_scripting_tokyo_servicenow_apis',
+              },
             ]}
           />
         </div>
@@ -82,9 +88,15 @@ import Layout from '../layouts/Layout.astro';
           </p>
           <Pills
             pills={[
-              { text: 'Microsoft SQL Server' },
-              { text: 'Visual Basic' },
-              { text: '.NET' },
+              {
+                text: 'Microsoft SQL Server',
+                href: 'https://www.microsoft.com/en-us/sql-server',
+              },
+              {
+                text: 'Visual Basic',
+                href: 'https://learn.microsoft.com/en-us/dotnet/visual-basic/',
+              },
+              { text: '.NET', href: 'https://dotnet.microsoft.com/en-us/' },
             ]}
           />
         </div>
@@ -103,7 +115,14 @@ import Layout from '../layouts/Layout.astro';
             managers, engineering, and operations to ensure the solution was flexible
             and met all stakeholder needs.
           </p>
-          <Pills pills={[{ text: 'PSC Software' }]} />
+          <Pills
+            pills={[
+              {
+                text: 'PSC Software',
+                href: 'https://pscsoftware.com/software/ace/',
+              },
+            ]}
+          />
         </div>
       </div>
       <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
@@ -121,7 +140,14 @@ import Layout from '../layouts/Layout.astro';
             to ensure all Santa Clara county voters could vote safely and efficiently
             in transparent, honest elections.
           </p>
-          <Pills pills={[{ text: 'ArcGIS' }]} />
+          <Pills
+            pills={[
+              {
+                text: 'ArcGIS',
+                href: 'https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview',
+              },
+            ]}
+          />
         </div>
       </div>
       <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
@@ -140,7 +166,15 @@ import Layout from '../layouts/Layout.astro';
             to earn a half letter grade higher than those who did not participate
             in the program.
           </p>
-          <Pills pills={[{ text: 'MATLAB' }, { text: 'LaTeX' }]} />
+          <Pills
+            pills={[
+              {
+                text: 'MATLAB',
+                href: 'https://www.mathworks.com/products/matlab.html',
+              },
+              { text: 'LaTeX', href: 'https://www.latex-project.org/' },
+            ]}
+          />
         </div>
       </div>
     </div>
@@ -171,7 +205,10 @@ import Layout from '../layouts/Layout.astro';
             .
           </p>
           <Pills
-            pills={[{ text: 'Tau Beta Pi' }, { text: 'Phi Beta Kappa' }]}
+            pills={[
+              { text: 'Tau Beta Pi', href: 'https://tbp.ucsd.edu/home' },
+              { text: 'Phi Beta Kappa', href: 'https://pbk.ucsd.edu/' },
+            ]}
           />
         </div>
       </div>
