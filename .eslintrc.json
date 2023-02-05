@@ -1,5 +1,9 @@
 {
-  "extends": ["plugin:astro/recommended"],
+  "extends": [
+    "plugin:astro/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.astro"],
@@ -7,17 +11,27 @@
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
         "extraFileExtensions": [".astro"]
-      },
-      "rules": {}
+      }
     },
     {
-      "files": ["*.mjs", "*.cjs"],
-      "parser": "babel-eslint",
+      "files": ["*.mjs"],
       "parserOptions": {
         "ecmaVersion": "latest",
         "ecmaFeatures": {
           "modules": true
         }
+      }
+    },
+    {
+      "files": ["*.cjs"],
+      "parserOptions": {
+        "ecmaVersion": "latest"
+      },
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]
