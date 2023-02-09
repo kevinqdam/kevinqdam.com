@@ -46,7 +46,23 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
             alt={authorProfileImage.alt}
           />
         )}
-        <div className='flex flex-wrap flex-row gap-2 text-gray-600 dark:text-gray-200'>
+        {/* Mobile */}
+        <div className='flex sm:hidden flex-wrap flex-row gap-1 text-sm text-gray-600 dark:text-gray-200'>
+          <span>{author}</span>
+          <span>•</span>
+          <span>
+            {`${postedDateTime.monthShort}. ${postedDateTime.day}, ${postedDateTime.year}`}
+          </span>
+          {estReadTimeMinutes && (
+            <>
+              <span>•</span>
+              <span className='text-gray-600 dark:text-gray-200'>
+                {estReadTimeMinutes}
+              </span>
+            </>
+          )}
+        </div>
+        <div className='hidden sm:flex flex-wrap flex-row gap-2 text-gray-600 dark:text-gray-200'>
           <span>{author}</span>
           <span>•</span>
           <span>

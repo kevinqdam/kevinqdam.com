@@ -32,7 +32,7 @@ const getUniqueTags = (
     }
     seen.add(tag.text);
     result.push(
-      tag.text === currentTag ? { ...tag, invertColor: true } : { ...tag }
+      tag.text === currentTag ? { ...tag, invertColor: true, href: '/blog' } : { ...tag }
     );
   }
   return result;
