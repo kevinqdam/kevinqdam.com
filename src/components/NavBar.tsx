@@ -138,7 +138,7 @@ const NavBar: React.FC<NavBarProps> = ({ activePath }) => {
     <>
       {/* Desktop */}
       <nav className='w-full hidden lg:flex flex-row items-center justify-between pt-8 pb-12'>
-        <ul className='flex space-x-4 ml-[-0.45rem]'>
+        <ul className='flex m-2.5 space-x-4 ml-[-0.45rem]'>
           <NavItem activePath={activePath} path='/'>
             Home
           </NavItem>
