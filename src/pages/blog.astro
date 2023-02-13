@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import { CollectionEntry, getCollection } from 'astro:content';
 import removeMd from 'remove-markdown';
 import readingTime from 'reading-time';
+import NavBar from '../components/NavBar';
 
 const getUniqueTags = (
   tags: CollectionEntry<'blog'>['data']['tags']
@@ -53,6 +54,7 @@ const blogPostCardProps = posts.map(toBlogPostCardProps);
 ---
 
 <Layout title='Blog'>
+  <NavBar client:load activePath='/blog' />
   <h1 class='pb-6 text-3xl font-bold'>Blog</h1>
   <div class='flex flex-col space-y-4'>
     <h2 class='text-2xl font-bold'>Browse by tags</h2>

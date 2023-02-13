@@ -5,6 +5,7 @@ import { z, defineCollection } from 'astro:content';
  */
 const KNOWN_TAGS = [
   'typescript',
+  'programming',
   'personal',
   'life',
   'productivity',
@@ -44,7 +45,7 @@ const imageSchema = z
 const blogCollection = defineCollection({
   schema: z
     .object({
-      author: z.enum(['Kevin Dam', 'Bagel Cat', 'Ponzu Dog']),
+      author: z.enum(['Kevin Dam']),
       authorProfileImage: imageSchema.optional(),
       posted: z.string().regex(isoDatePattern),
       preview: z.string(),

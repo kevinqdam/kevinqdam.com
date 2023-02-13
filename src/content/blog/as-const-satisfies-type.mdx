@@ -1,0 +1,132 @@
+---
+author: 'Kevin Dam'
+authorProfileImage:
+  { src: '/images/kevinqdam.png', alt: "Kevin Dam's profile picture" }
+posted: '2023-02-12'
+title: 'As const satisfies Type'
+preview: "Since TypeScript does not have immutability by default, I tend to use the `as const` operator liberally. Put another way, I default to using `as const` until it conflicts with my intentions for whatever program I am writing. I also benefit from TypeScript having more information to provide developer experience niceties like editor hinting and auto-complete. However, `as const` only provides type narrowing. It does not provide type-safety on its own. We can restore type-safety by embracing intermediate variables at the cost of noise and loss of developer ergonomics. With the release of the `satisfies` operator, we no longer have to make this tradeoff."
+thumbnailImage: { src: '/images/typescript.png', alt: 'TypeScript logo' }
+tags:
+  - { text: 'typescript', href: '/blog/tag/typescript' }
+  - { text: 'programming', href: '/blog/tag/programming' }
+---
+
+import { Image } from '@astrojs/image/components';
+
+<div class='flex w-full justify-center bg-slate-200 dark:bg-gray-900'>
+  <Image
+    alt='TypeScript logo'
+    src={import('../../../public/images/typescript.png')}
+    class='w-auto h-72'
+  />
+</div>
+
+## Introduction
+
+Since TypeScript does not have immutability by default, I tend to use the [`as const` operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions) liberally. Put another way, I default to using `as const` until it conflicts with my intentions for whatever program I am writing. I also benefit from TypeScript having more information to provide developer experience niceties like editor hinting and auto-complete.
+
+However, `as const` only provides type narrowing. It does not provide type-safety on its own. We can restore type-safety by embracing intermediate variables at the cost of noise and loss of developer ergonomics. With the release of the [`satisfies` operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#the-satisfies-operator), we no longer have to make this tradeoff.
+
+## Type-safety and developer experience, can we have both?
+
+Let's say you have an object with internationalized strings:
+
+```ts
+type LanguageCode = 'en' | 'fr' | 'es';
+
+const MESSAGES = {
+  en: {
+    GREETING: 'Hello',
+  },
+  fr: {
+    GREETING: 'Bonjour',
+  },
+  es: {
+    GREETING: 'Hola',
+  },
+};
+```
+
+We want the `MESSAGES` object to be immutable and to only contain strings within each language object. To do this, we might consider adding a type declaration:
+
+```ts
+type LanguageCode = 'en' | 'fr' | 'es';
+
+const MESSAGES: Readonly<
+  Record<LanguageCode, Readonly<Record<string, string>>>
+> = {
+  en: {
+    GREETING: 'Hello',
+  },
+  fr: {
+    GREETING: 'Bonjour',
+  },
+  es: {
+    GREETING: 'Hola',
+  },
+};
+```
+
+If we are only considering type-safety, then we are done. The `MESSAGES` object is immutable and can only contain strings. However, something worth noting is that by declaring the type as above, TypeScript loses information. Typing `MESSAGES.en<dot>` will not show any auto-complete or editor hinting since TypeScript believes the property name can be _any_ string.
+
+It is clear that this shouldn't be the case. We can see the answer can only be `GREETING`. Put another way, it seems that by declaring the type, we gave TypeScript a bout of short-term memory loss! Using `as const` here won't help much either. TypeScript will still only remember the type we declared. Can we recover the developer experience?
+
+### Before `satisfies`
+
+One approach to this would be to embrace the usage of extra variables. This might be tolerable if we maintain this `MESSAGES` object in a separate file and only export what we want to expose.
+
+```ts
+type LanguageCode = 'en' | 'fr' | 'es';
+
+const MESSAGES = {
+  eng: {
+    GREETING: 'Hello',
+  },
+  fr: {
+    GREETING: 'Bonjour',
+  },
+  es: {
+    GREETING: 'Hola',
+  },
+} as const;
+
+// Property 'en' is missing in type '{ readonly eng: { readonly GREETING: "Hello"; }; readonly fr: { readonly GREETING: "Bonjour"; }; readonly es: { readonly GREETING: "Hola"; }; }' but required in type 'Readonly<Record<LanguageCode, Readonly<Record<string, string>>>>'.
+const INTERMEDIATE_MESSAGES: Readonly<
+  Record<LanguageCode, Readonly<Record<string, string>>>
+> = MESSAGES;
+```
+
+The `INTERMEDIATE_MESSAGES` variable will correctly show a type-error. This way, we let `INTERMEDIATE_MESSAGES` take care of the type-checking and let `as const` keep our developer experience. Typing `MESSAGES.fr<dot>` will show `GREETING` as an option for editor hinting and auto-complete. As long as we only export `MESSAGES` and leave `INTERMEDATE_MESSAGES` hidden from the rest of the world, problem solved!
+
+...but this is unsatisfying. What's the deal with the extra variable? For me, I like knowing that types mostly go away after compiling with `tsc`. It lets me refactor and tighten my domain as I like without affecting my production build. Is there a way for us to drop the extra variable yet still keep _both_ the developer experience and type safety?
+
+### After `satisfies`
+The `satisfies` operator was made for this purpose. At a high level, it will perform type-checking for us without throwing away our information.
+
+Here it is in action:
+
+```ts
+type LanguageCode = 'en' | 'fr' | 'es';
+
+// Type '{ readonly eng: { readonly GREETING: "Hello"; }; readonly fr: { readonly GREETING: "Bonjour"; }; readonly es: { readonly GREETING: "Hola"; }; }' does not satisfy the expected type 'Record<LanguageCode, Readonly<Record<string, string>>>'.
+// Object literal may only specify known properties, and 'eng' does not exist in type 'Record<LanguageCode, Readonly<Record<string, string>>>'.
+const MESSAGES = {
+  eng: {
+    GREETING: 'Hello',
+  },
+  fr: {
+    GREETING: 'Bonjour',
+  },
+  es: {
+    GREETING: 'Hola',
+  },
+} as const satisfies Record<LanguageCode, Readonly<Record<string, string>>>;
+```
+
+Now, we have everything we were after:
+- `as const` does the type narrowing that allows our TypeScript to deliver a better developer experience. That is, typing `MESSAGES.es<dot>` will provide auto-complete and editor hinting to suggest `GREETING`.
+- `satisfies` ensures `MESSAGES` is the type we require it to be. That is, it is an immutable object that only accepts strings for its most deeply nested values.
+- No extra variables required!
+
+## Conclusion
+The benefits of using TypeScript are to enforce type-safety and provide a better developer experience. If you are using a version of TypeScript `< 4.9`, then you might have to embrace using an extra variable to keep both benefits. Once you upgrade to TypeScript to `>= 4.9`, consider using `as const satisfies Type` to maintain type-safety while still benefiting from editor hinting and auto-complete.

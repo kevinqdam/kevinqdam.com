@@ -1,14 +1,11 @@
 ---
 import Footer from '../components/Footer';
-import NavBar from '../components/NavBar';
-import type { Path } from '../types';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-const activePath = Astro.url.pathname as Path;
 ---
 
 <!DOCTYPE html>
@@ -45,6 +42,14 @@ const activePath = Astro.url.pathname as Path;
         pre[data-theme='dark'] {
           @apply dark:block hidden shadow-lg;
         }
+
+        /* Style in-line code for light and dark mode */
+        code:not([data-theme]) {
+          @apply inline-block px-2 rounded-lg bg-slate-200 dark:bg-gray-900 m-0.5;
+        }
+        a > code:not([data-theme]) {
+          @apply underline
+        }
       }
     </style></head
   >
@@ -57,7 +62,6 @@ const activePath = Astro.url.pathname as Path;
         <div
           class='flex w-full sm:w-10/12 flex-col justify-center px-8 md:w-8/12 lg:w-7/12'
         >
-          <NavBar client:load activePath={activePath} />
           <main>
             <slot />
           </main>

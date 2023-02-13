@@ -6,6 +6,7 @@ import Pills from '../../components/Pills';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from '@astrojs/image/components';
 import removeMd from 'remove-markdown';
+import NavBar from '../../components/NavBar';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
@@ -23,6 +24,7 @@ const { Content } = await post.render();
 ---
 
 <Layout title={title}>
+  <NavBar client:load activePath='/blog' />
   {
     tags && tags.length && (
       <div class='pb-6'>
@@ -31,7 +33,7 @@ const { Content } = await post.render();
     )
   }
   <h1 class='text-4xl font-bold pb-8'>{title}</h1>
-  <div class='flex flex-row items-center space-x-2 pb-6'>
+  <div class='flex flex-row items-center space-x-4 pb-6'>
     {
       authorProfileImage && (
         <Image
