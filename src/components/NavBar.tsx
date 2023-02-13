@@ -187,7 +187,7 @@ const NavBar: React.FC<NavBarProps> = ({ activePath }) => {
           </button>
         )}
         {isMenuExpanded && (
-          <ul className='fixed left-0 top-0 z-1000 flex flex-col justify-center content-center space-y-4 rounded-md px-2 py-2 outline-none bg-gray-100 dark:bg-gray-800 w-full h-screen transition-all'>
+          <ul className='fixed left-0 top-0 z-1000 flex flex-col justify-center content-center space-y-4 rounded-md px-2 py-2 outline-none bg-gray-100 dark:bg-gray-800 w-full h-full transition-all'>
             <MobileNavItem activePath={activePath} path='/'>
               Home
             </MobileNavItem>
