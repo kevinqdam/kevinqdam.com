@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar';
+---
+
+<Layout title='Kevin Dam'>
+  <NavBar client:load activePath='/' />
+  <div class='flex flex-col space-y-6'>
+    <p class="text-4xl">
+      Oops, this page doesn't exist!
+    </p>
+    <p class='text-2xl'>
+      Status code: <span class="font-bold rounded-lg px-2 py-1 bg-pink-200 text-pink-800 dark:bg-teal-200 dark:text-teal-800">404</span>
+    </p>
+  </div>
+</Layout>
