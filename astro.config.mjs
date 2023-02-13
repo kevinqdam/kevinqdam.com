@@ -35,6 +35,7 @@ const AnchorLinkIcon = h(
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://kevinqdam.github.io',
   integrations: [
     react(),
     tailwind({
