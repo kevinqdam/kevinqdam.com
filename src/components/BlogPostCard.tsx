@@ -47,35 +47,38 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
           />
         )}
         {/* Mobile */}
-        <div className='flex sm:hidden flex-wrap flex-row gap-1 text-sm text-gray-600 dark:text-gray-200'>
-          <span>{author}</span>
-          <span>•</span>
-          <span>
-            {`${postedDateTime.monthShort}. ${postedDateTime.day}, ${postedDateTime.year}`}
-          </span>
-          {estReadTimeMinutes && (
-            <>
-              <span>•</span>
-              <span className='text-gray-600 dark:text-gray-200'>
-                {estReadTimeMinutes}
-              </span>
-            </>
-          )}
+        <div className='flex sm:hidden flex-col'>
+          <span className='font-semibold'>{author}</span>
+          <div className='flex flex-wrap flex-row gap-1 text-sm text-gray-600 dark:text-gray-200'>
+            <span>
+              {`${postedDateTime.monthShort}. ${postedDateTime.day}, ${postedDateTime.year}`}
+            </span>
+            {estReadTimeMinutes && (
+              <>
+                <span>•</span>
+                <span className='text-gray-600 dark:text-gray-200'>
+                  {estReadTimeMinutes}
+                </span>
+              </>
+            )}
+          </div>
         </div>
-        <div className='hidden sm:flex flex-wrap flex-row gap-2 text-gray-600 dark:text-gray-200'>
-          <span>{author}</span>
-          <span>•</span>
-          <span>
-            {`${postedDateTime.monthLong} ${postedDateTime.day}, ${postedDateTime.year}`}
-          </span>
-          {estReadTimeMinutes && (
-            <>
-              <span>•</span>
-              <span className='text-gray-600 dark:text-gray-200'>
-                {estReadTimeMinutes}
-              </span>
-            </>
-          )}
+        {/* Desktop and tablet */}
+        <div className='hidden sm:flex flex-col'>
+          <span className="font-semibold">{author}</span>
+          <div className='hidden sm:flex flex-wrap flex-row gap-2 text-gray-600 dark:text-gray-200'>
+            <span>
+              {`${postedDateTime.monthLong} ${postedDateTime.day}, ${postedDateTime.year}`}
+            </span>
+            {estReadTimeMinutes && (
+              <>
+                <span>•</span>
+                <span className='text-gray-600 dark:text-gray-200'>
+                  {estReadTimeMinutes}
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </div>
       {thumbnailImage && (
@@ -122,8 +125,8 @@ const AuthorProfileImage: React.FC<AuthorProfileImageProps> = ({
   return (
     <img
       alt={alt}
-      height={30}
-      width={30}
+      height={44}
+      width={44}
       src={src}
       className='rounded-full bg-gradient-to-r from-slate-500 to-teal-500 p-0.5 filter dark:from-slate-500 dark:to-rose-500'
     />
