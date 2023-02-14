@@ -63,9 +63,13 @@ const toBlogPostCardProps = (
     title,
     preview,
     thumbnailImage,
-    tags: tags.map((tag) =>
-      tag.text === currentTag ? { ...tag, invertColor: true } : { ...tag }
-    ),
+    tags: tags
+      .map((tag) =>
+        tag.text === currentTag
+          ? { ...tag, invertColor: true, href: '/blog' }
+          : { ...tag }
+      )
+      .sort((a, b) => (a.text > b.text ? 1 : -1)),
     slug: post.slug,
     estReadTimeMinutes: readingTime(removeMd(post.body)).text,
   };

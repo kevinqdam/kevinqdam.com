@@ -36,6 +36,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
   slug,
 }) => {
   const postedDateTime = DateTime.fromISO(posted);
+  tags = [...tags].sort((a, b) => a.text > b.text ? 1 : -1);
 
   return (
     <div className='flex flex-col space-y-4 lg:space-y-2 rounded-lg bg-white shadow p-4 dark:bg-slate-900 dark:shadow-lg'>
