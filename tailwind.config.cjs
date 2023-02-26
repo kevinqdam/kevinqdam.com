@@ -22,6 +22,21 @@ module.exports = {
         xl: { css: disabledCss },
         '2xl': { css: disabledCss },
       },
+      keyframes: {
+        'fade-out-up-keyframe': {
+          '0%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(-30px)',
+          },
+        },
+      },
+      animation: {
+        'fade-out-up': 'fade-out-up-keyframe 1.125s ease-in',
+      },
     },
   },
   plugins: [
