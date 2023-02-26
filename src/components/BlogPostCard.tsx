@@ -109,7 +109,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
       </div>
       <div className='flex flex-col space-y-6 lg:flex-row lg:items-center lg:align-middle lg:space-x-2'>
         {tags && tags.length && (
-          <div className='flex flex-row space-x-1'>
+          <div className='flex flex-row space-x-2'>
             <span className='text-gray-600 dark:text-gray-200'>Tags: </span>
             <Pills pills={tags} />
           </div>
