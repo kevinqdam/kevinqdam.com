@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
         ) : (
           <div className='relative'>
             {ClipboardCheckedIcon}{' '}
-            <div className='flex flex-row align-middle justify-center absolute z-10 top-0 bottom-0 left-9 whitespace-nowrap px-3 py-2 rounded-lg bg-gray-800 text-gray-200 dark:bg-gray-300 dark:text-gray-800 dark:font-semibold'>
+            <div className='flex flex-row align-middle justify-center absolute z-10 top-0 bottom-0 left-9 whitespace-nowrap px-3 py-2 rounded-lg bg-gray-600 text-gray-200 dark:bg-gray-300 dark:text-gray-800 dark:font-semibold'>
               <span className="-my-2">Email copied!</span>
             </div>
           </div>
