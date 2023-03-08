@@ -64,10 +64,17 @@ const Footer: React.FC = () => {
         <a
           aria-label='LinkedIn logo'
           href='https://www.linkedin.com/in/kevinqdam'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           {LinkedInLogo}
         </a>
-        <a aria-label='GitHub logo' href='https://github.com/kevinqdam'>
+        <a
+          aria-label='GitHub logo'
+          href='https://github.com/kevinqdam'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           {GithubIcon}
         </a>
         {!isClipboardVisible ? (
