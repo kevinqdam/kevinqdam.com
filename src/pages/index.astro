@@ -1,42 +1,45 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from '@astrojs/image/components';
-import NavBar from '../components/NavBar';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import NavBar from "../components/NavBar";
 ---
 
-<Layout title='Kevin Dam'>
-  <NavBar client:load activePath='/' />
+<Layout title="Kevin Dam">
+  <NavBar client:load activePath="/" />
   <!-- Desktop and tablet -->
-  <div class='hidden sm:flex flex-row space-x-6 pb-8'>
+  <div class="hidden sm:flex flex-row space-x-6 pb-8">
     <Image
-      alt='Kevin Dam profile picture'
+      alt="Kevin Dam profile picture"
       height={125}
       width={125}
-      src='/images/kevinqdam.png'
-      class='rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1'
+      src="/images/kevinqdam.png"
+      class="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1"
     />
-    <div class='flex flex-col justify-center space-y-1'>
-      <h1 class='text-4xl font-bold'>Kevin Dam</h1>
+    <div class="flex flex-col justify-center space-y-1">
+      <h1 class="text-4xl font-bold">Kevin Dam</h1>
       <div>Software Engineer</div>
     </div>
   </div>
   <!-- Mobile -->
-  <div class='sm:hidden flex flex-col items-center space-y-2 pb-8'>
+  <div class="sm:hidden flex flex-col items-center space-y-2 pb-8">
     <Image
-      alt='Kevin Dam profile picture'
+      alt="Kevin Dam profile picture"
       height={125}
       width={125}
-      src='/images/kevinqdam.png'
-      class='rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1'
+      src="/images/kevinqdam.png"
+      class="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1"
     />
-    <h1 class='text-4xl font-bold'>Kevin Dam</h1>
+    <h1 class="text-4xl font-bold">Kevin Dam</h1>
     <div>Software Engineer</div>
   </div>
-  <div class='flex flex-col space-y-6'>
-    <p class='text-2xl'>
-      A passionate software engineer who loves to solve problems by writing
+  <div class="flex flex-col space-y-6">
+    <p class="text-2xl">
+      A passionate software engineer 🧑‍💻 who loves to solve problems by writing
       code.
     </p>
-    <p>Currently, I am building and shipping at Amazon 🧑‍💻</p>
+    <p>
+      All opinions are my own and do not reflect those of any of my current or
+      past employers.
+    </p>
   </div>
 </Layout>
