@@ -1,5 +1,5 @@
 ---
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 
 interface Props {
   title: string;
@@ -9,16 +9,18 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link
-      rel='icon'
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>"
-    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
     <style is:global>
       @tailwind base;
       @tailwind components;
@@ -36,10 +38,10 @@ const { title } = Astro.props;
         }
 
         /* Style code blocks for light and dark mode */
-        pre[data-theme='light'] {
+        pre[data-theme="light"] {
           @apply dark:hidden block bg-white shadow;
         }
-        pre[data-theme='dark'] {
+        pre[data-theme="dark"] {
           @apply dark:block hidden shadow-lg;
         }
 
@@ -55,17 +57,17 @@ const { title } = Astro.props;
   >
 
   <body
-    class='min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white'
+    class="min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white"
   >
-    <div class='min-h-screen w-full bg-gray-100 dark:bg-gray-800'>
-      <div class='flex w-full items-center justify-center'>
+    <div class="min-h-screen w-full bg-gray-100 dark:bg-gray-800">
+      <div class="flex w-full items-center justify-center">
         <div
-          class='flex w-full sm:w-10/12 flex-col justify-center px-8 md:w-8/12 lg:w-7/12'
+          class="flex w-full sm:w-10/12 flex-col justify-center px-8 md:w-8/12 lg:w-7/12"
         >
           <main>
             <slot />
           </main>
-          <hr class='my-8 h-px border-0 bg-gray-400 dark:bg-gray-500' />
+          <hr class="my-8 h-px border-0 bg-gray-400 dark:bg-gray-500" />
           <Footer client:load />
         </div>
       </div>
@@ -73,21 +75,21 @@ const { title } = Astro.props;
   </body>
   <script>
     const theme = (() => {
-      if (typeof localStorage !== 'undefined') {
-        const theme = localStorage.getItem('theme') ?? 'light';
+      if (typeof localStorage !== "undefined") {
+        const theme = localStorage.getItem("theme") ?? "light";
         return theme;
       }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
       }
-      return 'light';
+      return "light";
     })();
 
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
     } else {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     }
-    window.localStorage.setItem('theme', theme);
+    window.localStorage.setItem("theme", theme);
   </script>
 </html>
