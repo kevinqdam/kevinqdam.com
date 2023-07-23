@@ -1,114 +1,164 @@
 ---
-import Anchor from '../components/Anchor.astro';
-import NavBar from '../components/NavBar';
-import Pills from '../components/Pills';
-import Layout from '../layouts/Layout.astro';
+import Anchor from "../components/Anchor.astro";
+import NavBar from "../components/NavBar";
+import Pills from "../components/Pills";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title='Experience'>
-  <NavBar client:load activePath='/experience' />
-  <div class='flex flex-col space-y-6'>
-    <div class='flex flex-col space-y-2'>
-      <h1 class='text-2xl font-bold'>Current Job Title</h1>
+<Layout title="Experience">
+  <NavBar client:load activePath="/experience" />
+  <div class="flex flex-col space-y-6">
+    <div class="flex flex-col space-y-2">
+      <h1 class="text-2xl font-bold">Current Job Title</h1>
       <p>Software Development Engineer at Amazon</p>
     </div>
-    <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-    <div class='flex flex-col space-y-6 lg:space-y-2'>
-      <h1 class='text-2xl font-bold'>Experience</h1>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Jun 2022 - Present</p>
-        <div class='col-span-2'>
-          <p class='text-md'>Software Development Engineer</p>
-          <p class='pb-2 italic'>@ Amazon</p>
+    <hr class="lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500" />
+    <div class="flex flex-col space-y-6 lg:space-y-2">
+      <h1 class="text-2xl font-bold">Experience</h1>
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Jun 2022 - Present</p>
+        <div class="col-span-2">
+          <p class="text-md">Software Development Engineer</p>
+          <p class="pb-2 italic">@ Amazon</p>
+          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
+            <li class="ml-4">
+              <span class="underline">Day One Easy Onboarding</span>: Developed,
+              maintained, and operated a suite of wizards which offers a
+              self-service onboarding experience servicing hundreds of new
+              Amazon employees every week.
+            </li>
+            <li class="ml-4">
+              <span class="underline">IT Support Self-Service Workflow</span>:
+              Designed and developed a platform for process engineers to create
+              guided experiences that serve all Amazon employees for any of
+              their IT needs (e.g. setting up internal email on a mobile
+              device).
+            </li>
+          </ul>
           <Pills
             pills={[
-              { text: 'TypeScript' },
-              { text: 'Node.js' },
-              { text: 'React' },
-              { text: 'AWS' },
+              { text: "TypeScript" },
+              { text: "Node.js" },
+              { text: "React" },
+              { text: "AWS" },
             ]}
           />
         </div>
       </div>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Mar 2021 - May 2022</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>Software Engineer</p>
-          <p class='pb-2 italic'>@ ServiceNow</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
-            Developed features for{' '}
-            <Anchor
-              href='https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html'
-            >
-              Next Experience UI (Polaris)
-            </Anchor>{' '}
-            in the San Diego release of ServiceNow, finally delivering it after its
-            delay for two releases. Part of the team that delivered{' '}
-            <Anchor
-              href='https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html'
-            >
-              ECMAScript 2021
-            </Anchor>{' '}
-            in the Tokyo release of ServiceNow.
-          </p>
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Mar 2021 - May 2022</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">Software Engineer</p>
+          <p class="pb-2 italic">@ ServiceNow</p>
+          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
+            <li class="ml-4">
+              <span class="underline">Core Platform Team</span>: Delivered
+              <Anchor
+                href="https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html"
+              >
+                ECMAScript 2021
+              </Anchor>{" "}
+              in the Tokyo release of ServiceNow, bringing modern scripting features
+              to the ServiceNow ecosystem to all <Anchor
+                href="https://www.servicenow.com/customers.html"
+              >
+                ServiceNow customers
+              </Anchor> who upgraded to Tokyo.
+            </li>
+            <li class="ml-4">
+              <span class="underline"
+                >Now User Experience Framework (UXF) Team</span
+              >: Developed features for{" "}
+              <Anchor
+                href="https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html"
+              >
+                Next Experience UI (Polaris)
+              </Anchor>{" "}
+              in the San Diego release of ServiceNow, delivering the long-awaited
+              project after its delay for two releases.
+            </li>
+          </ul>
           <Pills
             pills={[
-              { text: 'Java' },
+              { text: "Java" },
               {
-                text: 'JavaScript',
+                text: "JavaScript",
               },
               {
-                text: 'Now Experience Framework',
+                text: "Now Experience Framework",
               },
             ]}
           />
         </div>
       </div>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Aug 2019 - Feb 2021</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>Implementation Consultant</p>
-          <p class='pb-2 italic'>@ Fast Enterprises</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Aug 2019 - Feb 2021</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">Implementation Consultant</p>
+          <p class="pb-2 italic">@ Fast Enterprises</p>
+          <p class="pb-2 text-gray-600 dark:text-gray-400">
             Developed vehicle titling and registration interfaces as part of the{
-              ' '
+              " "
             }
             <Anchor
-              href='https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/'
+              href="https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/"
             >
               successful release
-            </Anchor>{' '}
-            of{' '}
+            </Anchor>{" "}
+            of{" "}
             <Anchor
-              href='https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx'
+              href="https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx"
             >
               MNDRIVE
-            </Anchor>{' '}
+            </Anchor>{" "}
             which serves all Minnesota motorists.
           </p>
+          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
+            <li class="ml-4">
+              <span class="underline">NMVTIS</span>: Developed the NMVTIS
+              interface servicing hundreds of requests daily to protect
+              Minnesota motorists from title fraud
+            </li>
+            <li class="ml-4">
+              <span class="underline"
+                >Motor vehicle registration renewal notices</span
+              >: Developed the renewal notice interface which mails renewal
+              notices to ~300,0000 motorists monthly.
+            </li>
+            <li class="ml-4">
+              <span class="underline"
+                >Mail-in vehicle registration renewals</span
+              >: Developed the mail-in processing interface which services tens
+              of thousands of registrations monthly.
+            </li>
+            <li class="ml-4">
+              <span class="underline">Ticketing</span>: Developed the ticketing
+              interface which services hundreds of license plate queries weekly.
+            </li>
+          </ul>
           <Pills
             pills={[
               {
-                text: 'Microsoft SQL Server',
+                text: "Microsoft SQL Server",
               },
               {
-                text: 'Visual Basic',
+                text: "Visual Basic",
               },
-              { text: '.NET' },
+              { text: ".NET" },
             ]}
           />
         </div>
       </div>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Oct 2018 - Jun 2019</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>Implementation Specialist</p>
-          <p class='pb-2 italic'>@ PSC Biotech</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
-            Implemented{' '}
-            <Anchor href='https://pscsoftware.com/software/ace/'>
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Oct 2018 - Jun 2019</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">Implementation Specialist</p>
+          <p class="pb-2 italic">@ PSC Biotech</p>
+          <p class="pb-2 text-gray-600 dark:text-gray-400">
+            Implemented{" "}
+            <Anchor href="https://pscsoftware.com/software/ace/">
               FDA-compliant enterprise software solutions
-            </Anchor>{' '}
+            </Anchor>{" "}
             for pharmaceutical companies. Collaborated with project managers, product
             managers, engineering, and operations to ensure the solution was flexible
             and met all stakeholder needs.
@@ -116,21 +166,21 @@ import Layout from '../layouts/Layout.astro';
           <Pills
             pills={[
               {
-                text: 'PSC Software',
+                text: "PSC Software",
               },
             ]}
           />
         </div>
       </div>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Jul 2018 - Oct 2018</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>Student Intern III</p>
-          <p class='pb-2 italic'>@ Santa Clara County Registrar of Voters</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
-            Maintained{' '}
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Jul 2018 - Oct 2018</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">Student Intern III</p>
+          <p class="pb-2 italic">@ Santa Clara County Registrar of Voters</p>
+          <p class="pb-2 text-gray-600 dark:text-gray-400">
+            Maintained{" "}
             <Anchor
-              href='https://sccvote.sccgov.org/register-vote/precinct-maps'
+              href="https://sccvote.sccgov.org/register-vote/precinct-maps"
             >
               precinct boundaries
             </Anchor>
@@ -140,24 +190,24 @@ import Layout from '../layouts/Layout.astro';
           <Pills
             pills={[
               {
-                text: 'ArcGIS',
+                text: "ArcGIS",
               },
             ]}
           />
         </div>
       </div>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>Aug 2016 - Dec 2017</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>SI Leader (Peer Tutor for Math)</p>
-          <p class='pb-2 italic'>@ UC San Diego Teaching + Learning Commons</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
-            Served as a{' '}
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">Aug 2016 - Dec 2017</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">SI Leader (Peer Tutor for Math)</p>
+          <p class="pb-2 italic">@ UC San Diego Teaching + Learning Commons</p>
+          <p class="pb-2 text-gray-600 dark:text-gray-400">
+            Served as a{" "}
             <Anchor
-              href='https://aah.ucsd.edu/supplemental-instruction/index.html'
+              href="https://aah.ucsd.edu/supplemental-instruction/index.html"
             >
               Supplemental Instruction
-            </Anchor>{' '}
+            </Anchor>{" "}
             (SI) leader for calculus and linear algebra, empowering student peers
             to earn a half letter grade higher than those who did not participate
             in the program.
@@ -165,42 +215,42 @@ import Layout from '../layouts/Layout.astro';
           <Pills
             pills={[
               {
-                text: 'MATLAB',
+                text: "MATLAB",
               },
-              { text: 'LaTeX' },
+              { text: "LaTeX" },
             ]}
           />
         </div>
       </div>
     </div>
-    <hr class='lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500' />
-    <div class='flex flex-col lg:space-y-2 md:space-y-6'>
-      <h1 class='text-2xl font-bold'>Education</h1>
-      <div class='lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6'>
-        <p class='col-span-1 font-bold'>4 years</p>
-        <div class='col-span-2 flex flex-col'>
-          <p class='text-md'>B.S. Bioengineering, Minor in Organic Chemistry</p>
-          <p class='pb-2 italic'>@ UC San Diego</p>
-          <p class='pb-2 text-gray-600 dark:text-gray-400'>
-            Attended as a{' '}
+    <hr class="lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500" />
+    <div class="flex flex-col lg:space-y-2 md:space-y-6">
+      <h1 class="text-2xl font-bold">Education</h1>
+      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
+        <p class="col-span-1 font-bold">4 years</p>
+        <div class="col-span-2 flex flex-col">
+          <p class="text-md">B.S. Bioengineering, Minor in Organic Chemistry</p>
+          <p class="pb-2 italic">@ UC San Diego</p>
+          <p class="pb-2 text-gray-600 dark:text-gray-400">
+            Attended as a{" "}
             <Anchor
-              href='https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html'
+              href="https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html"
             >
               Boyer Chancellor&#39;s scholarship
-            </Anchor>{' '}
-            recipient. Graduated with{' '}
-            <span class='italic'>magna cum laude</span> honors and awarded provost
+            </Anchor>{" "}
+            recipient. Graduated with{" "}
+            <span class="italic">magna cum laude</span> honors and awarded provost
             honors every academic quarter. Two-year team member and one-year co-captain
-            of the{' '}
+            of the{" "}
             <Anchor
-              href='https://recreation.ucsd.edu/competitive-sports/dragon-boat/'
+              href="https://recreation.ucsd.edu/competitive-sports/dragon-boat/"
             >
               UCSD Dragon Boat team
             </Anchor>
             .
           </p>
           <Pills
-            pills={[{ text: 'Tau Beta Pi' }, { text: 'Phi Beta Kappa' }]}
+            pills={[{ text: "Tau Beta Pi" }, { text: "Phi Beta Kappa" }]}
           />
         </div>
       </div>
