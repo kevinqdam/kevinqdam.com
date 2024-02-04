@@ -1,0 +1,149 @@
+---
+author: 'Kevin Dam'
+authorProfileImage:
+  { src: '/images/kevinqdam.png', alt: "Kevin Dam's profile picture" }
+posted: '2024-02-03'
+title: 'Code Review: From Chore to Cornerstone'
+preview: "For years, I've grappled with the intricacies of code review, unwittingly slowing my team's development velocity and occasionally causing a ripple or two of discontent. From my experience, I realize that getting code review wrong not only wastes time but also harms relationships with colleagues and compromises software quality. Every healthy software engineering team will have a code review process in place, so the sooner we understand what a healthy and productive code review looks like, the better off we are in our careers as software engineers."
+thumbnailImage: { src: '/images/code-review.jpeg', alt: 'Code Review' }
+tags:
+  - { text: 'programming', href: '/blog/tag/programming' }
+---
+
+import { Image } from '@astrojs/image/components';
+
+<div class='flex w-full justify-center bg-slate-200 dark:bg-gray-900'>
+  <Image
+    alt='Code Review'
+    src={import('../../../public/images/code-review.jpeg')}
+    class='w-auto h-72'
+  />
+</div>
+
+# Code Review: From Chore to Cornerstone
+
+For years, I've grappled with the intricacies of code review, unwittingly slowing my team's development velocity and occasionally causing a ripple or two of discontent. From my experience, I realize that getting code review wrong not only wastes time but also harms relationships with colleagues and compromises software quality. Every healthy software engineering team will have a code review process in place, so the sooner we understand what a healthy and productive code review looks like, the better off we are in our careers as software engineers.
+
+With this post, I aim to write about my approach with code review. I'll assume you already know what code review is. If not, please consider reading whatever definition is on Wikipedia. If you're keen on diving deeper, I also like [this chapter](https://abseil.io/resources/swe-book/html/ch09.html) from the *Software Engineering at Google* book.
+
+## My Evolving Perspective on Code Review
+
+I had a very unproductive approach to code review. Some of the emotions and thoughts I would have towards code review include:
+- **Imposter Syndrome**: I often felt I didn't know enough to review my colleague's code, so every code review request made me put a lot of pressure on myself.
+- **The Perfectionist Trap**: I believed my role was to block code merges until the code reached an unrealistic standard of perfection, a standard crafted solely in my imagination.
+- **Taking Silence as Failure**: I thought that if I had nothing to comment on, I failed as a code reviewer. This misconception led to unnecessary stress and hesitation.
+
+This flawed mindset resulted in wasted time and effort, making code review a burdensome and laborious task. I even started hesitating to publish my own code for review, fearing it had to be flawless before allowing any of my code reviewers to see it.
+
+The good news is it doesn't have to be this way. Code review is an opportunity for collaboration, improvement, and shared success. It can (and should!) feel industrious and satisfying.
+
+To illustrate how I view code review today, I'll explore how I see it from two perspectives: the perspective of the code reviewer and the perspective of the code publisher.
+
+### As the Code Reviewer
+
+As you can probably tell from my prior beliefs above, I found reviewing code to be boring, tedious, and time-consuming at best and stressful at worst. I was not alone in this—take a look at [this video](https://www.youtube.com/watch?v=_f0fgaNzOqY) from The Primeagen reading an article from Dan Cowell about why software engineers hate code.
+
+Whether we like it or not, we will have to review code at some point in our careers, if not regularly. I'll share some tactics and mindset shifts that helped me improve my skills as a code reviewer.
+
+#### Do - Be Eager to Approve
+
+You're probably thinking "What? Why would you be eager to approve code? Code is a liability!" I understand... I used to approach code reviews with reluctance to approve. It felt like I was a gatekeeper with imaginary, unrealistic standards whenever it was my turn to be a code reviewer.
+
+Let's take a step back. Who is the code for? Is it for you, or is it for the code author? No, it's actually for the customer who will benefit from the code. Remembering this is important because it lets us distance ourselves from our hypercritical egos. It also aligns our interests and incentives with our colleague. This fosters a sense of teamwork and cooperation. With this, in a subtle way, it becomes far easier to review code and request changes. Approaching code review with enthusiasm communicates collaboration rather than acting as an obstacle.
+
+To be clear, I am *not* saying that you should blindly approve every code review request that comes your way. Specifically, I advise that if you are reviewing code as a general reviewer, begin your code review with the understanding that your colleague worked hard to prepare the review for you and, ultimately, the customer. The approval of the code would mean the team makes progress towards the common goal of improving the product. I think that is something worth getting excited about.
+
+If you are reviewing code with a specific role, then this "eager to approve" mindset probably applies less to you. For example, perhaps you hold a credential in your organization as a security expert, and your job is to assert that all new code conforms to your organization's security practices. Then, it probably goes without saying that your mindset should ultimately prioritize security.
+
+#### Do - Provide Context for Your Comments
+
+If you have ever reviewed code, then it's likely you realize that not all code review comments are created equal. You probably developed a sense for what you consider to be non-negotiable for your approval and what you consider to be changes that are nice to have but not severe enough to withhold your approval.
+
+The way I think about it is I have a handful of annotations I tag all of my code review comments with:
+- **Nit**s or **opinion**s: These comments aren't severe enough for me to withhold my approval, but I consider these comments to be nice to resolve to improve the health of the codebase. For example, when I see a constant that is clearly intended for read-only access but is not using static language features to enforce it, then I suggest using the language feature to programmatically enforce read-only access.
+- **Question**s: These comments don't necessarily request code changes. However, these could potentially block my approval until I receive an answer, depending on how severe I consider the unknowns to be. For example, I might ask about why we are implementing something ourselves instead of using a third-party library to reduce the maintenance burden.
+- **Remark**s: For these comments, I am not explicitly requesting any changes, but I felt the need to communicate something I noticed about the code. For example, I might remark on how I think the product would behave under a specific fault scenario that cannot be avoided, such as in a network fault. I might do this just to leave some form of conversation that a future maintainer could reference.
+- **_No annotation_**: I probably cared enough about this comment to not approve the code review request.
+
+This isn't a science. I'm not evaluating each of my comments for the perfect annotation. The main point to get across is that providing context for your comments helps everybody. It helps the code author understand what you find important to focus on how what they choose to revise and how they will respond to you.
+
+It also helps you in decision-making. For example, when I reach the end of a long code review, I read through my own comments to assess if I will approve or not.
+
+#### Do - Understand Where Code Review Falls Short
+
+Understanding the limitations of code review is crucial. Imagine a spectrum for a code review's comment activity.
+
+On the left, we have code review comments that point out really trivial details. Think code formatting issues, opinions on YAML versus JSON configuration files, and other nits like that.
+
+On the right, we have code review comments that point out severe changes. These comments point ask questions like "why are we using this type of database?" and "does the team who owns this service know we intend to onboard?"
+
+Right in the middle, we have comments that are scoped to the code review itself, are aligned with the general approach the code review author took, and can actually be resolved with another revision.
+
+If the comments are falling too far in either end of the spectrum, then that indicates a failure mode somewhere.
+
+If you are seeing many comments about code formatting and nits that your customers will never care about, then consider automating these steps. For example, point out to the author that the team should use a linter to automate code formatting and have the team agree on the formats of your configuration files ahead of time. Make it clear that these things are important but not worth slowing down the team's velocity during code review.
+
+On the other hand, if you are considering demanding significant changes that should have been made during the design and ideation phase, consider performing a few internal searches against your organization's knowledge bank. It is possible you are out of the loop on some decisions. If not, then the engineering process within your team or organization might require taking design more seriously before making decisions that are difficult or impossible to reverse.
+
+#### Don't - Feel Forced to Provide a Comment
+
+I used to think it was wrong to approve a code review request without providing any comments. My belief was if I had nothing to say, then I considered the code to be perfect. This created tension with my other belief that there is no such thing as perfect code. These taken together means I must have missed something, so I better find something to say, no matter how small.
+
+Stop. There is no need to flagellate until your imagination finally finds something to say about the code in front of you. There is nothing irresponsible about it, and it says nothing negative about you as a software engineer. It will inevitably be the case that the code you are tasked to review is perfectly fine with the current state of requirements and product needs. This is something to celebrate, not feel trouble about. 
+
+As an aside, there are some organizations out there that measure engineering performance based on statistics like the number of code review requests an engineer publishes or the total number of comments an engineer posts on code review requests. Off top, this seems innocuous, but focusing too much on these metrics can create false incentives for engineers and ultimately harm productivity. There is much more to say on this topic. For now, I bring it up to highlight that feeling the need to provide a comment might be coming from false productivity measurements like these. To me, an engineer's time is much better spent solving real problems instead of solving fabricated ones like "no code review will be free of comments."
+
+#### Don't - Be Afraid of Looking Naive
+
+Sometimes, you won't have all of the context to review. Personally, I have accepted this and leaned into it. I am okay with asking questions, whether on the review itself or offline. Additionally, I might communicate my verbal approval and ask that the author have one more reviewer review the aspects I am not knowledgeable about. I would try to specify who I want the extra reviewer to be and be precise about what the extra reviewer should review. Essentially, my goal here is to respect everybody's time while still maintaining a high bar for code quality. I used to think that admitting my gaps in knowledge would cause me to lose rapport with my colleagues, but I actually think the reverse has proven true. To me, it seems people appreciate our admissions on what we are naive about, as long as we show engagement and describe exactly what we need to get to the approval "finish line."
+
+### As the Code Review Author
+
+In the context of GitHub, have you ever received a pull request (PR) with no test plan, no description, no documentation, no context or guidance whatsoever? How did you react? 
+
+If I am allowed a guess, you probably did something like this:
+1. Read some code.
+2. Come to the conclusion that you don't know what the code fixes in or adds to the product.
+3. Go on a scavenger hunt: read tickets, documentation, chat messages, everything you can to find out what you're reviewing.
+4. Finally understand what is going on at a higher level, if you're lucky.
+5. Start actually reviewing the code.
+
+Needless to say, this can waste a lot of time. To me, publishing code reviews like this treats my code reviewers like a service. Put another way, this approach treats code reviewers like a vending machine where code goes in and *looks good to me* (LGTM) comes out.
+
+We can do better. I recommend publishing code reviews with your reviewers in mind as customers. They are busy improving the product for the customers as well, so we should respect their time. Here are som techniques 
+
+#### Do - Be Thoughtful With Your Commit Messages
+
+Some engineering organizations impose standards for commit messages. For example, there might be a minimum requirement to attach a ticket number to the commit message heading for tracking purposes. Other organizations might impose more, such as providing a test plan in the body of every commit message.
+
+On top of what your organization imposes, I think every commit message should come with the following:
+- Ticket number, if applicable
+- High-level summary of what the change is
+- Description of why the change is needed
+- Description of the test plan
+- Release plan, if deploying the change is complex
+- Link to the review, if possible
+
+This is beneficial for everybody in your engineering team. It provides much-needed clarity for all stakeholders and interested parties, end to end. Compare this to the one-liner commit messages that only have the word `update`, forcing you to read the actual changes or, if possible, performing a `git bisect` to understand why something in production is broken and paging you early in the morning because you happened to be on call.
+
+#### Do - Prove That Your Code Works
+
+I advised providing a test plan with your commit messages in the previous section. On top of this, I also recommend proving your code works by providing some demonstration of effects.
+
+For API changes, you might consider showing a *before-after* of an API response on the code review request description. For front-end changes, you might consider providing a screenshot or recording of how the feature works before and after your change.
+
+Sure, your code reviewers are likely capable of performing your test plan to understand your changes better for themselves, but this hurts velocity. This can waste even more time if your reviewers are conscientious and like to build or deploy your changes to their own developer environment for a rigorous review.
+
+Your reviewers can have the time back if you treat demonstrating your changes as your responsibility. And as a bonus, you get most of your test plan for free.
+
+#### Do - Review Your Own Code Before Publishing
+
+I find a lot of differences between reading code in my editor versus reading changes in whatever code review platform I am using. It is so common for me to find things I should change when I review my own code on the code review platform, so I can save the review churn for my reviewers by catching things before they do.
+
+Additionally, before I publish, I write my own comments on the code review request. I take this opportunity to point out areas where I don't have complete clarity and preemptively ask my reviewers for their thoughts. I also find it helpful to add remarks on changes that require context outside of the code review, referencing related work, if applicable.
+
+Overall, marking up my own code review request communicates that I am inviting a conversation with my reviewers. This improves team cohesion and communication, making code review a smoother process overall.
+
+# Conclusion
+
+I hope you find these ideas helpful in your own code review practices!
