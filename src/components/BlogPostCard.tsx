@@ -65,9 +65,9 @@ const BlogPostCard = ({
             </div>
           </div>
         </div>
-        <a className="post-card-title" href={`/blog/${slug}`}>
-          {title}
-        </a>
+        <h3 className="post-card-title">
+          <a href={`/blog/${slug}`}>{title}</a>
+        </h3>
         <p className="post-card-preview">{preview}</p>
         {sortedTags.length > 0 && <Pills pills={sortedTags} />}
       </div>

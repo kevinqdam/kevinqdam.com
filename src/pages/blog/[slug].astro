@@ -2,10 +2,12 @@
 import { DateTime } from 'luxon';
 import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
+import { Image } from 'astro:assets';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Pills from '../../components/Pills';
 import Layout from '../../layouts/Layout.astro';
 import NavBar from '../../components/NavBar';
+import profileImage from '../../assets/images/kevinqdam.png';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
@@ -30,12 +32,14 @@ const { Content } = await render(post);
     <h1>{title}</h1>
     <div class="post-meta">
       {authorProfileImage && (
-        <img
+        <Image
           class="author-image"
           alt={authorProfileImage.alt}
-          width="52"
-          height="52"
-          src={authorProfileImage.src}
+          width={52}
+          height={52}
+          densities={[1, 2]}
+          fit="cover"
+          src={profileImage}
         />
       )}
       <div>
@@ -47,7 +51,7 @@ const { Content } = await render(post);
       </div>
     </div>
   </header>
-  <article class="prose post-content">
+  <article class="prose dark:prose-invert post-content">
     <Content />
   </article>
 </Layout>

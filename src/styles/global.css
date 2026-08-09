@@ -21,6 +21,7 @@
   --accent: #b04469;
   --accent-strong: #8f284f;
   --accent-soft: #f8e8ee;
+  --on-accent: #ffffff;
   --focus: #d18a3f;
   --shadow: 0 20px 60px rgba(24, 39, 75, 0.08);
 }
@@ -37,6 +38,7 @@ html.dark {
   --accent: #e39ab4;
   --accent-strong: #f2b5c8;
   --accent-soft: #3a2533;
+  --on-accent: #172033;
   --focus: #f1b765;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
 }
@@ -77,7 +79,7 @@ a {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 :focus-visible {
@@ -362,7 +364,7 @@ a {
 
 .button-primary {
   background: var(--accent-strong);
-  color: #fff;
+  color: var(--on-accent);
   box-shadow: 0 10px 22px rgba(143, 40, 79, 0.2);
 }
 
@@ -607,7 +609,7 @@ a {
 .tag-pill.is-inverted {
   border-color: var(--accent-strong);
   background: var(--accent-strong);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .tag-pill.is-inverted:hover {
@@ -698,17 +700,20 @@ a {
 }
 
 .post-card-title {
-  display: inline-block;
-  margin-top: 1.1rem;
+  margin: 1.1rem 0 0;
   color: var(--ink);
   font-size: clamp(1.35rem, 2vw, 1.7rem);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.2;
+}
+
+.post-card-title a {
+  color: inherit;
   text-decoration: none;
 }
 
-.post-card-title:hover {
+.post-card-title a:hover {
   color: var(--accent-strong);
 }
 

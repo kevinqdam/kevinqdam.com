@@ -83,6 +83,19 @@ const NavBar = ({ activePath }: NavBarProps) => {
   }, [theme]);
 
   useEffect(() => {
+    const desktopMediaQuery = window.matchMedia('(min-width: 768px)');
+    const closeMenuAtDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setIsMenuExpanded(false);
+      }
+    };
+
+    desktopMediaQuery.addEventListener('change', closeMenuAtDesktop);
+
+    return () => desktopMediaQuery.removeEventListener('change', closeMenuAtDesktop);
+  }, []);
+
+  useEffect(() => {
     if (!isMenuExpanded) {
       return undefined;
     }
@@ -126,7 +139,9 @@ const NavBar = ({ activePath }: NavBarProps) => {
     return () => {
       document.removeEventListener('keydown', manageDialogFocus);
       document.body.style.overflow = previousBodyOverflow;
-      menuButtonRef.current?.focus();
+      if (menuButtonRef.current?.getClientRects().length) {
+        menuButtonRef.current.focus();
+      }
     };
   }, [isMenuExpanded]);
 
