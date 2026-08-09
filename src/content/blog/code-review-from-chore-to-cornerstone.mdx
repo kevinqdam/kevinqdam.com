@@ -10,15 +10,15 @@ tags:
   - { text: 'programming', href: '/blog/tag/programming' }
 ---
 
-import { Image } from '@astrojs/image/components';
-
-<div class='flex w-full justify-center bg-slate-200 dark:bg-gray-900'>
-  <Image
+<figure class='post-hero'>
+  <img
     alt='Code Review'
-    src={import('../../../public/images/code-review.jpeg')}
-    class='w-auto h-72'
+    src='/images/code-review.jpeg'
+    width='640'
+    height='360'
   />
-</div>
+  <figcaption>Code review</figcaption>
+</figure>
 
 # Code Review: From Chore to Cornerstone
 

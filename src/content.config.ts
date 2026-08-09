@@ -1,4 +1,6 @@
-import { z, defineCollection } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 /**
  * Enumeration of known tags
@@ -43,6 +45,7 @@ const imageSchema = z
   .strict();
 
 const blogCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
   schema: z
     .object({
       author: z.enum(['Kevin Dam']),

@@ -1,45 +1,57 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
-import NavBar from "../components/NavBar";
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar';
 ---
 
-<Layout title="Kevin Dam">
+<Layout title="Kevin Dam | Software Engineer">
   <NavBar client:load activePath="/" />
-  <!-- Desktop and tablet -->
-  <div class="hidden sm:flex flex-row space-x-6 pb-8">
-    <Image
-      alt="Kevin Dam profile picture"
-      height={125}
-      width={125}
-      src="/images/kevinqdam.png"
-      class="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1"
-    />
-    <div class="flex flex-col justify-center space-y-1">
-      <h1 class="text-4xl font-bold">Kevin Dam</h1>
-      <div>Software Engineer</div>
+  <section class="hero" aria-labelledby="home-heading">
+    <div>
+      <p class="eyebrow">Software engineer</p>
+      <h1 id="home-heading">Kevin Dam<span>.</span></h1>
+      <p class="hero-intro">
+        A passionate software engineer 🧑‍💻 who loves to solve problems by writing
+        code.
+      </p>
+      <div class="hero-actions">
+        <a class="button-primary" href="/experience">
+          Explore experience <span aria-hidden="true">→</span>
+        </a>
+        <a class="button-secondary" href="/blog">Read the blog</a>
+      </div>
+      <p class="hero-note">
+        All opinions are my own and do not reflect those of any current or past
+        employers.
+      </p>
     </div>
-  </div>
-  <!-- Mobile -->
-  <div class="sm:hidden flex flex-col items-center space-y-2 pb-8">
-    <Image
-      alt="Kevin Dam profile picture"
-      height={125}
-      width={125}
-      src="/images/kevinqdam.png"
-      class="rounded-full filter bg-gradient-to-r from-slate-500 to-teal-500 dark:from-slate-500 dark:to-rose-500 p-1"
-    />
-    <h1 class="text-4xl font-bold">Kevin Dam</h1>
-    <div>Software Engineer</div>
-  </div>
-  <div class="flex flex-col space-y-6">
-    <p class="text-2xl">
-      A passionate software engineer 🧑‍💻 who loves to solve problems by writing
-      code.
-    </p>
-    <p>
-      All opinions are my own and do not reflect those of any of my current or
-      past employers.
-    </p>
-  </div>
+    <div class="profile-card">
+      <img
+        class="profile-image"
+        alt="Kevin Dam profile picture"
+        width="176"
+        height="176"
+        src="/images/kevinqdam.png"
+      />
+      <p class="profile-label">Kevin Q. Dam</p>
+    </div>
+  </section>
+
+  <section class="home-grid" aria-label="Explore the site">
+    <a class="feature-card" href="/experience">
+      <div>
+        <p class="eyebrow">Career & education</p>
+        <h2>Experience</h2>
+        <p>Explore the roles, teams, and education that shaped my career.</p>
+      </div>
+      <span class="feature-link">View experience <span aria-hidden="true">↗</span></span>
+    </a>
+    <a class="feature-card" href="/blog">
+      <div>
+        <p class="eyebrow">Writing</p>
+        <h2>Blog</h2>
+        <p>Notes on TypeScript, code review, and software engineering.</p>
+      </div>
+      <span class="feature-link">Read the latest <span aria-hidden="true">↗</span></span>
+    </a>
+  </section>
 </Layout>

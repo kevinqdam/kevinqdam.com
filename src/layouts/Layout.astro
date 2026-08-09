@@ -1,95 +1,48 @@
 ---
-import Footer from "../components/Footer";
+import Footer from '../components/Footer';
+import '../styles/global.css';
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'The personal website of Kevin Dam, a software engineer writing about TypeScript, code review, and software engineering.',
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <style is:global>
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
-
-      @layer components {
-        /* Style heading anchors in MDX components */
-        *:is(h1, h2, h3, h4, h5, h6) {
-          @apply flex items-center gap-2;
-        }
-
-        /* Style articles to take the whole available width */
-        article {
-          @apply min-w-full;
-        }
-
-        /* Style code blocks for light and dark mode */
-        pre[data-theme="light"] {
-          @apply dark:hidden block bg-white shadow;
-        }
-        pre[data-theme="dark"] {
-          @apply dark:block hidden shadow-lg;
-        }
-
-        /* Style in-line code for light and dark mode */
-        code:not([data-theme]) {
-          @apply inline-block px-2 rounded-lg bg-slate-200 dark:bg-gray-900 m-0.5;
-        }
-        a > code:not([data-theme]) {
-          @apply underline;
-        }
-      }
-    </style></head
-  >
-
-  <body
-    class="min-h-screen w-full bg-gray-100 dark:bg-gray-800 dark:text-white"
-  >
-    <div class="min-h-screen w-full bg-gray-100 dark:bg-gray-800">
-      <div class="flex w-full items-center justify-center">
-        <div
-          class="flex w-full sm:w-10/12 flex-col justify-center px-8 md:w-8/12 lg:w-7/12"
-        >
-          <main>
-            <slot />
-          </main>
-          <hr class="my-8 h-px border-0 bg-gray-400 dark:bg-gray-500" />
-          <Footer client:load />
-        </div>
+    <meta name="theme-color" content="#f5f7fb" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-background">
+      <div class="site-container">
+        <main id="main-content" class="site-main">
+          <slot />
+        </main>
+        <Footer client:load />
       </div>
     </div>
+    <script is:inline>
+      const storedTheme = window.localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme ?? (prefersDark ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
   </body>
-  <script>
-    const theme = (() => {
-      if (typeof localStorage !== "undefined") {
-        const theme = localStorage.getItem("theme") ?? "light";
-        return theme;
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "light";
-    })();
-
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-    window.localStorage.setItem("theme", theme);
-  </script>
 </html>

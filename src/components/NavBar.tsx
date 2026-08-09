@@ -1,86 +1,54 @@
 import classNames from 'classnames';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { PropsWithChildren } from 'react';
 import type { Path } from '../types';
 
 type NavBarProps = {
   activePath: Path;
 };
 
-type NavItemProps = {
+type NavItemProps = PropsWithChildren<{
   activePath: Path;
   path: Path;
-};
+  onNavigate?: () => void;
+}>;
+
+type Theme = 'light' | 'dark';
 
 const SunIcon = (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    fill='none'
-    viewBox='0 0 24 24'
-    strokeWidth={1.5}
-    stroke='currentColor'
-    className='h-6 w-6'
-  >
-    <path
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z'
-    />
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
   </svg>
 );
 
 const MoonIcon = (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    fill='none'
-    viewBox='0 0 24 24'
-    strokeWidth={1.5}
-    stroke='currentColor'
-    className='h-6 w-6'
-  >
-    <path
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z'
-    />
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
   </svg>
 );
 
-const circledXIcon = (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    fill='none'
-    viewBox='0 0 24 24'
-    strokeWidth='1.5'
-    stroke='currentColor'
-    className='w-8 h-8'
-  >
-    <path
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-    />
+const MenuIcon = (
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
   </svg>
 );
 
-const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
-  activePath,
-  path,
-  children,
-}) => {
+const CloseIcon = (
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+    <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+);
+
+const NavItem = ({ activePath, path, onNavigate, children }: NavItemProps) => {
   const isActive = activePath === path;
 
   return (
     <li>
       <a
         href={path}
-        className={classNames(
-          isActive ? 'font-semibold' : 'font-normal',
-          'min-w-full text-center',
-          'rounded-lg px-2 py-1',
-          'text-lg dark:text-white',
-          'transition',
-          'hover:bg-gray-200 dark:hover:bg-gray-600'
-        )}
+        onClick={onNavigate}
+        aria-current={isActive ? 'page' : undefined}
+        className={classNames('nav-link', isActive && 'is-active')}
       >
         {children}
       </a>
@@ -88,122 +56,112 @@ const NavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
   );
 };
 
-const MobileNavItem: React.FC<PropsWithChildren<NavItemProps>> = ({
-  activePath,
-  path,
-  children,
-}) => {
-  const isActive = activePath === path;
-
-  return (
-    <li className='flex flex-row justify-center'>
-      <a
-        href={path}
-        className={classNames(
-          isActive ? 'font-semibold' : 'font-normal',
-          'flex content-center text-center',
-          'text-xl dark:text-white'
-        )}
-      >
-        {children}
-      </a>
-    </li>
-  );
-};
-
-const NavBar: React.FC<NavBarProps> = ({ activePath }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') ?? 'light');
+const NavBar = ({ activePath }: NavBarProps) => {
+  const [theme, setTheme] = useState<Theme>('light');
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
-  useEffect(() => setIsMounted(true), []);
-
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    const storedTheme = window.localStorage.getItem('theme');
+    const resolvedTheme: Theme = storedTheme === 'dark' || storedTheme === 'light'
+      ? storedTheme
+      : window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+
+    if (resolvedTheme !== theme) {
+      setTheme(resolvedTheme);
+      return;
     }
-    localStorage.setItem('theme', theme);
+
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    window.localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const handleThemeBtnClick = () =>
-    setTheme(theme === 'light' ? 'dark' : 'light');
+  useEffect(() => {
+    if (!isMenuExpanded) {
+      return undefined;
+    }
 
-  const handleMenuBtnClick = () => {
-    setIsMenuExpanded(!isMenuExpanded);
-  };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuExpanded(false);
+      }
+    };
+
+    document.addEventListener('keydown', closeOnEscape);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuExpanded]);
+
+  const toggleTheme = () => setTheme((current) => current === 'light' ? 'dark' : 'light');
+  const closeMenu = () => setIsMenuExpanded(false);
 
   return (
     <>
-      {/* Desktop */}
-      <nav className='w-full hidden lg:flex flex-row items-center justify-between pt-8 pb-12'>
-        <ul className='flex m-2.5 space-x-4 ml-[-0.45rem]'>
-          <NavItem activePath={activePath} path='/'>
-            Home
-          </NavItem>
-          <NavItem activePath={activePath} path='/experience'>
-            Experience
-          </NavItem>
-          <NavItem activePath={activePath} path='/blog'>
-            Blog
-          </NavItem>
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        <a className="brand" href="/" aria-label="Kevin Dam home">
+          <span className="brand-mark" aria-hidden="true">KD</span>
+          <span>Kevin Dam</span>
+        </a>
+        <ul className="nav-links">
+          <NavItem activePath={activePath} path="/">Home</NavItem>
+          <NavItem activePath={activePath} path="/experience">Experience</NavItem>
+          <NavItem activePath={activePath} path="/blog">Blog</NavItem>
         </ul>
-        {isMounted && (
-          <button
-            type='button'
-            onClick={handleThemeBtnClick}
-            className='rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400'
-          >
-            {theme === 'light' ? MoonIcon : SunIcon}
-          </button>
-        )}
-      </nav>
-      {/* Mobile and tablet */}
-      <nav className='relative lg:hidden pt-8 pb-12 flex items-center justify-between z-10'>
-        <button onClick={handleMenuBtnClick} className='hover:cursor'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='w-6 h-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-            />
-          </svg>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        >
+          {theme === 'light' ? MoonIcon : SunIcon}
         </button>
-        {isMounted && (
+      </nav>
+
+      <nav className="mobile-nav" aria-label="Primary navigation">
+        <a className="brand" href="/" aria-label="Kevin Dam home">
+          <span className="brand-mark" aria-hidden="true">KD</span>
+          <span>Kevin Dam</span>
+        </a>
+        <div className="nav-links">
           <button
-            type='button'
-            onClick={handleThemeBtnClick}
-            className='rounded-lg bg-gray-200 p-2.5 text-sm text-gray-500 ring-gray-600 transition hover:ring-2 focus:outline-none focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:ring-gray-400'
+            type="button"
+            className="menu-toggle"
+            onClick={() => setIsMenuExpanded(true)}
+            aria-controls="mobile-menu"
+            aria-expanded={isMenuExpanded}
+            aria-label="Open navigation menu"
+          >
+            {MenuIcon}
+          </button>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
             {theme === 'light' ? MoonIcon : SunIcon}
           </button>
-        )}
+        </div>
         {isMenuExpanded && (
-          <ul className='fixed left-0 top-0 z-1000 flex flex-col justify-center content-center space-y-4 rounded-md px-2 py-2 outline-none bg-gray-100 dark:bg-gray-800 w-full h-full transition-all'>
-            <MobileNavItem activePath={activePath} path='/'>
-              Home
-            </MobileNavItem>
-            <MobileNavItem activePath={activePath} path='/experience'>
-              Experience
-            </MobileNavItem>
-            <MobileNavItem activePath={activePath} path='/blog'>
-              Blog
-            </MobileNavItem>
-            <button
-              onClick={handleMenuBtnClick}
-              className='flex flex-row justify-center pt-20'
-            >
-              {circledXIcon}
-            </button>
-          </ul>
+          <div id="mobile-menu" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+            <div>
+              <ul className="mobile-menu-list">
+                <NavItem activePath={activePath} path="/" onNavigate={closeMenu}>Home</NavItem>
+                <NavItem activePath={activePath} path="/experience" onNavigate={closeMenu}>Experience</NavItem>
+                <NavItem activePath={activePath} path="/blog" onNavigate={closeMenu}>Blog</NavItem>
+              </ul>
+              <button type="button" className="menu-close" onClick={closeMenu} aria-label="Close navigation menu">
+                {CloseIcon}
+              </button>
+            </div>
+          </div>
         )}
       </nav>
     </>
