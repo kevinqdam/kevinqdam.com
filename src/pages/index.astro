@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NavBar from '../components/NavBar';
+import { Image } from 'astro:assets';
+import profileImage from '../assets/images/kevinqdam.png';
 ---
 
 <Layout title="Kevin Dam | Software Engineer">
@@ -25,12 +27,15 @@ import NavBar from '../components/NavBar';
       </p>
     </div>
     <div class="profile-card">
-      <img
+      <Image
         class="profile-image"
         alt="Kevin Dam profile picture"
-        width="176"
-        height="176"
-        src="/images/kevinqdam.png"
+        width={176}
+        height={176}
+        densities={[1, 2]}
+        fit="cover"
+        priority
+        src={profileImage}
       />
       <p class="profile-label">Kevin Q. Dam</p>
     </div>

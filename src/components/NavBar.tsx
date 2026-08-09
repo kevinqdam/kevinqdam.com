@@ -1,14 +1,14 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import type { Path } from '../types';
 
 type NavBarProps = {
-  activePath: Path;
+  activePath: Path | null;
 };
 
 type NavItemProps = PropsWithChildren<{
-  activePath: Path;
+  activePath: Path | null;
   path: Path;
   onNavigate?: () => void;
 }>;
@@ -57,8 +57,10 @@ const NavItem = ({ activePath, path, onNavigate, children }: NavItemProps) => {
 };
 
 const NavBar = ({ activePath }: NavBarProps) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme | null>(null);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem('theme');
@@ -68,8 +70,11 @@ const NavBar = ({ activePath }: NavBarProps) => {
         ? 'dark'
         : 'light';
 
-    if (resolvedTheme !== theme) {
-      setTheme(resolvedTheme);
+    setTheme(resolvedTheme);
+  }, []);
+
+  useEffect(() => {
+    if (!theme) {
       return;
     }
 
@@ -82,22 +87,50 @@ const NavBar = ({ activePath }: NavBarProps) => {
       return undefined;
     }
 
-    const closeOnEscape = (event: KeyboardEvent) => {
+    const dialog = mobileMenuRef.current;
+    const focusableElements = dialog
+      ? [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')]
+      : [];
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements.at(-1);
+    const previousBodyOverflow = document.body.style.overflow;
+
+    firstFocusableElement?.focus();
+
+    const manageDialogFocus = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        event.preventDefault();
         setIsMenuExpanded(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !firstFocusableElement || !lastFocusableElement) {
+        return;
+      }
+
+      if (!dialog?.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? lastFocusableElement : firstFocusableElement).focus();
+      } else if (event.shiftKey && document.activeElement === firstFocusableElement) {
+        event.preventDefault();
+        lastFocusableElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastFocusableElement) {
+        event.preventDefault();
+        firstFocusableElement.focus();
       }
     };
 
-    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('keydown', manageDialogFocus);
     document.body.style.overflow = 'hidden';
 
     return () => {
-      document.removeEventListener('keydown', closeOnEscape);
-      document.body.style.overflow = '';
+      document.removeEventListener('keydown', manageDialogFocus);
+      document.body.style.overflow = previousBodyOverflow;
+      menuButtonRef.current?.focus();
     };
   }, [isMenuExpanded]);
 
-  const toggleTheme = () => setTheme((current) => current === 'light' ? 'dark' : 'light');
+  const toggleTheme = () => setTheme((current) => current === 'dark' ? 'light' : 'dark');
   const closeMenu = () => setIsMenuExpanded(false);
 
   return (
@@ -130,6 +163,7 @@ const NavBar = ({ activePath }: NavBarProps) => {
         </a>
         <div className="nav-links">
           <button
+            ref={menuButtonRef}
             type="button"
             className="menu-toggle"
             onClick={() => setIsMenuExpanded(true)}
@@ -150,7 +184,14 @@ const NavBar = ({ activePath }: NavBarProps) => {
           </button>
         </div>
         {isMenuExpanded && (
-          <div id="mobile-menu" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+          <div
+            ref={mobileMenuRef}
+            id="mobile-menu"
+            className="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+          >
             <div>
               <ul className="mobile-menu-list">
                 <NavItem activePath={activePath} path="/" onNavigate={closeMenu}>Home</NavItem>

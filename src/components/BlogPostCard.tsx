@@ -30,7 +30,7 @@ const BlogPostCard = ({
   return (
     <article className={`post-card${thumbnailImage ? '' : ' no-image'}`}>
       {thumbnailImage && (
-        <a href={`/blog/${slug}`} aria-label={`Read ${title}`}>
+        <a className="post-card-image-link" href={`/blog/${slug}`} aria-label={`Read ${title}`}>
           <img
             className="post-card-image"
             src={thumbnailImage.src}
