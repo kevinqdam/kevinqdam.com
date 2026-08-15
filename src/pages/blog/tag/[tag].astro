@@ -4,9 +4,9 @@ import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPostCard, { type BlogPostCardProps } from '../../../components/BlogPostCard';
-import NavBar from '../../../components/NavBar';
 import Pills, { type Pill } from '../../../components/Pills';
 import Layout from '../../../layouts/Layout.astro';
+import { resolveAuthorProfileImage } from '../../../lib/author-profile-image';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
@@ -34,11 +34,11 @@ const getUniqueTags = (tags: CollectionEntry<'blog'>['data']['tags']): Pill[] =>
 
 const getPostSlug = (post: CollectionEntry<'blog'>) => post.id.replace(/\.(?:md|mdx)$/, '');
 
-const toBlogPostCardProps = (post: CollectionEntry<'blog'>): BlogPostCardProps => {
+const toBlogPostCardProps = async (post: CollectionEntry<'blog'>): Promise<BlogPostCardProps> => {
   const { author, authorProfileImage, posted, title, preview, thumbnailImage, tags } = post.data;
   return {
     author,
-    authorProfileImage,
+    authorProfileImage: await resolveAuthorProfileImage(authorProfileImage),
     posted,
     title,
     preview,
@@ -56,11 +56,14 @@ const toBlogPostCardProps = (post: CollectionEntry<'blog'>): BlogPostCardProps =
 const posts = await getCollection('blog');
 posts.sort((a, b) => DateTime.fromISO(b.data.posted).toMillis() - DateTime.fromISO(a.data.posted).toMillis());
 const tags = getUniqueTags(posts.flatMap((post) => post.data.tags)).sort((a, b) => a.text.localeCompare(b.text));
-const blogPostCardProps = posts.filter((post) => post.data.tags.some((tag) => tag.text === currentTag)).map(toBlogPostCardProps);
+const blogPostCardProps = await Promise.all(
+  posts
+    .filter((post) => post.data.tags.some((tag) => tag.text === currentTag))
+    .map(toBlogPostCardProps)
+);
 ---
 
 <Layout title={`Blog · ${currentTag} | Kevin Dam`}>
-  <NavBar client:load activePath="/blog" />
   <header class="page-header">
     <p class="eyebrow">Writing · topic</p>
     <h1>{currentTag}</h1>

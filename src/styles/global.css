@@ -109,6 +109,10 @@ a {
   margin: 0 auto;
 }
 
+.site-header {
+  padding-top: 2rem;
+}
+
 .site-main {
   position: relative;
   z-index: 1;
@@ -981,6 +985,10 @@ a {
 @media (max-width: 767px) {
   .site-container {
     width: min(100% - 1.5rem, 42rem);
+  }
+
+  .site-header {
+    padding-top: 1rem;
   }
 
   .site-main {

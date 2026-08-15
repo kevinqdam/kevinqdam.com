@@ -1,5 +1,7 @@
 ---
 import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
+import type { Path } from '../types';
 import '../styles/global.css';
 
 interface Props {
@@ -11,6 +13,14 @@ const {
   title,
   description = 'The personal website of Kevin Dam, a software engineer writing about TypeScript, code review, and software engineering.',
 }: Props = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const activePath: Path | null = pathname === '/'
+  ? '/'
+  : pathname === '/experience'
+    ? '/experience'
+    : pathname === '/blog' || pathname.startsWith('/blog/')
+      ? '/blog'
+      : null;
 ---
 
 <!doctype html>
@@ -32,6 +42,9 @@ const {
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-background">
       <div class="site-container">
+        <header class="site-header">
+          <NavBar client:load activePath={activePath} />
+        </header>
         <main id="main-content" class="site-main">
           <slot />
         </main>

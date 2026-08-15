@@ -2,12 +2,10 @@
 import { DateTime } from 'luxon';
 import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
-import { Image } from 'astro:assets';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Pills from '../../components/Pills';
 import Layout from '../../layouts/Layout.astro';
-import NavBar from '../../components/NavBar';
-import profileImage from '../../assets/images/kevinqdam.png';
+import { resolveAuthorProfileImage } from '../../lib/author-profile-image';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
@@ -22,43 +20,25 @@ const { author, authorProfileImage, title, tags, posted, preview } = post.data;
 const postedDateTime = DateTime.fromISO(posted);
 const estReadTimeMinutes = readingTime(removeMd(post.body ?? '')).text;
 const { Content } = await render(post);
-const optimizedProfileImages = new Map<string, typeof profileImage>([
-  ['/images/kevinqdam.png', profileImage],
-]);
-const optimizedAuthorProfileImage = authorProfileImage
-  ? optimizedProfileImages.get(authorProfileImage.src)
-  : undefined;
+const resolvedAuthorProfileImage = await resolveAuthorProfileImage(authorProfileImage);
 ---
 
 <Layout title={`${title} | Kevin Dam`} description={preview}>
-  <NavBar client:load activePath="/blog" />
   <a class="back-link" href="/blog">← All posts</a>
   <header class="post-header">
     <Pills pills={tags} />
     <h1>{title}</h1>
     <div class="post-meta">
-      {authorProfileImage && (
-        optimizedAuthorProfileImage ? (
-          <Image
-            class="author-image"
-            alt={authorProfileImage.alt}
-            width={52}
-            height={52}
-            densities={[1, 2]}
-            fit="cover"
-            src={optimizedAuthorProfileImage}
-          />
-        ) : (
-          <img
-            class="author-image"
-            alt={authorProfileImage.alt}
-            width="52"
-            height="52"
-            loading="lazy"
-            decoding="async"
-            src={authorProfileImage.src}
-          />
-        )
+      {resolvedAuthorProfileImage && (
+        <img
+          class="author-image"
+          alt={resolvedAuthorProfileImage.alt}
+          width="52"
+          height="52"
+          loading="lazy"
+          decoding="async"
+          src={resolvedAuthorProfileImage.src}
+        />
       )}
       <div>
         <div class="post-author">{author}</div>

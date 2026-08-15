@@ -4,9 +4,9 @@ import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPostCard, { type BlogPostCardProps } from '../components/BlogPostCard';
-import NavBar from '../components/NavBar';
 import Pills, { type Pill } from '../components/Pills';
 import Layout from '../layouts/Layout.astro';
+import { resolveAuthorProfileImage } from '../lib/author-profile-image';
 
 const getUniqueTags = (tags: CollectionEntry<'blog'>['data']['tags']): Pill[] => {
   const seen = new Set<string>();
@@ -21,11 +21,11 @@ const getUniqueTags = (tags: CollectionEntry<'blog'>['data']['tags']): Pill[] =>
 
 const getPostSlug = (post: CollectionEntry<'blog'>) => post.id.replace(/\.(?:md|mdx)$/, '');
 
-const toBlogPostCardProps = (post: CollectionEntry<'blog'>): BlogPostCardProps => {
+const toBlogPostCardProps = async (post: CollectionEntry<'blog'>): Promise<BlogPostCardProps> => {
   const { author, authorProfileImage, posted, title, preview, thumbnailImage, tags } = post.data;
   return {
     author,
-    authorProfileImage,
+    authorProfileImage: await resolveAuthorProfileImage(authorProfileImage),
     posted,
     title,
     preview,
@@ -39,11 +39,10 @@ const toBlogPostCardProps = (post: CollectionEntry<'blog'>): BlogPostCardProps =
 const posts = await getCollection('blog');
 posts.sort((a, b) => DateTime.fromISO(b.data.posted).toMillis() - DateTime.fromISO(a.data.posted).toMillis());
 const tags = getUniqueTags(posts.flatMap((post) => post.data.tags)).sort((a, b) => a.text.localeCompare(b.text));
-const blogPostCardProps = posts.map(toBlogPostCardProps);
+const blogPostCardProps = await Promise.all(posts.map(toBlogPostCardProps));
 ---
 
 <Layout title="Blog | Kevin Dam">
-  <NavBar client:load activePath="/blog" />
   <header class="page-header">
     <p class="eyebrow">Writing</p>
     <h1>Ideas in progress</h1>
