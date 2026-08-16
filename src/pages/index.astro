@@ -1,60 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
 import profileImage from '../assets/images/kevinqdam.png';
 ---
 
-<Layout title="Kevin Dam | Software Engineer">
+<Layout
+  title="Kevin Dam | Software Engineer"
+  description="Kevin Dam is a software engineer. Find his experience, writing, and contact information."
+>
   <section class="hero" aria-labelledby="home-heading">
-    <div>
+    <div class="hero-copy">
       <p class="eyebrow">Software engineer</p>
-      <h1 id="home-heading">Kevin Dam<span>.</span></h1>
-      <p class="hero-intro">
-        A passionate software engineer 🧑‍💻 who loves to solve problems by writing
-        code.
-      </p>
-      <div class="hero-actions">
-        <a class="button-primary" href="/experience">
-          Explore experience <span aria-hidden="true">→</span>
+      <h1 id="home-heading">Kevin Dam<span aria-hidden="true">.</span></h1>
+      <div class="hero-actions" aria-label="Contact Kevin Dam">
+        <a class="button-primary" href="mailto:me@kevinqdam.com">Email me</a>
+        <a
+          class="button-secondary"
+          href="https://www.linkedin.com/in/kevinqdam"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          LinkedIn <span aria-hidden="true">↗</span>
         </a>
-        <a class="button-secondary" href="/blog">Read the blog</a>
       </div>
       <p class="hero-note">
         All opinions are my own and do not reflect those of any current or past
         employers.
       </p>
     </div>
-    <div class="profile-card">
+
+    <figure class="home-portrait">
       <Image
         class="profile-image"
-        alt="Kevin Dam profile picture"
-        width={176}
-        height={176}
+        alt="Kevin Dam"
+        width={320}
+        height={400}
         densities={[1, 2]}
         fit="cover"
+        position="center"
         priority
         src={profileImage}
       />
-      <p class="profile-label">Kevin Q. Dam</p>
-    </div>
+    </figure>
   </section>
 
-  <section class="home-grid" aria-label="Explore the site">
-    <a class="feature-card" href="/experience">
-      <div>
-        <p class="eyebrow">Career & education</p>
-        <h2>Experience</h2>
-        <p>Browse roles, responsibilities, and education.</p>
-      </div>
-      <span class="feature-link">View experience <span aria-hidden="true">↗</span></span>
-    </a>
-    <a class="feature-card" href="/blog">
-      <div>
-        <p class="eyebrow">Writing</p>
-        <h2>Blog</h2>
-        <p>Notes on TypeScript, code review, and software engineering.</p>
-      </div>
-      <span class="feature-link">Read the latest <span aria-hidden="true">↗</span></span>
-    </a>
+  <section class="home-writing" aria-labelledby="writing-heading">
+    <div>
+      <p class="eyebrow">Writing</p>
+      <h2 id="writing-heading">Blog</h2>
+    </div>
+    <a class="text-link" href="/blog">View posts <span aria-hidden="true">→</span></a>
   </section>
 </Layout>

@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'The personal website of Kevin Dam, a software engineer writing about TypeScript, code review, and software engineering.',
+  description = 'The personal website of Kevin Dam, a software engineer.',
 }: Props = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const activePath: Path | null = pathname === '/'
@@ -21,6 +21,27 @@ const activePath: Path | null = pathname === '/'
     : pathname === '/blog' || pathname.startsWith('/blog/')
       ? '/blog'
       : null;
+const canonicalUrl = new URL(Astro.url.pathname, 'https://kevinqdam.com');
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Kevin Dam',
+      url: 'https://kevinqdam.com/',
+    },
+    {
+      '@type': 'Person',
+      name: 'Kevin Dam',
+      url: 'https://kevinqdam.com/',
+      jobTitle: 'Software Engineer',
+      sameAs: [
+        'https://www.linkedin.com/in/kevinqdam',
+        'https://github.com/kevinqdam',
+      ],
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -30,13 +51,21 @@ const activePath: Path | null = pathname === '/'
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#fbfaf7" />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#f5f7fb" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline>
+      const storedTheme = window.localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme ?? (prefersDark ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -45,17 +74,11 @@ const activePath: Path | null = pathname === '/'
         <header class="site-header">
           <NavBar client:load activePath={activePath} />
         </header>
-        <main id="main-content" class="site-main">
+        <main id="main-content" class="site-main" tabindex="-1">
           <slot />
         </main>
         <Footer client:load />
       </div>
     </div>
-    <script is:inline>
-      const storedTheme = window.localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = storedTheme ?? (prefersDark ? 'dark' : 'light');
-      document.documentElement.classList.toggle('dark', theme === 'dark');
-    </script>
   </body>
 </html>

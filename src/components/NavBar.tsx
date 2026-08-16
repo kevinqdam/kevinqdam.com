@@ -151,10 +151,7 @@ const NavBar = ({ activePath }: NavBarProps) => {
   return (
     <>
       <nav className="desktop-nav" aria-label="Primary navigation">
-        <a className="brand" href="/">
-          <span className="brand-mark" aria-hidden="true">KD</span>
-          <span>Kevin Dam</span>
-        </a>
+        <a className="brand" href="/">Kevin Dam</a>
         <ul className="nav-links">
           <NavItem activePath={activePath} path="/">Home</NavItem>
           <NavItem activePath={activePath} path="/experience">Experience</NavItem>
@@ -172,10 +169,7 @@ const NavBar = ({ activePath }: NavBarProps) => {
       </nav>
 
       <nav className="mobile-nav" aria-label="Primary navigation">
-        <a className="brand" href="/">
-          <span className="brand-mark" aria-hidden="true">KD</span>
-          <span>Kevin Dam</span>
-        </a>
+        <a className="brand" href="/">Kevin Dam</a>
         <div className="nav-links">
           <button
             ref={menuButtonRef}

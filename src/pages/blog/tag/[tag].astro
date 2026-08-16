@@ -12,9 +12,7 @@ export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
   const uniqueTagTexts = new Set(posts.flatMap((post) => post.data.tags.map((tag) => tag.text)));
 
-  return [...uniqueTagTexts].map((tag) => ({
-    params: { tag },
-  }));
+  return [...uniqueTagTexts].map((tag) => ({ params: { tag } }));
 };
 
 const { tag: currentTag } = Astro.params;
@@ -63,24 +61,21 @@ const blogPostCardProps = await Promise.all(
 );
 ---
 
-<Layout title={`Blog · ${currentTag} | Kevin Dam`}>
-  <header class="page-header">
-    <p class="eyebrow">Writing · topic</p>
+<Layout
+  title={`${currentTag} posts | Kevin Dam`}
+  description={`Writing by Kevin Dam tagged ${currentTag}.`}
+>
+  <header class="page-header compact-page-header">
+    <p class="eyebrow">Topic</p>
     <h1>{currentTag}</h1>
-    <p class="page-lede">Posts filed under this topic.</p>
   </header>
 
   <section aria-labelledby="tag-posts-heading">
-    <div class="blog-toolbar">
-      <h2>Browse by topic</h2>
+    <nav class="blog-toolbar" aria-label="Browse posts by topic">
+      <span>Topics</span>
       <Pills pills={tags} />
-    </div>
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Archive</p>
-        <h2 id="tag-posts-heading">Posts tagged {currentTag}</h2>
-      </div>
-    </div>
+    </nav>
+    <h2 id="tag-posts-heading" class="section-title">Posts tagged {currentTag}</h2>
     <div class="post-list">
       {blogPostCardProps.map((props) => <BlogPostCard {...props} />)}
     </div>

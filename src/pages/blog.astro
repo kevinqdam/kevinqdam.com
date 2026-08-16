@@ -42,27 +42,20 @@ const tags = getUniqueTags(posts.flatMap((post) => post.data.tags)).sort((a, b) 
 const blogPostCardProps = await Promise.all(posts.map(toBlogPostCardProps));
 ---
 
-<Layout title="Blog | Kevin Dam">
-  <header class="page-header">
+<Layout title="Blog | Kevin Dam" description="Writing by Kevin Dam.">
+  <header class="page-header compact-page-header">
     <p class="eyebrow">Writing</p>
-    <h1>Ideas in progress</h1>
-    <p class="page-lede">
-      Notes from my software engineering journey, covering TypeScript, code
-      review, and the practices that make teams stronger.
-    </p>
+    <h1>Blog</h1>
   </header>
 
   <section aria-labelledby="posts-heading">
-    <div class="blog-toolbar">
-      <h2>Browse by topic</h2>
-      <Pills pills={tags.map((tag) => ({ ...tag, href: tag.href ?? `/blog/tag/${tag.text}` }))} />
-    </div>
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Archive</p>
-        <h2 id="posts-heading">All posts</h2>
-      </div>
-    </div>
+    {tags.length > 0 && (
+      <nav class="blog-toolbar" aria-label="Browse posts by topic">
+        <span>Topics</span>
+        <Pills pills={tags.map((tag) => ({ ...tag, href: tag.href ?? `/blog/tag/${tag.text}` }))} />
+      </nav>
+    )}
+    <h2 id="posts-heading" class="section-title">All posts</h2>
     <div class="post-list">
       {blogPostCardProps.map((props) => <BlogPostCard {...props} />)}
     </div>
