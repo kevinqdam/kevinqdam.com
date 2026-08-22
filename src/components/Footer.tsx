@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 import { useState } from 'react';
 
 const LinkedInLogo = (
@@ -39,7 +38,7 @@ const Footer = () => {
 
   return (
     <footer className="site-footer">
-      <p className="footer-copy">© {DateTime.now().year} Kevin Q. Dam</p>
+      <p className="footer-copy">© {new Date().getFullYear()} Kevin Q. Dam</p>
       <nav className="footer-links" aria-label="Contact and profiles">
         <a className="footer-link" aria-label="Kevin Dam on LinkedIn" href="https://www.linkedin.com/in/kevinqdam" target="_blank" rel="noopener noreferrer">
           {LinkedInLogo}

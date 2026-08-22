@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import type { Path } from '../types';
@@ -48,7 +47,7 @@ const NavItem = ({ activePath, path, onNavigate, children }: NavItemProps) => {
         href={path}
         onClick={onNavigate}
         aria-current={isActive ? 'page' : undefined}
-        className={classNames('nav-link', isActive && 'is-active')}
+        className="nav-link"
       >
         {children}
       </a>

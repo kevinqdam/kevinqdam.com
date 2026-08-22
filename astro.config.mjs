@@ -3,7 +3,6 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import { unified } from '@astrojs/markdown-remark';
 import tailwindcss from '@tailwindcss/vite';
-import { remarkReadingTime } from './lib/remark-reading-time.mjs';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { h } from 'hastscript';
@@ -26,7 +25,6 @@ const AnchorLinkIcon = h(
 );
 
 export default defineConfig({
-  site: 'https://kevinqdam.github.io',
   vite: {
     plugins: [tailwindcss()],
   },
@@ -34,7 +32,6 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     processor: unified({
-      remarkPlugins: [remarkReadingTime],
       rehypePlugins: [
         rehypeSlug,
         [
