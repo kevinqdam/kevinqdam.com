@@ -10,4 +10,4 @@ I use Astro as my framework for file-based routing and static site generation. I
 For some components, I use React with the plugin from Astro. This is helpful for the few interactive components I have, and it is the framework/library I am most used to for building user interfaces.
 
 ### [Tailwind CSS](https://tailwindcss.com/)
-I style my pages and components with Tailwind CSS with the respective Astro plugin.
+I style my pages and components with Tailwind CSS through its Vite integration.

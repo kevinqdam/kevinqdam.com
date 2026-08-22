@@ -1,70 +1,55 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
 import { DateTime } from 'luxon';
 import readingTime from 'reading-time';
+import removeMd from 'remove-markdown';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Pills from '../../components/Pills';
 import Layout from '../../layouts/Layout.astro';
-import { Image } from '@astrojs/image/components';
-import removeMd from 'remove-markdown';
-import NavBar from '../../components/NavBar';
+import { resolveAuthorProfileImage } from '../../lib/author-profile-image';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id.replace(/\.(?:md|mdx)$/, '') },
     props: { post },
   }));
 };
 
 const { post } = Astro.props as { post: CollectionEntry<'blog'> };
-const { author, authorProfileImage, title, tags, posted } = post.data;
+const { author, authorProfileImage, title, tags, posted, preview } = post.data;
 const postedDateTime = DateTime.fromISO(posted);
-const estReadTimeMinutes = readingTime(removeMd(post.body)).text;
-const { Content } = await post.render();
+const estReadTimeMinutes = readingTime(removeMd(post.body ?? '')).text;
+const { Content } = await render(post);
+const resolvedAuthorProfileImage = await resolveAuthorProfileImage(authorProfileImage);
 ---
 
-<Layout title={title}>
-  <NavBar client:load activePath='/blog' />
-  {
-    tags && tags.length && (
-      <div class='pb-6'>
-        <Pills pills={tags} />
-      </div>
-    )
-  }
-  <h1 class='text-4xl font-bold pb-8'>{title}</h1>
-  <div class='flex flex-row items-center space-x-4 pb-6'>
-    {
-      authorProfileImage && (
-        <Image
-          alt={authorProfileImage.alt}
-          height={80}
-          width={80}
-          src={authorProfileImage.src}
-          class='rounded-full bg-gradient-to-r from-slate-500 to-teal-500 p-0.5 filter dark:from-slate-500 dark:to-rose-500'
+<Layout title={`${title} | Kevin Dam`} description={preview}>
+  <a class="back-link" href="/blog">← All posts</a>
+  <header class="post-header">
+    <Pills pills={tags} />
+    <h1>{title}</h1>
+    <div class="post-meta">
+      {resolvedAuthorProfileImage && (
+        <img
+          class="author-image"
+          alt={resolvedAuthorProfileImage.alt}
+          width="52"
+          height="52"
+          loading="lazy"
+          decoding="async"
+          src={resolvedAuthorProfileImage.src}
         />
-      )
-    }
-    <div class='flex flex-col space-y-1'>
-      <span class='font-bold text-lg text-gray-600 dark:text-gray-200'>
-        {author}
-      </span>
-      <div class='flex flex-row gap-2 text-gray-600 dark:text-gray-200'>
-        <span>
-          {
-            `${postedDateTime.monthShort}. ${postedDateTime.day}, ${postedDateTime.year}`
-          }
-        </span>
-        <span>•</span>
-        <span>
-          {`${estReadTimeMinutes}`}
-        </span>
+      )}
+      <div>
+        <div class="post-author">{author}</div>
+        <div>
+          <time datetime={posted}>{postedDateTime.toFormat('MMM d, yyyy')}</time>
+          <span> · {estReadTimeMinutes}</span>
+        </div>
       </div>
     </div>
-  </div>
-  <article
-    class='prose dark:prose-invert prose-h1:text-3xl prose-h1:font-bold prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold'
-  >
+  </header>
+  <article class="prose dark:prose-invert post-content">
     <Content />
   </article>
 </Layout>

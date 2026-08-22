@@ -1,259 +1,255 @@
 ---
-import Anchor from "../components/Anchor.astro";
-import NavBar from "../components/NavBar";
-import Pills from "../components/Pills";
-import Layout from "../layouts/Layout.astro";
+import Anchor from '../components/Anchor.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Experience">
-  <NavBar client:load activePath="/experience" />
-  <div class="flex flex-col space-y-6">
-    <div class="flex flex-col space-y-2">
-      <h1 class="text-2xl font-bold">Current Job Title</h1>
-      <p>Software Engineer at SpaceX</p>
-    </div>
-    <hr class="lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500" />
-    <div class="flex flex-col space-y-6 lg:space-y-2">
-      <h1 class="text-2xl font-bold">Experience</h1>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Jun 2022 - Mar 2024</p>
-        <div class="col-span-2">
-          <p class="text-md">Software Development Engineer</p>
-          <p class="pb-2 italic">@ Amazon</p>
-          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
-            <li class="ml-4">
-              <span class="underline">New Hire IT Onboarding</span>: Developed,
-              maintained, and operated a suite of wizards which offers a
-              self-service onboarding experience servicing hundreds of new
-              Amazon employees every week.
-            </li>
-            <li class="ml-4">
-              <span class="underline">IT Workflow Wizard</span>: Designed
-              and developed a user interface to consume platform definitions
-              from process engineers to display guided experiences that serve
-              all Amazon employees for any of their IT needs (e.g. setting up
-              internal email on a mobile device).
-            </li>
-          </ul>
-          <Pills
-            pills={[
-              { text: "TypeScript" },
-              { text: "Node.js" },
-              { text: "React" },
-              { text: "AWS" },
-            ]}
-          />
-        </div>
+<Layout
+  title="Experience | Kevin Dam"
+  description="Kevin Dam's professional experience and education."
+>
+  <div class="career-document">
+    <header class="page-header">
+      <h1>Experience</h1>
+    </header>
+
+    <section class="section-block">
+      <div class="timeline">
+        <article class="experience-item">
+          <p class="experience-date">Dec 2024 — Present</p>
+          <div>
+            <h2>Meta</h2>
+            <p class="experience-role">Software Engineer</p>
+            <p class="experience-details">Full-time · San Francisco Bay Area</p>
+            <h3 class="experience-project">Meta Business Agent</h3>
+            <div class="achievement-list">
+              <p>Previously, I worked on:</p>
+              <p>
+                AI-powered icebreaker pills for a third-party AI webchat plugin
+                deployed to 100+ businesses and serving 1k+ conversations daily.{' '}
+                <Anchor href="https://www.facebook.com/business/success/solgaard-bm-case-study">
+                  Biz AI case study
+                </Anchor>.
+              </p>
+              <p>
+                Client infrastructure to optimize serving AI prompts for Facebook
+                and Instagram feed ads at scale.
+              </p>
+              <p>Preview features for Ads Manager.</p>
+              <p>
+                Currently, I build product features for enterprises using Meta
+                Business Agent in WhatsApp.{' '}
+                <Anchor href="https://whatsappbusiness.com/blog/introducing-meta-business-agent-ai/">
+                  Introducing Meta Business Agent on WhatsApp
+                </Anchor>.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies & skills:</strong> Hack, JavaScript, PHP,
+              full-stack development, web engineering, React.js
+            </p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Mar 2024 — Oct 2024</p>
+          <div>
+            <h2>SpaceX</h2>
+            <p class="experience-role">Software Engineer</p>
+            <p class="experience-details">Full-time · Los Angeles Metropolitan Area · On-site</p>
+            <h3 class="experience-project">Starlink Fulfillment</h3>
+            <div class="achievement-list">
+              <p>
+                Maintained an event-driven system operating workloads that
+                supported Starlink order fulfillment and outbound logistics. The
+                system processed approximately 10,000+ orders daily.
+              </p>
+              <p>
+                Collaborated with stakeholders and logistics carriers to improve
+                systems and help new Starlink customers receive satellite-internet
+                service conveniently and quickly.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> C#, ASP.NET, Microsoft Azure,
+              Terraform, TypeScript, Angular, PostgreSQL, Apache Kafka,
+              Kubernetes, Microsoft SQL Server, .NET
+            </p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Jun 2022 — Mar 2024</p>
+          <div>
+            <h2>Amazon</h2>
+            <p class="experience-role">Software Development Engineer</p>
+            <div class="achievement-list">
+              <p>
+                <strong>New Hire IT Onboarding.</strong> Developed, maintained,
+                and operated a suite of self-service onboarding wizards serving
+                hundreds of new Amazon employees every week.
+              </p>
+              <p>
+                <strong>IT Workflow Wizard.</strong> Designed and developed an
+                interface that consumed platform definitions from process
+                engineers and rendered guided experiences serving all Amazon
+                employees for any IT need, such as setting up internal email on a
+                mobile device.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> TypeScript, Node.js, React, AWS
+            </p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Mar 2021 — May 2022</p>
+          <div>
+            <h2>ServiceNow</h2>
+            <p class="experience-role">Software Engineer</p>
+            <div class="achievement-list">
+              <p>
+                <strong>Core Platform.</strong> Delivered{' '}
+                <Anchor href="https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html">
+                  ECMAScript 2021
+                </Anchor>{' '}
+                in the Tokyo release, bringing modern scripting features to the
+                ServiceNow ecosystem for all{' '}
+                <Anchor href="https://www.servicenow.com/customers.html">
+                  ServiceNow customers
+                </Anchor>{' '}
+                who upgraded.
+              </p>
+              <p>
+                <strong>Now User Experience Framework.</strong> Developed
+                features for{' '}
+                <Anchor href="https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html">
+                  Next Experience UI (Polaris)
+                </Anchor>{' '}
+                in the San Diego release, delivering the long-awaited project
+                after its delay for two releases.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> Java, JavaScript, Now Experience Framework
+            </p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Aug 2019 — Feb 2021</p>
+          <div>
+            <h2>Fast Enterprises</h2>
+            <p class="experience-role">Implementation Consultant</p>
+            <div class="achievement-list">
+              <p>
+                <strong>MNDRIVE.</strong> Developed vehicle titling and
+                registration interfaces for the{' '}
+                <Anchor href="https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/">
+                  successful release
+                </Anchor>{' '}
+                serving all Minnesota motorists.
+              </p>
+              <p>
+                <strong>NMVTIS.</strong> Developed an interface servicing
+                hundreds of daily requests to protect Minnesota motorists from
+                title fraud.
+              </p>
+              <p>
+                <strong>Registration renewal notices.</strong> Developed the
+                interface that mails notices to ~300,0000 motorists monthly.
+              </p>
+              <p>
+                <strong>Mail-in vehicle registration renewals.</strong> Developed
+                the processing interface servicing tens of thousands of
+                registrations monthly.
+              </p>
+              <p>
+                <strong>Ticketing.</strong> Developed the interface servicing
+                hundreds of license plate queries weekly.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> Microsoft SQL Server, Visual Basic, .NET
+            </p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Oct 2018 — Jun 2019</p>
+          <div>
+            <h2>PSC Biotech</h2>
+            <p class="experience-role">Implementation Specialist</p>
+            <div class="achievement-list">
+              <p>
+                Implemented{' '}
+                <Anchor href="https://pscsoftware.com/software/ace/">
+                  FDA-compliant enterprise software solutions
+                </Anchor>{' '}
+                for pharmaceutical companies in collaboration with product,
+                project, engineering, and operations teams, ensuring each solution
+                was flexible and met all stakeholder needs.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Jul 2018 — Oct 2018</p>
+          <div>
+            <h2>Santa Clara County Registrar of Voters</h2>
+            <p class="experience-role">Student Intern III</p>
+            <div class="achievement-list">
+              <p>
+                Maintained{' '}
+                <Anchor href="https://sccvote.sccgov.org/register-vote/precinct-maps">
+                  precinct boundaries
+                </Anchor>{' '}
+                so all Santa Clara County voters could vote safely and efficiently
+                in transparent, honest elections.
+              </p>
+            </div>
+            <p class="experience-technologies"><strong>Technology:</strong> ArcGIS</p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Aug 2016 — Dec 2017</p>
+          <div>
+            <h2>UC San Diego Teaching + Learning Commons</h2>
+            <p class="experience-role">SI Leader (Peer Tutor for Math)</p>
+            <div class="achievement-list">
+              <p>
+                Led{' '}
+                <Anchor href="https://aah.ucsd.edu/supplemental-instruction/index.html">
+                  Supplemental Instruction
+                </Anchor>{' '}
+                for calculus and linear algebra; participants earned a half
+                letter grade higher than students who did not participate.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> MATLAB, LaTeX
+            </p>
+          </div>
+        </article>
       </div>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Mar 2021 - May 2022</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">Software Engineer</p>
-          <p class="pb-2 italic">@ ServiceNow</p>
-          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
-            <li class="ml-4">
-              <span class="underline">Core Platform Team</span>: Delivered
-              <Anchor
-                href="https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html"
-              >
-                ECMAScript 2021
-              </Anchor>{" "}
-              in the Tokyo release of ServiceNow, bringing modern scripting features
-              to the ServiceNow ecosystem to all <Anchor
-                href="https://www.servicenow.com/customers.html"
-              >
-                ServiceNow customers
-              </Anchor> who upgraded to Tokyo.
-            </li>
-            <li class="ml-4">
-              <span class="underline"
-                >Now User Experience Framework (UXF) Team</span
-              >: Developed features for{" "}
-              <Anchor
-                href="https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html"
-              >
-                Next Experience UI (Polaris)
-              </Anchor>{" "}
-              in the San Diego release of ServiceNow, delivering the long-awaited
-              project after its delay for two releases.
-            </li>
-          </ul>
-          <Pills
-            pills={[
-              { text: "Java" },
-              {
-                text: "JavaScript",
-              },
-              {
-                text: "Now Experience Framework",
-              },
-            ]}
-          />
+    </section>
+
+    <section class="section-block" aria-labelledby="education-heading">
+      <h2 id="education-heading" class="section-title">Education</h2>
+      <article class="education-entry">
+        <div>
+          <h3>University of California, San Diego</h3>
+          <p>B.S. Bioengineering, Minor in Organic Chemistry</p>
         </div>
-      </div>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Aug 2019 - Feb 2021</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">Implementation Consultant</p>
-          <p class="pb-2 italic">@ Fast Enterprises</p>
-          <p class="pb-2 text-gray-600 dark:text-gray-400">
-            Developed vehicle titling and registration interfaces as part of the{
-              " "
-            }
-            <Anchor
-              href="https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/"
-            >
-              successful release
-            </Anchor>{" "}
-            of{" "}
-            <Anchor
-              href="https://dps.mn.gov/divisions/dvs/mndrive/Pages/default.aspx"
-            >
-              MNDRIVE
-            </Anchor>{" "}
-            which serves all Minnesota motorists.
-          </p>
-          <ul class="list-disc pb-2 text-gray-600 dark:text-gray-400">
-            <li class="ml-4">
-              <span class="underline">NMVTIS</span>: Developed the NMVTIS
-              interface servicing hundreds of requests daily to protect
-              Minnesota motorists from title fraud
-            </li>
-            <li class="ml-4">
-              <span class="underline"
-                >Motor vehicle registration renewal notices</span
-              >: Developed the renewal notice interface which mails renewal
-              notices to ~300,0000 motorists monthly.
-            </li>
-            <li class="ml-4">
-              <span class="underline"
-                >Mail-in vehicle registration renewals</span
-              >: Developed the mail-in processing interface which services tens
-              of thousands of registrations monthly.
-            </li>
-            <li class="ml-4">
-              <span class="underline">Ticketing</span>: Developed the ticketing
-              interface which services hundreds of license plate queries weekly.
-            </li>
-          </ul>
-          <Pills
-            pills={[
-              {
-                text: "Microsoft SQL Server",
-              },
-              {
-                text: "Visual Basic",
-              },
-              { text: ".NET" },
-            ]}
-          />
-        </div>
-      </div>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Oct 2018 - Jun 2019</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">Implementation Specialist</p>
-          <p class="pb-2 italic">@ PSC Biotech</p>
-          <p class="pb-2 text-gray-600 dark:text-gray-400">
-            Implemented{" "}
-            <Anchor href="https://pscsoftware.com/software/ace/">
-              FDA-compliant enterprise software solutions
-            </Anchor>{" "}
-            for pharmaceutical companies. Collaborated with project managers, product
-            managers, engineering, and operations to ensure the solution was flexible
-            and met all stakeholder needs.
-          </p>
-          <Pills
-            pills={[
-              {
-                text: "PSC Software",
-              },
-            ]}
-          />
-        </div>
-      </div>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Jul 2018 - Oct 2018</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">Student Intern III</p>
-          <p class="pb-2 italic">@ Santa Clara County Registrar of Voters</p>
-          <p class="pb-2 text-gray-600 dark:text-gray-400">
-            Maintained{" "}
-            <Anchor
-              href="https://sccvote.sccgov.org/register-vote/precinct-maps"
-            >
-              precinct boundaries
-            </Anchor>
-            to ensure all Santa Clara county voters could vote safely and efficiently
-            in transparent, honest elections.
-          </p>
-          <Pills
-            pills={[
-              {
-                text: "ArcGIS",
-              },
-            ]}
-          />
-        </div>
-      </div>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">Aug 2016 - Dec 2017</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">SI Leader (Peer Tutor for Math)</p>
-          <p class="pb-2 italic">@ UC San Diego Teaching + Learning Commons</p>
-          <p class="pb-2 text-gray-600 dark:text-gray-400">
-            Served as a{" "}
-            <Anchor
-              href="https://aah.ucsd.edu/supplemental-instruction/index.html"
-            >
-              Supplemental Instruction
-            </Anchor>{" "}
-            (SI) leader for calculus and linear algebra, empowering student peers
-            to earn a half letter grade higher than those who did not participate
-            in the program.
-          </p>
-          <Pills
-            pills={[
-              {
-                text: "MATLAB",
-              },
-              { text: "LaTeX" },
-            ]}
-          />
-        </div>
-      </div>
-    </div>
-    <hr class="lg:hidden h-px my-8 border-0 bg-gray-400 dark:bg-gray-500" />
-    <div class="flex flex-col lg:space-y-2 md:space-y-6">
-      <h1 class="text-2xl font-bold">Education</h1>
-      <div class="lg:grid lg:grid-cols-3 lg:gap-2 lg:pb-6">
-        <p class="col-span-1 font-bold">4 years</p>
-        <div class="col-span-2 flex flex-col">
-          <p class="text-md">B.S. Bioengineering, Minor in Organic Chemistry</p>
-          <p class="pb-2 italic">@ UC San Diego</p>
-          <p class="pb-2 text-gray-600 dark:text-gray-400">
-            Attended as a{" "}
-            <Anchor
-              href="https://fas.ucsd.edu/types/scholarships/chancellors-scholarships-for-entering-freshmen.html"
-            >
-              Boyer Chancellor&#39;s scholarship
-            </Anchor>{" "}
-            recipient. Graduated with{" "}
-            <span class="italic">magna cum laude</span> honors and awarded provost
-            honors every academic quarter. Two-year team member and one-year co-captain
-            of the{" "}
-            <Anchor
-              href="https://recreation.ucsd.edu/competitive-sports/dragon-boat/"
-            >
-              UCSD Dragon Boat team
-            </Anchor>
-            .
-          </p>
-          <Pills
-            pills={[{ text: "Tau Beta Pi" }, { text: "Phi Beta Kappa" }]}
-          />
-        </div>
-      </div>
-    </div>
+        <p>
+          Boyer Chancellor's scholarship recipient. Graduated <em>magna cum laude</em>,
+          received provost honors every academic quarter, and was a two-year member
+          and one-year co-captain of the UCSD Dragon Boat team. Member of Tau Beta Pi
+          and Phi Beta Kappa.
+        </p>
+      </article>
+    </section>
   </div>
 </Layout>

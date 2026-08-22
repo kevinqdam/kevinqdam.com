@@ -1,4 +1,6 @@
-import { z, defineCollection } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 /**
  * Enumeration of known tags
@@ -35,14 +37,25 @@ const isURL = (href: string) => {
  */
 const isoDatePattern = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
 
+const canonicalizeImageSrc = (src: string) => {
+  if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(src)) {
+    return src;
+  }
+
+  const url = new URL(src, 'https://content.invalid/');
+  return `${url.pathname}${url.search}${url.hash}`;
+};
+
 const imageSchema = z
   .object({
     alt: z.string(),
     src: z.string(),
   })
-  .strict();
+  .strict()
+  .transform((image) => ({ ...image, src: canonicalizeImageSrc(image.src) }));
 
 const blogCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
   schema: z
     .object({
       author: z.enum(['Kevin Dam']),

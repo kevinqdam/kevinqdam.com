@@ -1,71 +1,62 @@
 ---
-import BlogPostCard, { BlogPostCardProps } from "../components/BlogPostCard";
-import Pills, { Pill } from "../components/Pills";
-import Layout from "../layouts/Layout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
-import removeMd from "remove-markdown";
-import readingTime from "reading-time";
-import NavBar from "../components/NavBar";
-import { DateTime } from "luxon";
+import { DateTime } from 'luxon';
+import readingTime from 'reading-time';
+import removeMd from 'remove-markdown';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogPostCard, { type BlogPostCardProps } from '../components/BlogPostCard';
+import Pills, { type Pill } from '../components/Pills';
+import Layout from '../layouts/Layout.astro';
+import { resolveAuthorProfileImage } from '../lib/author-profile-image';
 
-const getUniqueTags = (
-  tags: CollectionEntry<"blog">["data"]["tags"]
-): Pill[] => {
-  const result: Pill[] = [];
-  const seen = new Set();
-  for (const tag of tags) {
+const getUniqueTags = (tags: CollectionEntry<'blog'>['data']['tags']): Pill[] => {
+  const seen = new Set<string>();
+  return tags.filter((tag) => {
     if (seen.has(tag.text)) {
-      continue;
+      return false;
     }
     seen.add(tag.text);
-    result.push({ ...tag });
-  }
-  return result;
+    return true;
+  });
 };
 
-const toBlogPostCardProps = (
-  post: CollectionEntry<"blog">
-): BlogPostCardProps => {
-  const {
-    author,
-    authorProfileImage,
-    posted,
-    title,
-    preview,
-    thumbnailImage,
-    tags,
-  } = post.data;
+const getPostSlug = (post: CollectionEntry<'blog'>) => post.id.replace(/\.(?:md|mdx)$/, '');
+
+const toBlogPostCardProps = async (post: CollectionEntry<'blog'>): Promise<BlogPostCardProps> => {
+  const { author, authorProfileImage, posted, title, preview, thumbnailImage, tags } = post.data;
   return {
     author,
-    authorProfileImage,
+    authorProfileImage: await resolveAuthorProfileImage(authorProfileImage),
     posted,
     title,
     preview,
     thumbnailImage,
     tags,
-    slug: post.slug,
-    estReadTimeMinutes: readingTime(removeMd(post.body)).text,
+    slug: getPostSlug(post),
+    estReadTimeMinutes: readingTime(removeMd(post.body ?? '')).text,
   };
 };
 
-const posts = await getCollection("blog");
-posts.sort((a, b) => {
-  const dateTimeA = DateTime.fromISO(a.data.posted);
-  const dateTimeB = DateTime.fromISO(b.data.posted);
-  return dateTimeA < dateTimeB ? 1 : -1;
-});
-const postTags = posts.map((post) => post.data.tags).flat();
-const tags = getUniqueTags(postTags).sort((a, b) => (a.text > b.text ? 1 : -1));
-const blogPostCardProps = posts.map(toBlogPostCardProps);
+const posts = await getCollection('blog');
+posts.sort((a, b) => DateTime.fromISO(b.data.posted).toMillis() - DateTime.fromISO(a.data.posted).toMillis());
+const tags = getUniqueTags(posts.flatMap((post) => post.data.tags)).sort((a, b) => a.text.localeCompare(b.text));
+const blogPostCardProps = await Promise.all(posts.map(toBlogPostCardProps));
 ---
 
-<Layout title="Blog">
-  <NavBar client:load activePath="/blog" />
-  <h1 class="pb-6 text-3xl font-bold">Blog</h1>
-  <div class="flex flex-col space-y-4">
-    <h2 class="text-2xl font-bold">Browse by tags</h2>
-    <Pills pills={tags} />
-    <h2 class="text-2xl font-bold">All Posts</h2>
-    {blogPostCardProps.map((props) => <BlogPostCard {...props} />)}
-  </div>
+<Layout title="Blog | Kevin Dam" description="Writing by Kevin Dam.">
+  <header class="page-header compact-page-header">
+    <h1>Blog</h1>
+  </header>
+
+  <section aria-labelledby="posts-heading">
+    {tags.length > 0 && (
+      <nav class="blog-toolbar" aria-label="Browse posts by topic">
+        <span>Topics</span>
+        <Pills pills={tags.map((tag) => ({ ...tag, href: tag.href ?? `/blog/tag/${tag.text}` }))} />
+      </nav>
+    )}
+    <h2 id="posts-heading" class="section-title">All posts</h2>
+    <div class="post-list">
+      {blogPostCardProps.map((props) => <BlogPostCard {...props} />)}
+    </div>
+  </section>
 </Layout>
