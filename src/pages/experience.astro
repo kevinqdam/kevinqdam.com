@@ -5,26 +5,86 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Experience | Kevin Dam"
-  description="Kevin Dam's professional experience, selected skills, and education."
+  description="Kevin Dam's professional experience and education."
 >
   <div class="career-document">
     <header class="page-header">
-      <p class="eyebrow">Career</p>
       <h1>Experience</h1>
       <p class="page-lede">
-        LinkedIn is the complete and most current professional record. View my{' '}
-        <Anchor href="https://www.linkedin.com/in/kevinqdam">LinkedIn profile</Anchor>.
+        <Anchor href="https://www.linkedin.com/in/kevinqdam">View my LinkedIn profile</Anchor>
       </p>
     </header>
 
     <section class="section-block" aria-labelledby="experience-heading">
-      <h2 id="experience-heading" class="section-title">Chronology</h2>
+      <h2 id="experience-heading" class="section-title">Experience</h2>
       <div class="timeline">
         <article class="experience-item">
-          <p class="experience-date">Current</p>
+          <p class="experience-date">Dec 2024 — Present</p>
+          <div>
+            <h3>Meta</h3>
+            <p class="experience-role">Software Engineer</p>
+            <p class="experience-details">Full-time · San Francisco Bay Area</p>
+            <h4 class="experience-project">Meta Business Agent</h4>
+            <div class="achievement-list">
+              <p>
+                Designed and built the AI-powered icebreaker pills feature for
+                third-party webchat. It was P0 for the successfully conducted
+                product-review demo for the CEO. Coordinated across six teams to
+                launch it and align operational expectations for healthy, stable
+                systems. Webchat launched to 100+ businesses.
+              </p>
+              <p>
+                Identified an inefficient architecture for News Feed ads
+                pill-data generation that caused high failure rates and
+                compute-capacity usage. Introduced an orchestration/data-preparation
+                layer and deduplication logic, reducing failure rates to zero and
+                redundant API calls by 20%.
+              </p>
+              <p>
+                Implemented pill-data preview features for the business
+                experience, unblocking Ads Manager experiments for Biz AI.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies & skills:</strong> Hack, JavaScript, PHP,
+              full-stack development, web engineering, React.js
+            </p>
+            <div class="experience-resources" aria-label="Meta Business Agent resources">
+              <Anchor href="https://www.facebook.com/business/success/solgaard-bm-case-study">
+                Solgaard early-learnings case study
+              </Anchor>
+              <span>
+                Conversations 2026: Introducing Meta Business Agent on WhatsApp |
+                WhatsApp for Business
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <p class="experience-date">Mar 2024 — Oct 2024</p>
           <div>
             <h3>SpaceX</h3>
             <p class="experience-role">Software Engineer</p>
+            <p class="experience-details">Full-time · Los Angeles Metropolitan Area · On-site</p>
+            <h4 class="experience-project">Starlink Fulfillment</h4>
+            <div class="achievement-list">
+              <p>
+                Maintained an event-driven system operating workloads that
+                supported Starlink order fulfillment and outbound logistics. The
+                system processed approximately 10,000+ orders daily.
+              </p>
+              <p>
+                Collaborated with stakeholders and logistics carriers to improve
+                systems and help new Starlink customers receive satellite-internet
+                service conveniently and quickly.
+              </p>
+            </div>
+            <p class="experience-technologies">
+              <strong>Technologies:</strong> C#, ASP.NET, Microsoft Azure,
+              Terraform, TypeScript, Angular, PostgreSQL, Apache Kafka,
+              Kubernetes, Microsoft SQL Server, .NET
+            </p>
           </div>
         </article>
 
@@ -33,18 +93,18 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>Amazon</h3>
             <p class="experience-role">Software Development Engineer</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 <strong>New Hire IT Onboarding.</strong> Developed, maintained,
                 and operated self-service wizards serving hundreds of new Amazon
                 employees every week.
-              </li>
-              <li>
+              </p>
+              <p>
                 <strong>IT Workflow Wizard.</strong> Designed and developed an
                 interface that rendered platform definitions as guided IT
                 experiences for Amazon employees.
-              </li>
-            </ul>
+              </p>
+            </div>
             <p class="experience-technologies">
               <strong>Technologies:</strong> TypeScript, Node.js, React, AWS
             </p>
@@ -56,23 +116,23 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>ServiceNow</h3>
             <p class="experience-role">Software Engineer</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 <strong>Core Platform.</strong> Delivered{' '}
                 <Anchor href="https://docs.servicenow.com/en-US/bundle/tokyo-application-development/page/script/JavaScript-engine-upgrade/concept/c_JS_engine_upgrade.html">
                   ECMAScript 2021
                 </Anchor>{' '}
                 in the Tokyo release for customers who upgraded.
-              </li>
-              <li>
+              </p>
+              <p>
                 <strong>Now User Experience Framework.</strong> Developed
                 features for{' '}
                 <Anchor href="https://docs.servicenow.com/bundle/sandiego-platform-user-interface/page/get-started/servicenow-overview/concept/next-experience-ui.html">
                   Next Experience UI (Polaris)
                 </Anchor>{' '}
                 in the San Diego release.
-              </li>
-            </ul>
+              </p>
+            </div>
             <p class="experience-technologies">
               <strong>Technologies:</strong> Java, JavaScript, Now Experience Framework
             </p>
@@ -84,24 +144,24 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>Fast Enterprises</h3>
             <p class="experience-role">Implementation Consultant</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 <strong>MNDRIVE.</strong> Developed vehicle titling and
                 registration interfaces for the{' '}
                 <Anchor href="https://www.startribune.com/smooth-start-seen-this-week-for-mndrive-the-state-s-new-vehicle-and-license-registration-system/573118001/">
                   successful release
                 </Anchor>{' '}
                 serving Minnesota motorists.
-              </li>
-              <li>
+              </p>
+              <p>
                 <strong>NMVTIS.</strong> Developed an interface servicing
                 hundreds of daily requests to protect motorists from title fraud.
-              </li>
-              <li>
+              </p>
+              <p>
                 <strong>Registration renewal notices.</strong> Developed the
                 interface that mails notices to ~300,0000 motorists monthly.
-              </li>
-            </ul>
+              </p>
+            </div>
             <p class="experience-technologies">
               <strong>Technologies:</strong> Microsoft SQL Server, Visual Basic, .NET
             </p>
@@ -113,16 +173,16 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>PSC Biotech</h3>
             <p class="experience-role">Implementation Specialist</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 Implemented{' '}
                 <Anchor href="https://pscsoftware.com/software/ace/">
                   FDA-compliant enterprise software solutions
                 </Anchor>{' '}
                 for pharmaceutical companies in collaboration with product,
                 project, engineering, and operations teams.
-              </li>
-            </ul>
+              </p>
+            </div>
           </div>
         </article>
 
@@ -131,15 +191,15 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>Santa Clara County Registrar of Voters</h3>
             <p class="experience-role">Student Intern III</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 Maintained{' '}
                 <Anchor href="https://sccvote.sccgov.org/register-vote/precinct-maps">
                   precinct boundaries
                 </Anchor>{' '}
                 to support safe, efficient, and transparent elections.
-              </li>
-            </ul>
+              </p>
+            </div>
             <p class="experience-technologies"><strong>Technology:</strong> ArcGIS</p>
           </div>
         </article>
@@ -149,44 +209,22 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <h3>UC San Diego Teaching + Learning Commons</h3>
             <p class="experience-role">SI Leader (Peer Tutor for Math)</p>
-            <ul class="achievement-list">
-              <li>
+            <div class="achievement-list">
+              <p>
                 Led{' '}
                 <Anchor href="https://aah.ucsd.edu/supplemental-instruction/index.html">
                   Supplemental Instruction
                 </Anchor>{' '}
                 for calculus and linear algebra; participants earned a half
                 letter grade higher than students who did not participate.
-              </li>
-            </ul>
+              </p>
+            </div>
             <p class="experience-technologies">
               <strong>Technologies:</strong> MATLAB, LaTeX
             </p>
           </div>
         </article>
       </div>
-    </section>
-
-    <section class="section-block skills-section" aria-labelledby="skills-heading">
-      <h2 id="skills-heading" class="section-title">Selected skills</h2>
-      <dl class="skills-index">
-        <div>
-          <dt>Languages</dt>
-          <dd>TypeScript, JavaScript, Java, Visual Basic</dd>
-        </div>
-        <div>
-          <dt>Frontend</dt>
-          <dd>React, Now Experience Framework</dd>
-        </div>
-        <div>
-          <dt>Backend & data</dt>
-          <dd>Node.js, .NET, Microsoft SQL Server</dd>
-        </div>
-        <div>
-          <dt>Cloud & tools</dt>
-          <dd>AWS, ArcGIS, MATLAB, LaTeX</dd>
-        </div>
-      </dl>
     </section>
 
     <section class="section-block education-section" aria-labelledby="education-heading">

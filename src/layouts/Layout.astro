@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import type { Path } from '../types';
@@ -45,8 +46,9 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
+    <ClientRouter fallback="swap" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -60,11 +62,13 @@ const structuredData = {
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    <script is:inline>
-      const storedTheme = window.localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = storedTheme ?? (prefersDark ? 'dark' : 'light');
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+    <script is:inline data-astro-rerun>
+      (() => {
+        const storedTheme = window.localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = storedTheme ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
     </script>
   </head>
   <body>

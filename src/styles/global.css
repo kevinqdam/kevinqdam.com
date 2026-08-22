@@ -268,40 +268,43 @@ img {
 
 .page-header {
   max-width: 45rem;
-  margin: 1.5rem 0 4.5rem;
+  margin: 0.75rem 0 3.5rem;
 }
 
 .compact-page-header {
-  margin-bottom: 3rem;
-}
-
-.page-header h1,
-.hero h1 {
-  margin: 0;
-  font-size: clamp(3rem, 8vw, 6.2rem);
-  font-weight: 600;
-  letter-spacing: -0.065em;
-  line-height: 0.96;
+  margin-bottom: 2.5rem;
 }
 
 .page-header h1 {
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  margin: 0;
+  font-size: clamp(2.15rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
 }
 
 .page-lede {
   max-width: 38rem;
-  margin: 1.35rem 0 0;
+  margin: 1rem 0 0;
   color: var(--ink-muted);
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem);
+  grid-template-columns: minmax(0, 1fr) 7rem;
   align-items: center;
-  gap: clamp(3rem, 10vw, 8rem);
-  min-height: 31rem;
-  padding: 2rem 0 5rem;
+  gap: clamp(2rem, 7vw, 5rem);
+  min-height: 23rem;
+  padding: 1rem 0 3.5rem;
 }
 
 .hero h1 span {
@@ -360,35 +363,20 @@ img {
 }
 
 .home-portrait {
+  width: 7rem;
   margin: 0;
 }
 
 .profile-image {
   display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
+  width: 7rem;
+  height: 7rem;
   border: 1px solid var(--line);
+  border-radius: 50%;
   object-fit: cover;
   object-position: center;
 }
 
-.home-writing {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 2rem 0;
-}
-
-.home-writing h2 {
-  margin: 0;
-  font-size: 1.65rem;
-  letter-spacing: -0.025em;
-}
-
-.text-link,
 .back-link {
   color: var(--accent-hover);
   font-weight: 700;
@@ -396,7 +384,6 @@ img {
   text-underline-offset: 0.2em;
 }
 
-.dark .text-link,
 .dark .back-link {
   color: var(--accent);
 }
@@ -447,17 +434,33 @@ img {
 
 .experience-role {
   margin: 0.15rem 0 0;
-  color: var(--ink-muted);
+  color: var(--ink);
   font-weight: 600;
 }
 
+.experience-details {
+  margin: 0.1rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+.experience-project {
+  margin: 1.15rem 0 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .achievement-list {
-  margin: 1rem 0 0;
-  padding-left: 1.15rem;
+  margin: 0.65rem 0 0;
   color: var(--ink-muted);
 }
 
-.achievement-list li + li {
+.achievement-list p {
+  margin: 0;
+}
+
+.achievement-list p + p {
   margin-top: 0.75rem;
 }
 
@@ -472,26 +475,14 @@ img {
   font-size: 0.92rem;
 }
 
-.skills-index {
-  margin: 0;
-  border-top: 1px solid var(--line);
-}
-
-.skills-index > div {
-  display: grid;
-  grid-template-columns: 10.5rem minmax(0, 1fr);
-  gap: clamp(1.5rem, 5vw, 3.5rem);
-  border-bottom: 1px solid var(--line);
-  padding: 0.9rem 0;
-}
-
-.skills-index dt {
-  font-weight: 700;
-}
-
-.skills-index dd {
-  margin: 0;
+.experience-resources {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
   color: var(--ink-muted);
+  font-size: 0.9rem;
 }
 
 .education-entry {
@@ -835,28 +826,36 @@ img {
 
 .footer-links {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.45rem 1rem;
+  gap: 0.45rem;
 }
 
-.footer-links a,
+.footer-link,
 .copy-email {
-  border: 0;
-  background: transparent;
-  padding: 0;
-  color: var(--ink-muted);
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.2em;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: border-color 140ms ease, color 140ms ease;
 }
 
-.footer-links a:hover,
+.footer-link:hover,
 .copy-email:hover {
+  border-color: var(--line);
   color: var(--ink);
-  text-decoration-color: currentColor;
+}
+
+.footer-link svg,
+.copy-email svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .email-action {
@@ -920,35 +919,31 @@ img {
   }
 
   .hero {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr) 5.25rem;
+    align-items: start;
+    gap: 1.25rem;
     min-height: 0;
-    padding: 0.5rem 0 4rem;
-  }
-
-  .hero-copy {
-    order: 2;
+    padding: 0.5rem 0 3rem;
   }
 
   .home-portrait {
-    order: 1;
-    width: min(72vw, 16rem);
+    width: 5.25rem;
+  }
+
+  .profile-image {
+    width: 5.25rem;
+    height: 5.25rem;
   }
 
   .hero h1 {
-    font-size: clamp(3.5rem, 18vw, 5.5rem);
-  }
-
-  .home-writing {
-    align-items: flex-start;
+    font-size: clamp(3rem, 14vw, 4rem);
   }
 
   .page-header {
-    margin: 0.5rem 0 3rem;
+    margin: 0.25rem 0 2.5rem;
   }
 
   .experience-item,
-  .skills-index > div,
   .education-entry {
     grid-template-columns: 1fr;
     gap: 0.35rem;
@@ -956,10 +951,6 @@ img {
 
   .experience-item {
     padding: 1.4rem 0 1.65rem;
-  }
-
-  .skills-index > div {
-    padding: 0.8rem 0;
   }
 
   .education-entry {
