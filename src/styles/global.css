@@ -291,13 +291,6 @@ img {
   line-height: 0.98;
 }
 
-.page-lede {
-  max-width: 38rem;
-  margin: 1rem 0 0;
-  color: var(--ink-muted);
-  font-size: 1rem;
-}
-
 .hero {
   display: flex;
   max-width: 42rem;
@@ -310,48 +303,24 @@ img {
   color: var(--accent);
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-top: 2.25rem;
-}
-
-.button-primary,
-.button-secondary {
+.button-primary {
   display: inline-flex;
   min-height: 2.9rem;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   border: 1px solid var(--accent);
+  background: var(--accent);
   padding: 0.62rem 1rem;
+  color: var(--on-accent);
   font-weight: 700;
   text-decoration: none;
   transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
 }
 
-.button-primary {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
 .button-primary:hover {
   border-color: var(--accent-hover);
   background: var(--accent-hover);
-}
-
-.button-secondary {
-  background: transparent;
-  color: var(--accent-hover);
-}
-
-.dark .button-secondary {
-  color: var(--accent);
-}
-
-.button-secondary:hover {
-  background: var(--accent-soft);
 }
 
 .hero-note {
@@ -408,7 +377,7 @@ img {
   font-weight: 600;
 }
 
-.experience-item h3,
+.experience-item h2,
 .education-entry h3 {
   margin: 0;
   font-size: 1.25rem;
