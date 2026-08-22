@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import profileImage from '../assets/images/kevinqdam.png';
 ---
 
 <Layout
@@ -28,19 +26,5 @@ import profileImage from '../assets/images/kevinqdam.png';
         employers.
       </p>
     </div>
-
-    <figure class="home-portrait">
-      <Image
-        class="profile-image"
-        alt="Kevin Dam"
-        width={112}
-        height={112}
-        densities={[1, 2]}
-        fit="cover"
-        position="center"
-        priority
-        src={profileImage}
-      />
-    </figure>
   </section>
 </Layout>

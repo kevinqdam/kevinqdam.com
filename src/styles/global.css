@@ -285,7 +285,7 @@ img {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-size: clamp(3.25rem, 6vw, 4.5rem);
   font-weight: 600;
   letter-spacing: -0.06em;
   line-height: 0.98;
@@ -299,11 +299,10 @@ img {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 7rem;
-  align-items: center;
-  gap: clamp(2rem, 7vw, 5rem);
+  display: flex;
+  max-width: 42rem;
   min-height: 23rem;
+  align-items: center;
   padding: 1rem 0 3.5rem;
 }
 
@@ -360,21 +359,6 @@ img {
   margin: 1.6rem 0 0;
   color: var(--ink-muted);
   font-size: 0.9rem;
-}
-
-.home-portrait {
-  width: 7rem;
-  margin: 0;
-}
-
-.profile-image {
-  display: block;
-  width: 7rem;
-  height: 7rem;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
 }
 
 .back-link {
@@ -919,20 +903,10 @@ img {
   }
 
   .hero {
-    grid-template-columns: minmax(0, 1fr) 5.25rem;
-    align-items: start;
-    gap: 1.25rem;
+    display: block;
+    max-width: 100%;
     min-height: 0;
     padding: 0.5rem 0 3rem;
-  }
-
-  .home-portrait {
-    width: 5.25rem;
-  }
-
-  .profile-image {
-    width: 5.25rem;
-    height: 5.25rem;
   }
 
   .hero h1 {
